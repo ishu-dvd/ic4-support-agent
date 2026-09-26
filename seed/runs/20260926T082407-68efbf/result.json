@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082407-68efbf",
+  "ticket_id": "TCK-1121",
+  "category": "rate_limit_backoff",
+  "request_type": "how_to",
+  "confidence": 0.92,
+  "diagnosis": "Client is receiving 429s but not honouring the Retry-After header, so it retries immediately and keeps hitting the limit. Point them at kb-0014: honour Retry-After with jitter, and if 429s persist across a full window the ceiling is plan-level rather than a burst.",
+  "reply": "Thanks for flagging this \u2014 the behaviour you're describing points to the client ignoring the Retry-After header on 429 responses.\n\nA 429 response includes a Retry-After header expressed in seconds. The correct approach is to read that value and wait for the indicated duration before retrying, and to add jitter to the delay so that multiple client instances don't retry in lockstep and re-trigger the limit. Retrying immediately will simply produce another 429.\n\nOne thing worth checking: if you're seeing sustained 429s across an entire window rather than occasional bursts, that generally indicates the ceiling for your plan rather than a momentary burst, and backoff alone won't resolve it. Our article \"Reading 429 responses and backing off correctly\" (kb-0014) covers both cases.\n\nIf after implementing header-driven backoff with jitter you're still seeing sustained 429s, reply with the approximate request volumes and times so we can take a closer look.",
+  "kb_cited": [
+    "kb-0014"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 910,
+    "output_tokens": 395,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000747,
+    "ttft_ms": 2246,
+    "tbt_ms_avg": 18.41,
+    "tbt_ms_p50": 13.18,
+    "tbt_ms_p95": 36.56,
+    "stream_chunks": 301,
+    "latency_ms": 7819,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000273,
+    "cost_output_usd": 0.000474,
+    "cost_diagnosis_usd": 0.000102,
+    "cost_reply_usd": 0.000372
+  },
+  "duration_ms": 7831,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0015",
+    "kb-0006",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_3cb02223b73f4ace8799",
+  "correlation_id": "req_3cb02223b73f4ace8799"
+}

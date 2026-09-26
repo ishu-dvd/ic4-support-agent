@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T085851-5a561f",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer on legacy_auth (business tier, us-west) is asking what the move to Unified Auth involves and whether it can be rolled back. KB kb-0012 covers the migration steps and states that rollback is not possible once legacy tokens are disabled. Question-type request; no escalation per policy.",
+  "reply": "Thanks for planning ahead on the move to Unified Auth. Migration replaces your account-wide token with scoped keys, and we recommend a dual-running window: create the scoped keys, cut your traffic over to them, and only then disable the legacy token. One important note on rollback: once the legacy token is disabled, the migration cannot be reversed, so we suggest validating the scoped keys fully during the dual-running window before disabling the legacy token. Happy to help you plan the cutover steps if you have questions.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 939,
+    "output_tokens": 283,
+    "model_id": "kimi-k3",
+    "cost_usd": 0.007062,
+    "ttft_ms": 3932,
+    "tbt_ms_avg": 20.87,
+    "tbt_ms_p50": 19.55,
+    "tbt_ms_p95": 79.84,
+    "stream_chunks": 196,
+    "latency_ms": 8071,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.002817,
+    "cost_output_usd": 0.004245,
+    "cost_diagnosis_usd": 0.001515,
+    "cost_reply_usd": 0.00273
+  },
+  "duration_ms": 8079,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_3e55c2d1e7644ced82a7",
+  "correlation_id": "req_3e55c2d1e7644ced82a7"
+}

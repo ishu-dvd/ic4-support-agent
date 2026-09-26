@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T090902-c89ea0",
+  "ticket_id": "TCK-1119",
+  "category": "seat_billing",
+  "request_type": "how_to",
+  "confidence": 0.905,
+  "diagnosis": "Customer on startup plan with 5 seats wants to add 4 more and understand billing. This is a straightforward how-to question covered by kb-0011 on prorated seat billing.",
+  "reply": "Seat additions are billed pro rata from the day they are added, so you won't pay the full month for those 4 new seats. You'll only be charged for the remaining days in your current billing cycle.",
+  "kb_cited": [
+    "kb-0011"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 731,
+    "output_tokens": 118,
+    "model_id": "kimi-k2.6",
+    "cost_usd": 0.001166,
+    "ttft_ms": 1189,
+    "tbt_ms_avg": 15.69,
+    "tbt_ms_p50": 14.18,
+    "tbt_ms_p95": 50.52,
+    "stream_chunks": 117,
+    "latency_ms": 3009,
+    "attempts": 3,
+    "retries": 2,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000694,
+    "cost_output_usd": 0.000472,
+    "cost_diagnosis_usd": 0.000218,
+    "cost_reply_usd": 0.000254
+  },
+  "duration_ms": 4529,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0011",
+    "kb-0001",
+    "kb-0006"
+  ],
+  "request_id": "req_535fca2eeadc405aba5c",
+  "correlation_id": "req_535fca2eeadc405aba5c"
+}

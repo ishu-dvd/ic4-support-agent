@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T091017-de4ee3",
+  "ticket_id": "TCK-1105",
+  "category": "region_unavailable",
+  "request_type": "question",
+  "confidence": 0.636,
+  "diagnosis": "The customer's private networking request is queued indefinitely because the feature is not supported in the eu-central region, despite the account having the correct enterprise entitlements. The request will not proceed without manual intervention or a region change.",
+  "reply": "Thank you for contacting support. I have reviewed your account and see that your private networking request has been queued. According to our current availability guidelines, private networking is not yet supported in the eu-central region, which causes requests in this area to remain in a queued state rather than failing immediately. I have recommended this ticket for escalation to a specialist to discuss potential next steps or alternatives for your setup.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:region_unavailable",
+    "stuck_request"
+  ],
+  "write": {
+    "status": "pending_manual",
+    "escalation_id": null,
+    "error": "past_deadline"
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 918,
+    "output_tokens": 180,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.001135,
+    "ttft_ms": 1416,
+    "tbt_ms_avg": 184.96,
+    "tbt_ms_p50": 178.74,
+    "tbt_ms_p95": 309.89,
+    "stream_chunks": 179,
+    "latency_ms": 34665,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000505,
+    "cost_output_usd": 0.00063,
+    "cost_diagnosis_usd": 0.000231,
+    "cost_reply_usd": 0.000399
+  },
+  "duration_ms": 34675,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0001"
+  ],
+  "request_id": "req_886826154d784a00ada6",
+  "correlation_id": "req_886826154d784a00ada6"
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081941-4513b4",
+  "ticket_id": "TCK-1126",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.727,
+  "diagnosis": "The customer is using Unified Auth, so API credentials are scoped keys. To 'reset' the token, they need to create a new scoped key, migrate traffic to it, and then revoke the old key, as there is no grace period for revocation.",
+  "reply": "Hi,\n\nUnder Unified Auth your API credentials are managed as scoped keys rather than a single account\u2011wide token. To reset your credential, simply:\n\n1. Generate a new scoped key in the API settings panel.\n2. Update your applications to use the new key.\n3. Once the traffic switch is complete, revoke the old key.\n\nThis process ensures a smooth transition with no downtime. If you run into any issues, let me know and we can walk through the steps together.\n\nThanks for choosing us!",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 851,
+    "output_tokens": 443,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000242,
+    "ttft_ms": 2612,
+    "tbt_ms_avg": 7.1,
+    "tbt_ms_p50": 6.83,
+    "tbt_ms_p95": 10.58,
+    "stream_chunks": 193,
+    "latency_ms": 4033,
+    "attempts": 2,
+    "retries": 1,
+    "usage_estimated": false,
+    "cost_input_usd": 4.3e-05,
+    "cost_output_usd": 0.000199,
+    "cost_diagnosis_usd": 6.4e-05,
+    "cost_reply_usd": 0.000135
+  },
+  "duration_ms": 9148,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0017",
+    "kb-0012",
+    "kb-0003",
+    "kb-0009"
+  ],
+  "request_id": "req_a1180a4262534875aa9a",
+  "correlation_id": "req_a1180a4262534875aa9a"
+}

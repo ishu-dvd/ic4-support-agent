@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082144-ec015c",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "Account is on the startup tier with basic support; per kb-0010, SSO is included only on standard and premium tiers, so the feature is not currently entitled.",
+  "reply": "Thanks for reaching out! SSO is currently included on our standard and premium support tiers, and your account is not currently provisioned for it. If you'd like to explore plan options to gain access, please let us know and we can point you in the right direction.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 864,
+    "output_tokens": 129,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000194,
+    "ttft_ms": 1720,
+    "tbt_ms_avg": 30.23,
+    "tbt_ms_p50": 19.93,
+    "tbt_ms_p95": 78.69,
+    "stream_chunks": 122,
+    "latency_ms": 5416,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.00013,
+    "cost_output_usd": 6.5e-05,
+    "cost_diagnosis_usd": 2.4e-05,
+    "cost_reply_usd": 4.1e-05
+  },
+  "duration_ms": 5419,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_347284ef174b4a32b639",
+  "correlation_id": "req_347284ef174b4a32b639"
+}

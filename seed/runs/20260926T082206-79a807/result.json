@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082206-79a807",
+  "ticket_id": "TCK-1126",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.727,
+  "diagnosis": "Customer on Unified Auth; credentials are scoped keys, not a single token. Provide rotation procedure per kb-0003; no escalation needed.",
+  "reply": "Thank you for reaching out. Since your account is on Unified Auth, credentials are managed as scoped API keys rather than a single account-wide token, so there is no reset step in the traditional sense. To rotate a key: create a new scoped key with the scopes you need, move your traffic onto it, and then revoke the previous key. Please note revocation is immediate with no grace period, and keys cannot have their scopes widened after creation, so set the scopes you require upfront. Let us know if you need help with anything else.",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 790,
+    "output_tokens": 174,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000206,
+    "ttft_ms": 1877,
+    "tbt_ms_avg": 20.6,
+    "tbt_ms_p50": 19.41,
+    "tbt_ms_p95": 61.16,
+    "stream_chunks": 172,
+    "latency_ms": 5423,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000118,
+    "cost_output_usd": 8.7e-05,
+    "cost_diagnosis_usd": 1.8e-05,
+    "cost_reply_usd": 6.9e-05
+  },
+  "duration_ms": 5434,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0017",
+    "kb-0012",
+    "kb-0003",
+    "kb-0009"
+  ],
+  "request_id": "req_8b37da089d66447d9052",
+  "correlation_id": "req_8b37da089d66447d9052"
+}

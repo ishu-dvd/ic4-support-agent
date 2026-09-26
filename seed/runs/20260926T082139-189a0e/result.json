@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082139-189a0e",
+  "ticket_id": "TCK-1104",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.852,
+  "diagnosis": "Account is on legacy_auth, so the account-wide token reset flow in kb-0002 applies (Unified Auth accounts have no account-wide token). No identity or entitlement blocker indicated, consistent with the escalate=False decision. Engineer should note the reset must be initiated from the Security tab and that the prior token remains valid for a short overlap window.",
+  "reply": "Thanks for reaching out. Since your account is still on Legacy Auth, you can reset the account-wide API token yourself:\n\n1. Open the Security tab in your account settings.\n2. Choose \u201cReset token\u201d.\n\nPlease note that the previous API token stays valid for 24 hours after the reset, so update your integration with the new token and retire the old one within that window to avoid the lockout recurring.\n\nIf your Security tab shows that your account has already been migrated to Unified Auth, there is no account-wide token to reset \u2014 in that case you would manage scoped keys instead, and we can help you with that flow. Just reply here and let us know what you see.",
+  "kb_cited": [
+    "kb-0002"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 839,
+    "output_tokens": 540,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.0009,
+    "ttft_ms": 5061,
+    "tbt_ms_avg": 15.73,
+    "tbt_ms_p50": 13.65,
+    "tbt_ms_p95": 44.65,
+    "stream_chunks": 251,
+    "latency_ms": 9056,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000252,
+    "cost_output_usd": 0.000648,
+    "cost_diagnosis_usd": 0.000229,
+    "cost_reply_usd": 0.000419
+  },
+  "duration_ms": 9067,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0018",
+    "kb-0012"
+  ],
+  "request_id": "req_aee0641a55b144169f7e",
+  "correlation_id": "req_aee0641a55b144169f7e"
+}

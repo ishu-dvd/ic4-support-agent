@@ -1,0 +1,63 @@
+{
+  "run_id": "20260926T081653-941b92",
+  "trace_id": "828629e846004306a986a83d833bf3c8",
+  "request_id": "req_ebb542942c6744409112",
+  "correlation_id": "req_ebb542942c6744409112",
+  "ticket_id": "TCK-1109",
+  "start_ms": 1790410613698,
+  "outcome": "degraded",
+  "error": null,
+  "category": "entitlement_unknown",
+  "escalate": true,
+  "write_status": "skipped_dry_run",
+  "draft_source": "rules_fallback",
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "guard_violations": 0,
+  "model_id": "mistral-3-14B",
+  "prompt_version": "v1",
+  "cost_usd": 0.000214,
+  "cost_input_usd": 0.000184,
+  "cost_output_usd": 3e-05,
+  "cost_diagnosis_usd": 1.9e-05,
+  "cost_reply_usd": 1.1e-05,
+  "input_tokens": 921,
+  "output_tokens": 150,
+  "usage_estimated": false,
+  "ttft_ms": 813,
+  "tbt_ms_avg": 6.46,
+  "tbt_ms_p50": 0.05,
+  "tbt_ms_p95": 8.88,
+  "llm_latency_ms": 1788,
+  "llm_attempts": 1,
+  "duration_ms": 1799,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 1,
+    "kb_search": 2,
+    "read_entitlements": 3,
+    "read_parallel": 3,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 1790,
+    "output_guard": 2,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "upstream_degraded": 1,
+    "entitlements_degraded": 1,
+    "policy_decided": 1,
+    "guard_fallback": 1,
+    "write_skipped_dry_run": 1
+  }
+}

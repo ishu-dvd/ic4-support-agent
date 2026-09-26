@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T090932-6ae99c",
+  "ticket_id": "TCK-1125",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.765,
+  "diagnosis": "Enterprise account with premium support and audit_log entitlement. Customer needs export from September last year, which could be up to ~12 months back. KB-0013 states 400-day retention for premium, so the data should be available. Export available via NDJSON audit endpoint per KB-0013.",
+  "reply": "Your audit log entries are retained for 400 days on your premium support tier, so the September timeframe should be available. You can export these as NDJSON through the audit endpoint. For a 12-month export, if the resulting job is under 10 GB it typically completes within an hour. If you see a job running longer than six hours, please cancel and resubmit it.",
+  "kb_cited": [
+    "kb-0013",
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 788,
+    "output_tokens": 182,
+    "model_id": "kimi-k2.6",
+    "cost_usd": 0.001477,
+    "ttft_ms": 1001,
+    "tbt_ms_avg": 14.83,
+    "tbt_ms_p50": 14.4,
+    "tbt_ms_p95": 18.12,
+    "stream_chunks": 181,
+    "latency_ms": 3699,
+    "attempts": 3,
+    "retries": 2,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000749,
+    "cost_output_usd": 0.000728,
+    "cost_diagnosis_usd": 0.000322,
+    "cost_reply_usd": 0.000406
+  },
+  "duration_ms": 5123,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0005",
+    "kb-0009",
+    "kb-0010"
+  ],
+  "request_id": "req_6d6cc985842f4ef2a7da",
+  "correlation_id": "req_6d6cc985842f4ef2a7da"
+}

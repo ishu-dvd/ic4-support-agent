@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081854-0b447a",
+  "ticket_id": "TCK-1117",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.826,
+  "diagnosis": "The user needs to reset an API token on a Legacy Auth account. The reset process is available through the Security tab and the old token remains valid for 24 hours.",
+  "reply": "To reset your API token, please log into the admin portal and navigate to the **Security** tab. From there, click **Reset token**. The previously issued token will stay active for 24 hours before fully deactivating, allowing a smooth transition for your integration vendor.",
+  "kb_cited": [
+    "kb-0002"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 853,
+    "output_tokens": 274,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000166,
+    "ttft_ms": 1863,
+    "tbt_ms_avg": 6.71,
+    "tbt_ms_p50": 6.29,
+    "tbt_ms_p95": 9.93,
+    "stream_chunks": 119,
+    "latency_ms": 2685,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4.3e-05,
+    "cost_output_usd": 0.000123,
+    "cost_diagnosis_usd": 4.6e-05,
+    "cost_reply_usd": 7.7e-05
+  },
+  "duration_ms": 2691,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0008",
+    "kb-0012"
+  ],
+  "request_id": "req_a448acba007c47c685f4",
+  "correlation_id": "req_a448acba007c47c685f4"
+}

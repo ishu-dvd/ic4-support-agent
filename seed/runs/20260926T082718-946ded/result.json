@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T082718-946ded",
+  "ticket_id": "TCK-1119",
+  "category": "seat_billing",
+  "request_type": "how_to",
+  "confidence": 0.905,
+  "diagnosis": "Prospective seat addition under a startup plan in US-West. Knowledge base article kb-0011 confirms pro-rata billing for seat additions from day of addition, so a straightforward answer can be provided using that article.",
+  "reply": "Seat additions are billed pro rata from the day they are added, so you would only be charged for the remaining days of the billing cycle for those 4 seats, not the full month. Seat removals only take effect at renewal and are not credited mid-cycle (see kb-0011 for details).",
+  "kb_cited": [
+    "kb-0011"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 751,
+    "output_tokens": 152,
+    "model_id": "deepseek-v4-pro",
+    "cost_usd": 0.001836,
+    "ttft_ms": 948,
+    "tbt_ms_avg": 21.72,
+    "tbt_ms_p50": 20.75,
+    "tbt_ms_p95": 79.2,
+    "stream_chunks": 66,
+    "latency_ms": 2391,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001307,
+    "cost_output_usd": 0.000529,
+    "cost_diagnosis_usd": 0.000235,
+    "cost_reply_usd": 0.000294
+  },
+  "duration_ms": 2402,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0011",
+    "kb-0001",
+    "kb-0006"
+  ],
+  "request_id": "req_aea5372e314a4e03a2c2",
+  "correlation_id": "req_aea5372e314a4e03a2c2"
+}

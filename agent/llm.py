@@ -54,6 +54,24 @@ PRICE_PER_1K: Dict[str, Tuple[float, float]] = {
     "gemma-4-31B-it": (0.00018, 0.0005),
     "mistral-3-14B": (0.0002, 0.0002),
     "nemotron-nano-12b-v2-vl": (0.0002, 0.0006),
+    # accessible on team Blitz_team1_BLR (probe 2026-09-26), prices from /v2/gen-ai/models `pricing`
+    "glm-5.2": (0.0014, 0.0044),
+    "deepseek-v4-pro-0813": (0.00132, 0.00396),
+    "nemotron-3-nano-omni": (0.0005, 0.0009),
+    "deepseek-4-flash": (0.00014, 0.00028),
+    "deepseek-v4-flash-0731": (0.00014, 0.00028),
+    "glm-5.3-flash": (0.00015, 0.0005),
+    "qwen3.5-397b-a17b": (0.00055, 0.0035),
+    "llama-4-maverick": (0.00025, 0.00087),
+    "nemotron-3-ultra-550b": (0.0009, 0.0017),
+    "deepseek-v4.1-flash": (0.0003, 0.0012),
+    "deepseek-3.2": (0.0005, 0.0016),
+    "glm-5.3": (0.0014, 0.0044),
+    "kimi-k2.6": (0.00095, 0.004),
+    "mimo-v2.5-pro": (0.0008, 0.003),
+    "deepseek-v4-pro": (0.00174, 0.00348),
+    "qwen3.8-max": (0.002, 0.006),
+    "kimi-k3": (0.003, 0.015),
     "rules": (0.0, 0.0),
     "none": (0.0, 0.0),
 }
@@ -466,6 +484,7 @@ class _Attempt:
     ttft_ms: Optional[int] = None
     gaps_ms: List[float] = field(default_factory=list)
     chunks: int = 0
+    reasoning_chunks: int = 0  # `reasoning_content` deltas from a thinking model (not part of the answer)
     latency_ms: int = 0
     status: int = 200
 
@@ -483,6 +502,40 @@ def _iter_sse(resp) -> "Any":
             yield json.loads(data)
         except ValueError:
             continue
+
+
+# Request parameters a provider may refuse for a given model, with the words a 400 body uses to name them.
+# Checked in this order. Observed on DigitalOcean serverless inference (2026-09):
+#   kimi-k2.6      "temperature must be 1 for this model"
+#   kimi-k2.6      "response_format type 'json_object' is not supported for this model"
+#   mistral-3-14B  "chat_template is not supported for Mistral tokenizers"   (-> chat_template_kwargs)
+ADAPTABLE_PARAMS: Tuple[Tuple[str, Tuple[str, ...]], ...] = (
+    ("chat_template_kwargs", ("chat_template",)),
+    ("temperature", ("temperature",)),
+    ("response_format", ("response_format", "json_object")),
+    ("stream_options", ("stream_options",)),
+    ("max_tokens", ("max_tokens",)),
+)
+
+
+# model_id -> parameters that model has rejected in this process. Learned from 400 bodies; consulted before
+# every call so only the first request to a model pays the discovery round-trips.
+_UNSUPPORTED_PARAMS: Dict[str, set] = {}
+
+
+def _drop_unsupported_param(payload: Dict[str, Any], err: "urllib.error.HTTPError") -> Optional[str]:
+    """If a 400 body names one of ADAPTABLE_PARAMS that we sent, remove it from `payload` and return its
+    name; otherwise None. Reads at most 4 KB of the body and keeps nothing else from it."""
+    try:
+        body = (err.read(4096) or b"").decode("utf-8", "replace").lower()
+    except Exception:
+        return None
+    for name, words in ADAPTABLE_PARAMS:
+        if name in payload and any(w in body for w in words):
+            payload.pop(name, None)
+            _UNSUPPORTED_PARAMS.setdefault(str(payload.get("model") or ""), set()).add(name)
+            return name
+    return None
 
 
 class OpenAICompatibleLLM:
@@ -541,7 +594,10 @@ class OpenAICompatibleLLM:
                         out.output_tokens = int(usage.get("completion_tokens", 0) or 0)
                         out.usage_present = True
                     for choice in obj.get("choices") or []:
-                        delta = (choice.get("delta") or {}).get("content")
+                        delta_obj = choice.get("delta") or {}
+                        if delta_obj.get("reasoning_content"):
+                            out.reasoning_chunks += 1
+                        delta = delta_obj.get("content")
                         if not delta:
                             continue
                         now = time.perf_counter()
@@ -585,11 +641,16 @@ class OpenAICompatibleLLM:
         if self.stream:
             payload["stream"] = True
             payload["stream_options"] = {"include_usage": True}
+        if getattr(self.cfg, "llm_disable_thinking", True):
+            payload["chat_template_kwargs"] = {"enable_thinking": False}
+        for name in _UNSUPPORTED_PARAMS.get(str(model), ()):
+            payload.pop(name, None)
         prompt_chars = len(payload["messages"][0]["content"]) + len(payload["messages"][1]["content"])
 
         policy = self.retry_policy
         attempt = 0
         bad_outputs = 0
+        dropped_params = 0
         while True:
             status: Optional[int] = None
             exc_kind: Optional[str] = None
@@ -604,6 +665,7 @@ class OpenAICompatibleLLM:
                     span["gen_ai.usage.input_tokens"] = result.input_tokens
                     span["gen_ai.usage.output_tokens"] = result.output_tokens
                     span["ttft_ms"] = result.ttft_ms
+                    span["reasoning_chunks"] = result.reasoning_chunks
                     try:
                         draft = _parse_draft(result.content, prompt_ctx)
                     except LLMError as exc:
@@ -646,6 +708,20 @@ class OpenAICompatibleLLM:
                     status = err.code
                     code = "http_%d" % err.code
                     span["http.status"] = err.code
+                    if err.code == 400 and dropped_params < len(ADAPTABLE_PARAMS):
+                        # Some serverless models reject a request *parameter* rather than the request
+                        # (kimi-k2.6: "temperature must be 1 for this model"). That is not a transient
+                        # failure, so the status policy would stop here and every ticket would fall back
+                        # to rules. Drop the offending parameter once and go again - the model's default
+                        # is what the provider insists on anyway. Never retries a genuinely bad request.
+                        dropped = _drop_unsupported_param(payload, err)
+                        if dropped:
+                            dropped_params += 1
+                            span["error"] = "param_unsupported:%s" % dropped
+                            span["retry_decision"] = "retry:param_unsupported"
+                            tracer.event("llm_param_dropped", param=dropped, attempt=attempt + 1, code=code)
+                            attempt += 1
+                            continue
                     span["error"] = code
                 except (urllib.error.URLError, socket.timeout, TimeoutError, ConnectionError) as exc:
                     reason_obj = getattr(exc, "reason", exc)

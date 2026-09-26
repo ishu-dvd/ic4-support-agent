@@ -1,0 +1,57 @@
+{
+  "run_id": "20260926T075927-e75574",
+  "ticket_id": "TCK-1124",
+  "category": "entitlement_unknown",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "The entitlement service is currently unavailable (entitlement_service_error), making it impossible to verify the customer's seat count. The request is categorized as entitlement_unknown.",
+  "reply": "Thank you for reaching out. I am currently unable to retrieve your account entitlement details to confirm your seat count. I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:entitlement_unknown",
+    "entitlements_unavailable:entitlement_service_error"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 925,
+    "output_tokens": 100,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000217,
+    "ttft_ms": 1063,
+    "tbt_ms_avg": 66.66,
+    "tbt_ms_p50": 49.58,
+    "tbt_ms_p95": 147.86,
+    "stream_chunks": 99,
+    "latency_ms": 7624,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000167,
+    "cost_output_usd": 5e-05,
+    "cost_diagnosis_usd": 2.5e-05,
+    "cost_reply_usd": 2.5e-05
+  },
+  "duration_ms": 7635,
+  "outcome": "degraded",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0011",
+    "kb-0001",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_be5cab17601646519b2a",
+  "correlation_id": "req_be5cab17601646519b2a"
+}

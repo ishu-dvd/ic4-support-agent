@@ -1,0 +1,55 @@
+{
+  "run_id": "20260926T082133-a28958",
+  "ticket_id": "TCK-1118",
+  "category": "region_unavailable",
+  "request_type": "incident",
+  "confidence": 0.412,
+  "diagnosis": "Customer account is in ap-south, where private networking is not yet available per kb-0008. Additionally, the business plan tier does not include the private networking entitlement (kb-0010). Requests in unsupported regions remain queued rather than failing, which matches the reported behavior.",
+  "reply": "Thanks for reaching out. Private networking is currently available only in us-east, us-west and eu-west, and is not yet offered in ap-south. In unsupported regions, enablement requests remain queued rather than returning an error, which is why nothing appeared to happen. Please also note that private networking is a premium-tier feature, so access would additionally require the appropriate plan entitlement. We don't have an availability date to share for ap-south at this time, but your interest in the region has been noted.",
+  "kb_cited": [
+    "kb-0008",
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [
+    "availability_question:answered_from_kb"
+  ],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 832,
+    "output_tokens": 203,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000226,
+    "ttft_ms": 1080,
+    "tbt_ms_avg": 9.37,
+    "tbt_ms_p50": 7.86,
+    "tbt_ms_p95": 18.1,
+    "stream_chunks": 201,
+    "latency_ms": 3011,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000125,
+    "cost_output_usd": 0.000102,
+    "cost_diagnosis_usd": 3.7e-05,
+    "cost_reply_usd": 6.5e-05
+  },
+  "duration_ms": 3020,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0015"
+  ],
+  "request_id": "req_671a726e27734c3db6fe",
+  "correlation_id": "req_671a726e27734c3db6fe"
+}

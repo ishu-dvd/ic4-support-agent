@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081655-198d64",
+  "ticket_id": "TCK-1106",
+  "category": "export_stalled",
+  "request_type": "question",
+  "confidence": 0.929,
+  "diagnosis": "The customer's data export job has been running for nine hours, exceeding the expected duration for a job of its size (4 GB). According to KB guidance, jobs under 10 GB should finish within an hour, and a job running for more than six hours is considered stalled.",
+  "reply": "Your data export job EXP-40128 has been running longer than expected. Jobs of 4 GB typically complete within an hour. You may want to check the job status and consider cancelling and resubmitting it if it continues to run for an extended period.",
+  "kb_cited": [
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 798,
+    "output_tokens": 147,
+    "model_id": "llama-4-maverick",
+    "cost_usd": 0.000327,
+    "ttft_ms": 1032,
+    "tbt_ms_avg": 27.8,
+    "tbt_ms_p50": 23.72,
+    "tbt_ms_p95": 86.1,
+    "stream_chunks": 146,
+    "latency_ms": 5107,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.0002,
+    "cost_output_usd": 0.000128,
+    "cost_diagnosis_usd": 6.6e-05,
+    "cost_reply_usd": 6.2e-05
+  },
+  "duration_ms": 5121,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0005",
+    "kb-0013",
+    "kb-0012",
+    "kb-0007"
+  ],
+  "request_id": "req_f3179e5988b34566a807",
+  "correlation_id": "req_f3179e5988b34566a807"
+}

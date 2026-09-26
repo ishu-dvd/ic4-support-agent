@@ -1,0 +1,57 @@
+{
+  "run_id": "20260926T082215-65c66f",
+  "ticket_id": "TCK-1124",
+  "category": "entitlement_unknown",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "Entitlement service returned an error, preventing verification of the seat count. Needs specialist investigation to reconcile console data with billing.",
+  "reply": "I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:entitlement_unknown",
+    "entitlements_unavailable:entitlement_service_error"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 934,
+    "output_tokens": 482,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.000431,
+    "ttft_ms": 7235,
+    "tbt_ms_avg": 13.77,
+    "tbt_ms_p50": 12.96,
+    "tbt_ms_p95": 38.3,
+    "stream_chunks": 74,
+    "latency_ms": 8359,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 9.3e-05,
+    "cost_output_usd": 0.000337,
+    "cost_diagnosis_usd": 0.000239,
+    "cost_reply_usd": 9.8e-05
+  },
+  "duration_ms": 8371,
+  "outcome": "degraded",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0011",
+    "kb-0001",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_20b47b66b6884e2a991b",
+  "correlation_id": "req_20b47b66b6884e2a991b"
+}

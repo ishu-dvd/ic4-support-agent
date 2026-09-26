@@ -1,0 +1,58 @@
+{
+  "run_id": "20260926T082115-4589d0",
+  "ticket_id": "TCK-1112",
+  "category": "invoice_dispute",
+  "request_type": "dispute",
+  "confidence": 0.762,
+  "diagnosis": "Customer disputes invoice INV-88410 after removing 30 seats, expecting a mid-cycle credit. Per kb-0011, seat removals take effect at next renewal and are not credited mid-cycle, but the dispute still requires formal review with invoice id, disputed line, and expected amount (all provided).",
+  "reply": "Thank you for reaching out about invoice INV-88410. We have the details needed to review this dispute: the invoice ID, the seat-count line in question, and the amount you expected. Please note that per our billing terms, seat removals take effect at the next renewal rather than being credited mid-cycle, which may explain the difference you are seeing on this invoice. Disputes under review are held from collections while we investigate, and we will follow up with the outcome of that review.\n\nI have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0011",
+    "kb-0009"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:invoice_dispute"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 835,
+    "output_tokens": 221,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000236,
+    "ttft_ms": 1359,
+    "tbt_ms_avg": 12.48,
+    "tbt_ms_p50": 7.86,
+    "tbt_ms_p95": 22.99,
+    "stream_chunks": 218,
+    "latency_ms": 4079,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000125,
+    "cost_output_usd": 0.000111,
+    "cost_diagnosis_usd": 3.8e-05,
+    "cost_reply_usd": 7.3e-05
+  },
+  "duration_ms": 4086,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0001",
+    "kb-0011",
+    "kb-0005"
+  ],
+  "request_id": "req_1b507a89abb44492ad2f",
+  "correlation_id": "req_1b507a89abb44492ad2f"
+}

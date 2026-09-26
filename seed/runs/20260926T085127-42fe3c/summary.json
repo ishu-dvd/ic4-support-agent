@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T085127-42fe3c",
+  "trace_id": "84788b78a5b444319f351af52bf4af7f",
+  "request_id": "req_769574c1348443998897",
+  "correlation_id": "req_769574c1348443998897",
+  "ticket_id": "TCK-1121",
+  "start_ms": 1790412687137,
+  "outcome": "completed",
+  "error": null,
+  "category": "rate_limit_backoff",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "glm-5.3",
+  "prompt_version": "v1",
+  "cost_usd": 0.002179,
+  "cost_input_usd": 0.001203,
+  "cost_output_usd": 0.000977,
+  "cost_diagnosis_usd": 0.000247,
+  "cost_reply_usd": 0.00073,
+  "input_tokens": 859,
+  "output_tokens": 222,
+  "usage_estimated": false,
+  "ttft_ms": 904,
+  "tbt_ms_avg": 24.81,
+  "tbt_ms_p50": 24.0,
+  "tbt_ms_p95": 83.62,
+  "llm_latency_ms": 6377,
+  "llm_attempts": 1,
+  "duration_ms": 6387,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 2,
+    "read_entitlements": 2,
+    "kb_search": 3,
+    "read_parallel": 5,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 6377,
+    "output_guard": 1,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

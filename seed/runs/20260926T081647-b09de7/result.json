@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081647-b09de7",
+  "ticket_id": "TCK-1106",
+  "category": "export_stalled",
+  "request_type": "question",
+  "confidence": 0.929,
+  "diagnosis": "The export job (4 GB) exceeds the expected duration for its size (under 10 GB typically completes in <1 hour) and has stalled beyond the 6-hour threshold. The customer should cancel and resubmit the job per KB guidelines.",
+  "reply": "Your export job (EXP-40128) has exceeded the expected runtime for its size. Jobs under 10 GB usually complete within an hour, and this one has been running for nine hours. To resolve this, please cancel the current job and resubmit it. Let me know if you need guidance on how to do this.",
+  "kb_cited": [
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 835,
+    "output_tokens": 170,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000201,
+    "ttft_ms": 859,
+    "tbt_ms_avg": 6.46,
+    "tbt_ms_p50": 3.99,
+    "tbt_ms_p95": 10.78,
+    "stream_chunks": 169,
+    "latency_ms": 1972,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000167,
+    "cost_output_usd": 3.4e-05,
+    "cost_diagnosis_usd": 1.5e-05,
+    "cost_reply_usd": 1.9e-05
+  },
+  "duration_ms": 1981,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0005",
+    "kb-0013",
+    "kb-0012",
+    "kb-0007"
+  ],
+  "request_id": "req_a70a51bf6be8435abd45",
+  "correlation_id": "req_a70a51bf6be8435abd45"
+}

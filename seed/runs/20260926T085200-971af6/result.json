@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T085200-971af6",
+  "ticket_id": "TCK-1127",
+  "category": "feature_not_entitled",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "Account does hold the custom_sla entitlement on the premium support tier, with a 4-hour SLA on the account. No escalation required; this is an informational confirmation.",
+  "reply": "Thanks for checking with us. Yes, your account does include a custom SLA as part of your premium support tier. Premium support tickets enter the priority queue and carry a four hour first-response target during business hours in your account's region. If you have any questions about how this applies, feel free to reach out.",
+  "kb_cited": [
+    "kb-0010",
+    "kb-0016"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 802,
+    "output_tokens": 143,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001752,
+    "ttft_ms": 855,
+    "tbt_ms_avg": 23.84,
+    "tbt_ms_p50": 22.34,
+    "tbt_ms_p95": 83.31,
+    "stream_chunks": 141,
+    "latency_ms": 4231,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001123,
+    "cost_output_usd": 0.000629,
+    "cost_diagnosis_usd": 0.000216,
+    "cost_reply_usd": 0.000413
+  },
+  "duration_ms": 4236,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0010",
+    "kb-0016",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_e78c8ca314d44f799cb9",
+  "correlation_id": "req_e78c8ca314d44f799cb9"
+}

@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T081818-2c673b",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "The customer is on the startup plan tier which does not include SSO according to kb-0010.",
+  "reply": "SSO is available on standard and premium plan tiers. To enable SSO, you would need to upgrade your plan.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 869,
+    "output_tokens": 82,
+    "model_id": "llama-4-maverick",
+    "cost_usd": 0.000289,
+    "ttft_ms": 1068,
+    "tbt_ms_avg": 55.68,
+    "tbt_ms_p50": 47.44,
+    "tbt_ms_p95": 147.2,
+    "stream_chunks": 81,
+    "latency_ms": 5523,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000217,
+    "cost_output_usd": 7.1e-05,
+    "cost_diagnosis_usd": 3.3e-05,
+    "cost_reply_usd": 3.8e-05
+  },
+  "duration_ms": 5533,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_270b5593161f4a42818a",
+  "correlation_id": "req_270b5593161f4a42818a"
+}

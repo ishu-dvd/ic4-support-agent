@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T081855-b1ab45",
+  "ticket_id": "TCK-1113",
+  "category": "deprecated_endpoint",
+  "request_type": "question",
+  "confidence": 0.889,
+  "diagnosis": "Customer is asking about deprecation of v1 reporting endpoints. The knowledge base shows a deprecation date of 2026-11-01 and advises migration to v2. No escalation needed per policy.",
+  "reply": "The v1 reporting endpoints will stop accepting traffic on 2026-11-01. We recommend migrating to v2, which returns the same fields in a paginated envelope. Please let us know if you need any further assistance.",
+  "kb_cited": [
+    "kb-0007"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 745,
+    "output_tokens": 137,
+    "model_id": "deepseek-4-flash",
+    "cost_usd": 0.000143,
+    "ttft_ms": 2327,
+    "tbt_ms_avg": 267.48,
+    "tbt_ms_p50": 180.06,
+    "tbt_ms_p95": 655.78,
+    "stream_chunks": 57,
+    "latency_ms": 17334,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000104,
+    "cost_output_usd": 3.8e-05,
+    "cost_diagnosis_usd": 1.8e-05,
+    "cost_reply_usd": 2e-05
+  },
+  "duration_ms": 17340,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0007",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_6098caff3ae04fdda35b",
+  "correlation_id": "req_6098caff3ae04fdda35b"
+}

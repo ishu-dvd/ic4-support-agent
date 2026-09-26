@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082234-1549cd",
+  "ticket_id": "TCK-1131",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.818,
+  "diagnosis": "Customer wants to rotate the API token used by an ETL job. Unified Auth accounts use scoped keys; procedure per kb-0003. Note kb-0018: credential changes require confirmation from a named account owner on record.",
+  "reply": "Since your account uses Unified Auth, credentials are managed as scoped API keys rather than a single account-wide token. The recommended rotation procedure is: (1) create a replacement key with the scopes your ETL job needs, (2) switch the job over to the new key, then (3) revoke the previous key. Please note that revocation is immediate - there is no grace period - so complete the switch-over first. Also note that credential changes require confirmation from a named account owner on record, so we may need to verify the requester's identity before this can be actioned. If any issues come up during the rotation, just reply here and we can take a look.",
+  "kb_cited": [
+    "kb-0003",
+    "kb-0018"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 776,
+    "output_tokens": 257,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000245,
+    "ttft_ms": 2408,
+    "tbt_ms_avg": 28.51,
+    "tbt_ms_p50": 20.26,
+    "tbt_ms_p95": 76.91,
+    "stream_chunks": 224,
+    "latency_ms": 8823,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000116,
+    "cost_output_usd": 0.000129,
+    "cost_diagnosis_usd": 3.1e-05,
+    "cost_reply_usd": 9.8e-05
+  },
+  "duration_ms": 8835,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0003",
+    "kb-0009",
+    "kb-0017",
+    "kb-0018"
+  ],
+  "request_id": "req_ff40dd6b95ca431689ca",
+  "correlation_id": "req_ff40dd6b95ca431689ca"
+}

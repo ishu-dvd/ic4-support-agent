@@ -1,0 +1,58 @@
+{
+  "run_id": "20260926T082252-40e396",
+  "ticket_id": "TCK-1112",
+  "category": "invoice_dispute",
+  "request_type": "dispute",
+  "confidence": 0.762,
+  "diagnosis": "Customer disputes invoice INV-88410, expecting a ~$1,200 credit for 30 seats removed mid-cycle. Per kb-0011, seat removals take effect at next renewal and are not credited mid-cycle, so the invoice reflecting the prior seat count is likely expected behavior; the dispute is escalated per policy for specialist review of the invoice line.",
+  "reply": "Thanks for flagging this, and I'm sorry for the confusion around invoice INV-88410. Seat removals take effect at your next renewal and are not credited mid-cycle, so the invoice you received may still reflect the previous seat count \u2014 this is described in our article \"Seat count changes and billing impact\" (kb-0011). Because you're disputing a charge, I have recommended this ticket for escalation to a specialist. To help them review it, please confirm the invoice id (INV-88410), the specific line you're disputing, and the amount you expected (~$1,200). Disputes of this kind are held from collections while under review.",
+  "kb_cited": [
+    "kb-0011",
+    "kb-0009"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:invoice_dispute"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 885,
+    "output_tokens": 421,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000771,
+    "ttft_ms": 3232,
+    "tbt_ms_avg": 14.5,
+    "tbt_ms_p50": 13.29,
+    "tbt_ms_p95": 28.34,
+    "stream_chunks": 247,
+    "latency_ms": 6856,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000266,
+    "cost_output_usd": 0.000505,
+    "cost_diagnosis_usd": 0.000177,
+    "cost_reply_usd": 0.000328
+  },
+  "duration_ms": 6864,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0001",
+    "kb-0011",
+    "kb-0005"
+  ],
+  "request_id": "req_38b42570c705435ba6d4",
+  "correlation_id": "req_38b42570c705435ba6d4"
+}

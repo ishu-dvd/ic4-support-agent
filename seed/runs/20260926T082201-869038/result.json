@@ -1,0 +1,49 @@
+{
+  "run_id": "20260926T082201-869038",
+  "ticket_id": "TCK-1107",
+  "category": "sso_metadata_mismatch",
+  "request_type": "incident",
+  "confidence": 0.76,
+  "diagnosis": "The IdP signing certificate was rotated without updating the metadata configured on the account, so assertion validation fails for all SSO sign-ins. Per kb-0006 the fix is to re-upload the current IdP metadata and validate with a single test account before re-enabling enforcement for all users.",
+  "reply": "Thanks for the details, and sorry for the disruption this morning.\n\nThis pattern matches a metadata mismatch after an identity provider certificate rotation: when the signing certificate changes without the identity provider metadata being re-uploaded, sign-in attempts fail with an assertion error for everyone.\n\nWhat to do:\n1. Export the current metadata (or metadata URL) from your identity provider so it includes the new signing certificate.\n2. Re-upload that metadata in your SSO configuration.\n3. Re-test sign-in with a single account first, and confirm it succeeds before re-enabling enforcement for the rest of your users.\n\nIf sign-in still fails after re-uploading the metadata, let us know and we will take a closer look at the configuration on our side.",
+  "kb_cited": [
+    "kb-0006"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 722,
+    "output_tokens": 384,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000677,
+    "ttft_ms": 2694,
+    "tbt_ms_avg": 16.82,
+    "tbt_ms_p50": 12.36,
+    "tbt_ms_p95": 45.83,
+    "stream_chunks": 257,
+    "latency_ms": 7049,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000217,
+    "cost_output_usd": 0.000461,
+    "cost_diagnosis_usd": 0.000128,
+    "cost_reply_usd": 0.000333
+  },
+  "duration_ms": 7059,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0006",
+    "kb-0010"
+  ],
+  "request_id": "req_ebe521d203e841ceba53",
+  "correlation_id": "req_ebe521d203e841ceba53"
+}

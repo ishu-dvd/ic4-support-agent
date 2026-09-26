@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T091808-087500",
+  "ticket_id": "TCK-1119",
+  "category": "seat_billing",
+  "request_type": "how_to",
+  "confidence": 0.905,
+  "diagnosis": "The customer is asking about pro-rated billing for mid-cycle seat additions. The knowledge base confirms seat additions are billed pro rata from the day they are added, so no escalation is needed.",
+  "reply": "Hello, thank you for reaching out. When you add seats mid-month, the additional cost is billed pro rata from the day the seats are added, rather than charging for the full month. You can find more details on how seat count changes impact billing in our help center. Let us know if you have any other questions.",
+  "kb_cited": [
+    "kb-0011"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 751,
+    "output_tokens": 158,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.000966,
+    "ttft_ms": 1957,
+    "tbt_ms_avg": 137.78,
+    "tbt_ms_p50": 129.97,
+    "tbt_ms_p95": 256.05,
+    "stream_chunks": 157,
+    "latency_ms": 23592,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000413,
+    "cost_output_usd": 0.000553,
+    "cost_diagnosis_usd": 0.000214,
+    "cost_reply_usd": 0.000339
+  },
+  "duration_ms": 23601,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0011",
+    "kb-0001",
+    "kb-0006"
+  ],
+  "request_id": "req_f4b59cfac3254ea78861",
+  "correlation_id": "req_f4b59cfac3254ea78861"
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082007-3171dc",
+  "ticket_id": "TCK-1131",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.818,
+  "diagnosis": "The user wants to rotate an API key on a Unified Auth account. The answer should explain the replacement-key workflow described in KB-0003.",
+  "reply": "You can rotate the key that your ETL job uses by following these three steps:\n\n1. **Create a new scoped key** \u2013 In the account dashboard, generate a fresh key that has the same scopes you need for the ETL job (e.g., read/write on the required datasets). \n2. **Switch the ETL job** \u2013 Update the credentials in your ETL pipeline to use the new key and test that the job completes successfully.\n3. **Revoke the old key** \u2013 Once the new key is confirmed to be working, revoke the previous key in the dashboard. Revocation is immediate, so no traffic will be allowed on the old key after this step.\n\nThis process ensures continuity while maintaining audit compliance. If you encounter any issues creating or revoking keys, let me know and I can guide you through the dashboard steps.\u201d",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 839,
+    "output_tokens": 421,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000231,
+    "ttft_ms": 3472,
+    "tbt_ms_avg": 1.48,
+    "tbt_ms_p50": 0.02,
+    "tbt_ms_p95": 4.02,
+    "stream_chunks": 236,
+    "latency_ms": 3957,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4.2e-05,
+    "cost_output_usd": 0.000189,
+    "cost_diagnosis_usd": 2.9e-05,
+    "cost_reply_usd": 0.00016
+  },
+  "duration_ms": 3963,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0003",
+    "kb-0009",
+    "kb-0017",
+    "kb-0018"
+  ],
+  "request_id": "req_7693722001c8474c8d8e",
+  "correlation_id": "req_7693722001c8474c8d8e"
+}

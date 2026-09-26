@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T085209-ee259f",
+  "ticket_id": "TCK-1129",
+  "category": "webhook_replay",
+  "request_type": "question",
+  "confidence": 0.905,
+  "diagnosis": "The customer missed a two-week outage window; manual replay is only available for seven days after failed deliveries, so the missed events are outside the replay window. No entitlement or account issue is present.",
+  "reply": "Thanks for reaching out. Webhook deliveries that fail are retried six times over roughly an hour, and after that the event is available for manual replay for seven days. Unfortunately, a two-week gap falls outside that replay window, so events from before the last seven days are no longer available for replay. We'd recommend checking our webhook delivery documentation for details, and feel free to reach out if you have any other questions.",
+  "kb_cited": [
+    "kb-0015"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 774,
+    "output_tokens": 171,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001836,
+    "ttft_ms": 1117,
+    "tbt_ms_avg": 22.32,
+    "tbt_ms_p50": 4.53,
+    "tbt_ms_p95": 75.43,
+    "stream_chunks": 161,
+    "latency_ms": 4736,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001084,
+    "cost_output_usd": 0.000752,
+    "cost_diagnosis_usd": 0.000244,
+    "cost_reply_usd": 0.000508
+  },
+  "duration_ms": 4746,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0015",
+    "kb-0004",
+    "kb-0012",
+    "kb-0014"
+  ],
+  "request_id": "req_6d3bd8f4ad1749309e71",
+  "correlation_id": "req_6d3bd8f4ad1749309e71"
+}

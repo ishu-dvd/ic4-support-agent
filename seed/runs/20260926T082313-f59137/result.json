@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082313-f59137",
+  "ticket_id": "TCK-1115",
+  "category": "feature_not_entitled",
+  "request_type": "incident",
+  "confidence": 0.682,
+  "diagnosis": "The account's support tier is basic, and audit log access is only included on standard and premium support tiers (kb-0010). The 403 is the expected entitlement response, not a fault in the customer's code or a misconfiguration on their side.",
+  "reply": "Thanks for reaching out. The 403 you're seeing from the audit log endpoint is expected behaviour for your current support tier: audit log access is included on our standard and premium support tiers, and a call from an account without that entitlement returns a 403 (see our article \"Feature availability by plan tier\"). This is not caused by anything in your code, which is consistent with your code not having changed. If you'd like audit log access, the usual route is to move to a plan/support tier that includes it \u2014 your account contact can walk you through the available options and what each includes. Let us know if you'd like us to point you to that information, or if you're seeing a 403 on a different endpoint as well.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 910,
+    "output_tokens": 377,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000725,
+    "ttft_ms": 2671,
+    "tbt_ms_avg": 17.15,
+    "tbt_ms_p50": 12.69,
+    "tbt_ms_p95": 17.68,
+    "stream_chunks": 244,
+    "latency_ms": 6961,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000273,
+    "cost_output_usd": 0.000452,
+    "cost_diagnosis_usd": 0.000112,
+    "cost_reply_usd": 0.00034
+  },
+  "duration_ms": 6968,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0007",
+    "kb-0001",
+    "kb-0005"
+  ],
+  "request_id": "req_2df5419c860043a5af1e",
+  "correlation_id": "req_2df5419c860043a5af1e"
+}

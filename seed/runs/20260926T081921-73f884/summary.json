@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081921-73f884",
+  "trace_id": "d4e038733924499da685310b2599fdc5",
+  "request_id": "req_f2cfbdd60b184d648ca9",
+  "correlation_id": "req_f2cfbdd60b184d648ca9",
+  "ticket_id": "TCK-1116",
+  "start_ms": 1790410761268,
+  "outcome": "completed",
+  "error": null,
+  "category": "export_stalled",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "deepseek-4-flash",
+  "prompt_version": "v1",
+  "cost_usd": 0.000191,
+  "cost_input_usd": 0.000121,
+  "cost_output_usd": 7e-05,
+  "cost_diagnosis_usd": 2.7e-05,
+  "cost_reply_usd": 4.3e-05,
+  "input_tokens": 861,
+  "output_tokens": 251,
+  "usage_estimated": false,
+  "ttft_ms": 1327,
+  "tbt_ms_avg": 36.38,
+  "tbt_ms_p50": 17.74,
+  "tbt_ms_p95": 138.84,
+  "llm_latency_ms": 6035,
+  "llm_attempts": 1,
+  "duration_ms": 6042,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 3,
+    "kb_search": 2,
+    "read_entitlements": 3,
+    "read_parallel": 4,
+    "filter_kb": 0,
+    "classify_intent": 0,
+    "escalation_policy": 0,
+    "draft": 6036,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

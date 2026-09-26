@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081639-520243",
+  "ticket_id": "TCK-1102",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.778,
+  "diagnosis": "Customer on Unified Auth with scoped API keys needs a token revoked due to suspected exposure. No immediate escalation required as this aligns with documented rotation procedures.",
+  "reply": "To safely reset the exposed token, follow these steps using scoped API keys in Unified Auth (KB-0003 linked below for reference). Create a new key with the required scopes, update your application to use the new key, then revoke the old one. Revocation is immediate\u2014no grace period applies. Let us know if you need guidance on scope assignment or key creation.",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 836,
+    "output_tokens": 158,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000199,
+    "ttft_ms": 786,
+    "tbt_ms_avg": 6.46,
+    "tbt_ms_p50": 0.04,
+    "tbt_ms_p95": 11.14,
+    "stream_chunks": 157,
+    "latency_ms": 1817,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000167,
+    "cost_output_usd": 3.2e-05,
+    "cost_diagnosis_usd": 1.1e-05,
+    "cost_reply_usd": 2.1e-05
+  },
+  "duration_ms": 1829,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0017",
+    "kb-0003",
+    "kb-0012"
+  ],
+  "request_id": "req_c7c3ce7fc17e49d58a73",
+  "correlation_id": "req_c7c3ce7fc17e49d58a73"
+}

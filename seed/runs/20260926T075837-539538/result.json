@@ -1,0 +1,55 @@
+{
+  "run_id": "20260926T075837-539538",
+  "ticket_id": "TCK-1118",
+  "category": "region_unavailable",
+  "request_type": "incident",
+  "confidence": 0.412,
+  "diagnosis": "Customer is attempting to enable private networking in ap-south, where the feature is not currently supported. Additionally, their business plan tier does not include the private networking entitlement.",
+  "reply": "According to our documentation, private networking is currently available in us-east, us-west, and eu-west, but it is not yet available in the ap-south region. Additionally, please note that private networking is a feature available only on our premium plan tier.",
+  "kb_cited": [
+    "kb-0008",
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [
+    "availability_question:answered_from_kb"
+  ],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 898,
+    "output_tokens": 135,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000229,
+    "ttft_ms": 1647,
+    "tbt_ms_avg": 51.55,
+    "tbt_ms_p50": 53.91,
+    "tbt_ms_p95": 117.51,
+    "stream_chunks": 134,
+    "latency_ms": 8547,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000162,
+    "cost_output_usd": 6.8e-05,
+    "cost_diagnosis_usd": 3e-05,
+    "cost_reply_usd": 3.8e-05
+  },
+  "duration_ms": 8558,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0015"
+  ],
+  "request_id": "req_cf37175e13ea4d1b88c2",
+  "correlation_id": "req_cf37175e13ea4d1b88c2"
+}

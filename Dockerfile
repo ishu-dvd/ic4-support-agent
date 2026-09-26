@@ -17,18 +17,24 @@ COPY requirements-serve.txt ./
 RUN pip install --no-cache-dir -r requirements-serve.txt
 
 # Application code + fixture data + docs the dashboard/README link to.
-# (.dockerignore keeps .venv, runs/, .env*, tests and notes out of the build context.)
+# (.dockerignore keeps .venv, runs/, .env* and notes out of the build context. tests/ IS shipped:
+# the dashboard's Guardrails tab runs the guardrail test files on demand and shows the result.)
 COPY agent/ ./agent/
+COPY obs/ ./obs/
 COPY server/ ./server/
 COPY scripts/ ./scripts/
 COPY data/ ./data/
+COPY tests/ ./tests/
 COPY docs/API.md ./docs/API.md
 COPY specs/ ./specs/
 COPY Makefile README.md SOLUTION.md ./
-# dashboard/ is optional (static assets may be served from agent/ instead). COPY fails on a missing
-# source, so stage the (dockerignore-filtered) context and copy the directory only if present.
+# dashboard/ and seed/ are optional. COPY fails on a missing source, so stage the (dockerignore-filtered)
+# context and copy the directories only if present. seed/runs is copied into RUNS_DIR by start.sh on an
+# empty disk so the hosted dashboard shows the multi-model golden-set history right after a deploy.
 COPY . /tmp/src/
-RUN if [ -d /tmp/src/dashboard ]; then cp -r /tmp/src/dashboard ./dashboard; fi && rm -rf /tmp/src
+RUN if [ -d /tmp/src/dashboard ]; then cp -r /tmp/src/dashboard ./dashboard; fi \
+    && if [ -d /tmp/src/seed ]; then cp -r /tmp/src/seed ./seed; fi \
+    && rm -rf /tmp/src
 
 # Non-root user; RUNS_DIR must be writable (App Platform has no persistent disk, so this resets on deploy).
 RUN groupadd --system app && useradd --system --gid app --home-dir /app --shell /usr/sbin/nologin app \

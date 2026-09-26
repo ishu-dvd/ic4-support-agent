@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T075855-c38460",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer is inquiring about the process and reversibility of migrating from legacy auth to Unified Auth.",
+  "reply": "According to our documentation (kb-0012), migrating from Legacy Auth to Unified Auth involves replacing account-wide tokens with scoped keys. We recommend a dual-running window where you create the scoped keys and transition your traffic before disabling the legacy token. Please note that the migration cannot be reversed once the legacy tokens have been disabled.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 862,
+    "output_tokens": 124,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000217,
+    "ttft_ms": 1798,
+    "tbt_ms_avg": 57.59,
+    "tbt_ms_p50": 54.29,
+    "tbt_ms_p95": 127.83,
+    "stream_chunks": 123,
+    "latency_ms": 9008,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000155,
+    "cost_output_usd": 6.2e-05,
+    "cost_diagnosis_usd": 1.4e-05,
+    "cost_reply_usd": 4.8e-05
+  },
+  "duration_ms": 9016,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_cdc0a80071a74a878426",
+  "correlation_id": "req_cdc0a80071a74a878426"
+}

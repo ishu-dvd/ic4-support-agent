@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082626-3172d1",
+  "ticket_id": "TCK-1110",
+  "category": "sandbox_limit",
+  "request_type": "question",
+  "confidence": 0.615,
+  "diagnosis": "Sandbox environment limits apply regardless of plan.",
+  "reply": "Thanks for reaching out. Sandbox environments have their own fixed limits and reset schedule that apply regardless of your plan, so the cap you are seeing there is expected and does not reflect your production limits. The linked article has the details. See \"Sandbox environments: limits and reset behaviour\" (kb-0017) for the full details.",
+  "kb_cited": [
+    "kb-0017"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "rules_fallback",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 903,
+    "output_tokens": 114,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.00022,
+    "ttft_ms": 971,
+    "tbt_ms_avg": 25.05,
+    "tbt_ms_p50": 23.43,
+    "tbt_ms_p95": 58.12,
+    "stream_chunks": 113,
+    "latency_ms": 3815,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000163,
+    "cost_output_usd": 5.7e-05,
+    "cost_diagnosis_usd": 2.2e-05,
+    "cost_reply_usd": 3.5e-05
+  },
+  "duration_ms": 3826,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0017",
+    "kb-0001",
+    "kb-0004",
+    "kb-0010",
+    "kb-0014"
+  ],
+  "request_id": "req_03183c72a4514186b4ce",
+  "correlation_id": "req_03183c72a4514186b4ce"
+}

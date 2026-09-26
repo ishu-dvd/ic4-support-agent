@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082137-f102d8",
+  "ticket_id": "TCK-1121",
+  "category": "rate_limit_backoff",
+  "request_type": "how_to",
+  "confidence": 0.92,
+  "diagnosis": "The client is not honoring the Retry-After header on 429 responses, causing immediate retries. Advise them to respect the header value, add jitter, and monitor for sustained 429s which may indicate hitting the plan's rate\u2011limit ceiling.",
+  "reply": "A 429 response includes a `Retry-After` header that specifies how many seconds you should wait before retrying. Your client should pause for at least that amount of time and add a small amount of jitter (e.g., a random 0\u201110% of the header value) to avoid synchronized retries. If you continue to receive 429s across an entire rate\u2011limit window, it may indicate that your usage is exceeding the limit defined for your Enterprise plan. In that case, consider reviewing your request patterns or contacting your account team to discuss a rate\u2011limit increase.",
+  "kb_cited": [
+    "kb-0014"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 919,
+    "output_tokens": 448,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.000405,
+    "ttft_ms": 4678,
+    "tbt_ms_avg": 13.86,
+    "tbt_ms_p50": 12.94,
+    "tbt_ms_p95": 19.57,
+    "stream_chunks": 212,
+    "latency_ms": 7618,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 9.2e-05,
+    "cost_output_usd": 0.000314,
+    "cost_diagnosis_usd": 9.4e-05,
+    "cost_reply_usd": 0.00022
+  },
+  "duration_ms": 7628,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0015",
+    "kb-0006",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_525cb30668ee4897aa52",
+  "correlation_id": "req_525cb30668ee4897aa52"
+}

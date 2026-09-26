@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082039-46dadc",
+  "ticket_id": "TCK-1125",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.765,
+  "diagnosis": "Customer on enterprise plan with premium support requests a 12-month audit log export (Sept last year to present). Retention is 400 days (~13 months) on premium, so data should be available. Account has data_export entitlement. No escalation needed; advise on export via API.",
+  "reply": "Audit logs on your Enterprise plan with Premium support are retained for 400 days, so the period from last September should be available. You can export the logs as NDJSON through the audit endpoint. For large exports, please see our knowledge base on data export durations. If you need help with the export process, let us know and we can provide guidance.",
+  "kb_cited": [
+    "kb-0013",
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 815,
+    "output_tokens": 184,
+    "model_id": "deepseek-4-flash",
+    "cost_usd": 0.000166,
+    "ttft_ms": 1089,
+    "tbt_ms_avg": 46.14,
+    "tbt_ms_p50": 16.84,
+    "tbt_ms_p95": 161.16,
+    "stream_chunks": 94,
+    "latency_ms": 5996,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000114,
+    "cost_output_usd": 5.2e-05,
+    "cost_diagnosis_usd": 2.3e-05,
+    "cost_reply_usd": 2.9e-05
+  },
+  "duration_ms": 6005,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0005",
+    "kb-0009",
+    "kb-0010"
+  ],
+  "request_id": "req_bc367d5a374c4dff9a49",
+  "correlation_id": "req_bc367d5a374c4dff9a49"
+}

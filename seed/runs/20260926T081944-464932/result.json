@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081944-464932",
+  "ticket_id": "TCK-1105",
+  "category": "region_unavailable",
+  "request_type": "question",
+  "confidence": 0.636,
+  "diagnosis": "The account is in eu-central, a region where private networking is not yet supported. Requests for this feature in unsupported regions remain queued indefinitely, which explains the three\u2011day delay.",
+  "reply": "Thank you for reaching out. Private networking is currently not available in the eu-central region, so requests made for this region remain in a queued state rather than completing. Once private networking becomes supported in eu-central, the request will be processed. In the meantime, you may consider deploying to a supported region such as eu-west, us-east, or us-west if this feature is required urgently.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:region_unavailable",
+    "stuck_request"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 947,
+    "output_tokens": 322,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.00032,
+    "ttft_ms": 3214,
+    "tbt_ms_avg": 12.62,
+    "tbt_ms_p50": 11.38,
+    "tbt_ms_p95": 17.41,
+    "stream_chunks": 158,
+    "latency_ms": 5238,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 9.5e-05,
+    "cost_output_usd": 0.000225,
+    "cost_diagnosis_usd": 7.3e-05,
+    "cost_reply_usd": 0.000152
+  },
+  "duration_ms": 5246,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0001"
+  ],
+  "request_id": "req_51f0aea19f2a4df5937c",
+  "correlation_id": "req_51f0aea19f2a4df5937c"
+}

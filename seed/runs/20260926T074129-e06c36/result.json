@@ -1,0 +1,41 @@
+{
+  "run_id": "20260926T074129-e06c36",
+  "ticket_id": "TCK-1130",
+  "category": "insufficient_information",
+  "request_type": "incident",
+  "confidence": 0.786,
+  "diagnosis": "Ticket does not say what is broken; needs details before it can be routed.",
+  "reply": "Thanks for reaching out. We want to get this fixed, but the ticket does not tell us which product area or error you are seeing. Could you reply with what stopped working, when it started, and any error message or id you have? A colleague will pick this up as soon as those details arrive. I have recommended this ticket for escalation to a specialist. What happens next: a specialist reviews the details above and replies on this ticket within your plan's 48-hour first-response target. You do not need to open a new request.",
+  "kb_cited": [],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:insufficient_information"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "rules",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "model_id": "rules",
+    "cost_usd": 0.0
+  },
+  "duration_ms": 2,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0018",
+    "kb-0003",
+    "kb-0001",
+    "kb-0007",
+    "kb-0012"
+  ]
+}

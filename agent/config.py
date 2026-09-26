@@ -41,6 +41,11 @@ class Config:
     llm_max_retries: int = 3
     llm_timeout_s: float = 30.0
     llm_stream: bool = True  # stream the model call so time-to-first-token / inter-token gaps are measured
+    # Ask "thinking" models (kimi, qwen3.5, deepseek-v4 in some modes) to skip the reasoning phase: the
+    # draft is a fixed JSON schema and reasoning tokens otherwise consume max_output_tokens before any
+    # answer appears. Sent as chat_template_kwargs.enable_thinking=false; dropped automatically for
+    # models that reject the parameter (Mistral tokenizers).
+    llm_disable_thinking: bool = True
     trace_stdout: bool = False  # also emit every trace record as a JSON line on stdout (log forwarding on App Platform)
     service_name: str = "ic4-agent"
 
@@ -71,6 +76,7 @@ def load_config(**overrides) -> Config:
         llm_max_retries=int(_env("LLM_MAX_RETRIES", "3")),
         llm_timeout_s=float(_env("LLM_TIMEOUT_S", "30")),
         llm_stream=_env_bool("LLM_STREAM", True),
+        llm_disable_thinking=_env_bool("LLM_DISABLE_THINKING", True),
         trace_stdout=_env_bool("TRACE_STDOUT", False),
         service_name=_env("SERVICE_NAME", "ic4-agent"),
     )

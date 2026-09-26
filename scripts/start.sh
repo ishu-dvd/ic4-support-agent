@@ -19,6 +19,15 @@ FIXTURE_VARIANT="${FIXTURE_VARIANT:-support}"
 
 mkdir -p "$RUNS_DIR"
 
+# App Platform's disk is ephemeral: every deploy starts with an empty RUNS_DIR. If the image ships a
+# seed (scripts/seed_runs.py -> seed/runs: the golden-set evals for every model plus the runs they
+# link to), copy it in once so the dashboard's history/comparison views are populated from the first
+# request. Set SEED_RUNS=false to start empty. Never overwrites an existing run.
+if [ "${SEED_RUNS:-true}" != "false" ] && [ -d seed/runs ] && [ -z "$(ls -A "$RUNS_DIR" 2>/dev/null)" ]; then
+  cp -rn seed/runs/. "$RUNS_DIR"/
+  echo "[start] seeded $(ls "$RUNS_DIR" | wc -l) run/eval directories into ${RUNS_DIR}" >&2
+fi
+
 # Durability (agent/persist.py): with DATABASE_URL set, every run/eval directory written since the first
 # deploy is mirrored to the database as it finishes; pull them all back before serving so history,
 # traces and eval comparisons survive the redeploy. No-op without DATABASE_URL; never blocks startup on

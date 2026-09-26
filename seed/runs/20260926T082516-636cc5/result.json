@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082516-636cc5",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "SSO is not included in the startup plan; it is only available on standard and premium support tiers. Enabling SSO would require upgrading to a tier that includes this feature.",
+  "reply": "SSO is available on standard and premium support tiers, which are not part of your current startup plan. To enable SSO, you would need to upgrade to a tier that includes this capability.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 945,
+    "output_tokens": 518,
+    "model_id": "nemotron-3-nano-omni",
+    "cost_usd": 0.000939,
+    "ttft_ms": 3154,
+    "tbt_ms_avg": 4.08,
+    "tbt_ms_p50": 3.59,
+    "tbt_ms_p95": 6.43,
+    "stream_chunks": 123,
+    "latency_ms": 3699,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000472,
+    "cost_output_usd": 0.000466,
+    "cost_diagnosis_usd": 0.000226,
+    "cost_reply_usd": 0.00024
+  },
+  "duration_ms": 3710,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_66449f0aaa44404699e9",
+  "correlation_id": "req_66449f0aaa44404699e9"
+}

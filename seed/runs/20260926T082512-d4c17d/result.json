@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082512-d4c17d",
+  "ticket_id": "TCK-1129",
+  "category": "webhook_replay",
+  "request_type": "question",
+  "confidence": 0.905,
+  "diagnosis": "Customer missed webhook deliveries during a two-week outage and asks whether the events can still be replayed. Per kb-0015, failed deliveries retry six times over roughly an hour and are then available for manual replay for seven days, so events from the earlier part of a two-week window fall outside the replay period. No escalation per policy.",
+  "reply": "Thanks for reaching out, and sorry to hear about the outage on your side.\n\nHere's how webhook delivery works: if a delivery fails, we retry six times over roughly an hour. After those retries are exhausted, the event remains available for manual replay for seven days.\n\nBecause your outage lasted two weeks, events from the earlier part of that window are no longer available for replay, since they fall outside the seven-day replay period. Events from the most recent seven days may still be eligible for manual replay.\n\nIf you'd like, let us know which event types and which recent dates you need, and we can look at what is still retrievable. To avoid gaps in future, we'd suggest having your endpoint acknowledge deliveries even during partial outages where possible, so retries can succeed.",
+  "kb_cited": [
+    "kb-0015"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 822,
+    "output_tokens": 388,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000712,
+    "ttft_ms": 2399,
+    "tbt_ms_avg": 25.27,
+    "tbt_ms_p50": 13.09,
+    "tbt_ms_p95": 84.64,
+    "stream_chunks": 266,
+    "latency_ms": 9111,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000247,
+    "cost_output_usd": 0.000466,
+    "cost_diagnosis_usd": 0.000141,
+    "cost_reply_usd": 0.000325
+  },
+  "duration_ms": 9115,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0015",
+    "kb-0004",
+    "kb-0012",
+    "kb-0014"
+  ],
+  "request_id": "req_e088bdea7ec14e2daa64",
+  "correlation_id": "req_e088bdea7ec14e2daa64"
+}

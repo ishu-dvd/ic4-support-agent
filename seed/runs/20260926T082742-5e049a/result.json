@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082742-5e049a",
+  "ticket_id": "TCK-1127",
+  "category": "feature_not_entitled",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "The customer is inquiring about a custom SLA. The account entitlements confirm they have 'custom_sla' and 'premium' support with a 4-hour SLA.",
+  "reply": "I can confirm that your account currently has a custom SLA entitlement. As part of your premium support tier, your account has a four-hour first-response target during business hours in your region.",
+  "kb_cited": [
+    "kb-0016"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 860,
+    "output_tokens": 113,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000211,
+    "ttft_ms": 1493,
+    "tbt_ms_avg": 19.52,
+    "tbt_ms_p50": 21.19,
+    "tbt_ms_p95": 59.76,
+    "stream_chunks": 112,
+    "latency_ms": 3689,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000155,
+    "cost_output_usd": 5.7e-05,
+    "cost_diagnosis_usd": 2.4e-05,
+    "cost_reply_usd": 3.3e-05
+  },
+  "duration_ms": 3697,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0010",
+    "kb-0016",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_aba1c3b3a0fe43ba8634",
+  "correlation_id": "req_aba1c3b3a0fe43ba8634"
+}

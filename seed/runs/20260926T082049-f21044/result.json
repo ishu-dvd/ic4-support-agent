@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082049-f21044",
+  "ticket_id": "TCK-1127",
+  "category": "feature_not_entitled",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "Customer asks if a custom SLA exists on their account. Entitlements show 'custom_sla' is present, but the classifier indicates this is a feature_not_entitled question. Likely the customer questions whether the entitlement is active; account shows it is.",
+  "reply": "Yes, your account does have a custom SLA entitlement, as confirmed in our records. This is a premium-only feature included on your enterprise plan. If you need specific details about the SLA terms, please refer to your renewal documentation or contact your account manager.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 828,
+    "output_tokens": 152,
+    "model_id": "deepseek-4-flash",
+    "cost_usd": 0.000158,
+    "ttft_ms": 2149,
+    "tbt_ms_avg": 145.54,
+    "tbt_ms_p50": 50.38,
+    "tbt_ms_p95": 600.1,
+    "stream_chunks": 76,
+    "latency_ms": 13072,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000116,
+    "cost_output_usd": 4.3e-05,
+    "cost_diagnosis_usd": 2.1e-05,
+    "cost_reply_usd": 2.2e-05
+  },
+  "duration_ms": 13083,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0010",
+    "kb-0016",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_30443c552169408d9254",
+  "correlation_id": "req_30443c552169408d9254"
+}

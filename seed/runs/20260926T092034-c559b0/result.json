@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T092034-c559b0",
+  "ticket_id": "TCK-1124",
+  "category": "entitlement_unknown",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "The entitlement service is currently returning an error, preventing verification of the customer's seat count. As the system cannot retrieve entitlement data and the policy mandates escalation for this specific failure mode, a specialist review is required.",
+  "reply": "Thank you for reaching out regarding the discrepancy in your seat count. I have reviewed your account details, but I am currently unable to retrieve your specific entitlement information due to a system limitation. To ensure this is resolved accurately, I have recommended this ticket for escalation to a specialist who can investigate the billing and seat data directly. In the meantime, if you have the specific invoice ID and the line item in question, please provide those details to assist with the review.",
+  "kb_cited": [
+    "kb-0009"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:entitlement_unknown",
+    "entitlements_unavailable:entitlement_service_error"
+  ],
+  "write": {
+    "status": "pending_manual",
+    "escalation_id": null,
+    "error": "past_deadline"
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 896,
+    "output_tokens": 191,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.001161,
+    "ttft_ms": 1463,
+    "tbt_ms_avg": 167.85,
+    "tbt_ms_p50": 134.38,
+    "tbt_ms_p95": 303.72,
+    "stream_chunks": 190,
+    "latency_ms": 33444,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000493,
+    "cost_output_usd": 0.000669,
+    "cost_diagnosis_usd": 0.000224,
+    "cost_reply_usd": 0.000445
+  },
+  "duration_ms": 33456,
+  "outcome": "degraded",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0011",
+    "kb-0001",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_45b2b6e9aeb949f78247",
+  "correlation_id": "req_45b2b6e9aeb949f78247"
+}

@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T090828-e055d0",
+  "ticket_id": "TCK-1113",
+  "category": "deprecated_endpoint",
+  "request_type": "question",
+  "confidence": 0.889,
+  "diagnosis": "Customer is asking about deprecation timeline for v1 reporting endpoints. They are on business plan with standard support. KB-0007 directly answers their question with specific retirement date and migration path.",
+  "reply": "The v1 reporting endpoints will stop accepting traffic on November 1, 2026. We recommend migrating to the v2 reporting endpoints, which return the same fields under a paginated envelope. If you need assistance with the migration, let us know and we can connect you with resources.",
+  "kb_cited": [
+    "kb-0007"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 724,
+    "output_tokens": 132,
+    "model_id": "kimi-k2.6",
+    "cost_usd": 0.001216,
+    "ttft_ms": 1929,
+    "tbt_ms_avg": 14.58,
+    "tbt_ms_p50": 14.32,
+    "tbt_ms_p95": 21.15,
+    "stream_chunks": 131,
+    "latency_ms": 3853,
+    "attempts": 3,
+    "retries": 2,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000688,
+    "cost_output_usd": 0.000528,
+    "cost_diagnosis_usd": 0.000228,
+    "cost_reply_usd": 0.0003
+  },
+  "duration_ms": 5335,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0007",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_e19a996cc5fc45468159",
+  "correlation_id": "req_e19a996cc5fc45468159"
+}

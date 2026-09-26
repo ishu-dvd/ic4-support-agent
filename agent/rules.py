@@ -187,6 +187,8 @@ class Classification:
     confidence: float
     reasons: List[str] = field(default_factory=list)
     injection_suspected: bool = False
+    # How many injection patterns matched (0 when not suspected); surfaced on the trace event.
+    injection_patterns: int = 0
     # Word count of the body *before* injection lines were stripped. The policy uses it to tell
     # "the customer wrote nothing" from "the customer wrote something we removed".
     pre_strip_words: int = 0
@@ -302,5 +304,6 @@ def classify(
         confidence=round(confidence, 3),
         reasons=reasons,
         injection_suspected=injection_suspected,
+        injection_patterns=len(patterns),
         pre_strip_words=pre_strip_words,
     )

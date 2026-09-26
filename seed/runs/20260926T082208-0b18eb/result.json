@@ -1,0 +1,53 @@
+{
+  "run_id": "20260926T082208-0b18eb",
+  "ticket_id": "TCK-1108",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.524,
+  "diagnosis": "Account is on standard support tier, where audit log retention is 90 days (kb-0013); the 400-day retention applies to premium tier, so the missing months are not retrievable from the current plan. Data export (NDJSON via the audit endpoint) is entitled on this account and can pull everything still within the 90-day window.",
+  "reply": "Thanks for reaching out. Audit log retention is tied to your support tier: on the standard tier, entries are retained for 90 days, which is why your visibility stops there. The longer retention window (400 days) is a premium-tier capability, so the earlier entries are not available to retrieve on your current plan.\n\nIn the meantime, you can preserve what is currently retained by exporting the log as NDJSON through the audit endpoint \u2014 your account has export enabled, so this is a good way to start building a longer local history for compliance purposes. If you'd like to discuss longer retention going forward, our team can walk you through the options available to you.",
+  "kb_cited": [
+    "kb-0013",
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 917,
+    "output_tokens": 425,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000785,
+    "ttft_ms": 6608,
+    "tbt_ms_avg": 16.26,
+    "tbt_ms_p50": 13.57,
+    "tbt_ms_p95": 34.75,
+    "stream_chunks": 246,
+    "latency_ms": 10696,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000275,
+    "cost_output_usd": 0.00051,
+    "cost_diagnosis_usd": 0.000165,
+    "cost_reply_usd": 0.000345
+  },
+  "duration_ms": 10707,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0001",
+    "kb-0002",
+    "kb-0015"
+  ],
+  "request_id": "req_4b76c7a7e7ae4a3c8522",
+  "correlation_id": "req_4b76c7a7e7ae4a3c8522"
+}

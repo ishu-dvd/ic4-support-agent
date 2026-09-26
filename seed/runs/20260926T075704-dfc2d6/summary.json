@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T075704-dfc2d6",
+  "trace_id": "630fd3d878b741fd91d4616eee5b13cc",
+  "request_id": "req_fea1e1c9e9e148a480a7",
+  "correlation_id": "req_fea1e1c9e9e148a480a7",
+  "ticket_id": "TCK-1108",
+  "start_ms": 1790409424068,
+  "outcome": "completed",
+  "error": null,
+  "category": "audit_retention_limit",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "gemma-4-31B-it",
+  "prompt_version": "v1",
+  "cost_usd": 0.000225,
+  "cost_input_usd": 0.000168,
+  "cost_output_usd": 5.8e-05,
+  "cost_diagnosis_usd": 2.1e-05,
+  "cost_reply_usd": 3.7e-05,
+  "input_tokens": 933,
+  "output_tokens": 115,
+  "usage_estimated": false,
+  "ttft_ms": 999,
+  "tbt_ms_avg": 57.7,
+  "tbt_ms_p50": 50.31,
+  "tbt_ms_p95": 114.45,
+  "llm_latency_ms": 7580,
+  "llm_attempts": 1,
+  "duration_ms": 7591,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 3,
+    "kb_search": 4,
+    "read_entitlements": 5,
+    "read_parallel": 6,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 7581,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

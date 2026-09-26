@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T081901-1bde25",
+  "ticket_id": "TCK-1119",
+  "category": "seat_billing",
+  "request_type": "how_to",
+  "confidence": 0.905,
+  "diagnosis": "The customer is asking how mid\u2011month seat additions are billed. The relevant knowledge base article explains that seat additions are prorated from the day they are added, while removals are handled at the next renewal with no mid\u2011cycle credit.",
+  "reply": "When you add seats during a billing cycle, the charge for the new seats is calculated on a pro\u2011rated basis from the day they are added. So if you add four seats next week, you\u2019ll be billed only for the portion of the month those seats are active. If you have any further questions or need help updating your seat count, let us know!",
+  "kb_cited": [
+    "kb-0011"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 792,
+    "output_tokens": 264,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000158,
+    "ttft_ms": 2048,
+    "tbt_ms_avg": 6.93,
+    "tbt_ms_p50": 6.54,
+    "tbt_ms_p95": 10.44,
+    "stream_chunks": 152,
+    "latency_ms": 3108,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4e-05,
+    "cost_output_usd": 0.000119,
+    "cost_diagnosis_usd": 5e-05,
+    "cost_reply_usd": 6.9e-05
+  },
+  "duration_ms": 3114,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0011",
+    "kb-0001",
+    "kb-0006"
+  ],
+  "request_id": "req_7653126cbdf14bff93a9",
+  "correlation_id": "req_7653126cbdf14bff93a9"
+}

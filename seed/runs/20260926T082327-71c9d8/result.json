@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082327-71c9d8",
+  "ticket_id": "TCK-1117",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.826,
+  "diagnosis": "Account is on legacy_auth, so the account-wide API token reset flow in kb-0002 applies (Security tab > Reset token). Note that the old token remains valid for 24 hours after reset, so the vendor cutover should be timed accordingly. No migration or entitlement blockers present.",
+  "reply": "Thanks for reaching out. Your account is on Legacy Auth, so you can reset the API token directly:\n\n1. Open the Security tab in your account settings.\n2. Choose Reset token.\n3. Share the newly generated token with your integration vendor and update it wherever the integration stores credentials.\n\nOne important detail: the previous API token remains valid for 24 hours after the reset. If you want a clean cutover, coordinate with your vendor so they switch to the new token before that window closes, and then confirm the old token is no longer in use.\n\nIf your vendor needs to know which token is in use, they can verify by making a test call with the new token before you retire the old one.\n\nLet us know if you run into any trouble during the reset.",
+  "kb_cited": [
+    "kb-0002"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 842,
+    "output_tokens": 378,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000706,
+    "ttft_ms": 2785,
+    "tbt_ms_avg": 13.41,
+    "tbt_ms_p50": 12.71,
+    "tbt_ms_p95": 27.18,
+    "stream_chunks": 259,
+    "latency_ms": 6345,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000253,
+    "cost_output_usd": 0.000454,
+    "cost_diagnosis_usd": 0.000122,
+    "cost_reply_usd": 0.000332
+  },
+  "duration_ms": 6351,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0008",
+    "kb-0012"
+  ],
+  "request_id": "req_00319c48e75f4090a7af",
+  "correlation_id": "req_00319c48e75f4090a7af"
+}

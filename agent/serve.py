@@ -35,6 +35,8 @@ from agent.metrics import (  # noqa: E402
     prometheus_text,
 )
 from agent.trace import new_request_id, sanitize_id  # noqa: E402
+from obs.api import router as obs_router  # noqa: E402
+from obs.insights import looks_flagged, read_result, run_eval_index, security_for_run  # noqa: E402
 from agent.upstream import HttpUpstream, NotFound, RetryPolicy, UpstreamDegraded, UpstreamError, WriteRejected  # noqa: E402
 
 REPO_ROOT = _IC4
@@ -44,6 +46,7 @@ _LABEL_RE = re.compile(r"[^A-Za-z0-9._-]")
 
 app = FastAPI(title="ic4-agent", version="1.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+app.include_router(obs_router)
 
 
 # ---- models -------------------------------------------------------------------------------------------
@@ -59,6 +62,7 @@ class EvalRequest(BaseModel):
     limit: Optional[int] = None
     prompt_version: Optional[str] = None
     tickets: Optional[str] = None
+    model_id: Optional[str] = Field(None, pattern=r"^[A-Za-z0-9._/-]{1,80}$")
 
 
 class TicketCreate(BaseModel):
@@ -113,8 +117,22 @@ def _sort_key(key: str):
     return _k
 
 
+def _with_eval_ids(runs_dir: str, rows: List[dict]) -> List[dict]:
+    """Attach eval_id (the eval whose cases.jsonl references the run) and the security severity
+    (none / flagged / blocked) without mutating the loaded rows. result.json is read only for rows whose
+    summary already shows a security signal, so this stays cheap over thousands of runs."""
+    index = run_eval_index(runs_dir)
+    out = []
+    for r in rows:
+        sev = "none"
+        if looks_flagged(r):
+            sev = security_for_run(r, read_result(runs_dir, r.get("run_id", "")))["severity"]
+        out.append(dict(r, eval_id=index.get(r.get("run_id")), severity=sev))
+    return out
+
+
 def _filtered(runs_dir: str, outcome, category, model, ticket, correlation_id, request_id, q, since_ms, until_ms):
-    all_runs = load_run_summaries(runs_dir)
+    all_runs = _with_eval_ids(runs_dir, load_run_summaries(runs_dir))
     filtered = filter_runs(all_runs, outcome=outcome, category=category, model=model, ticket=ticket,
                            since_ms=since_ms, until_ms=until_ms, correlation_id=correlation_id,
                            request_id=request_id, q=q)
@@ -253,9 +271,12 @@ def api_runs(
 
 @app.get("/api/runs/{run_id}")
 def api_run(run_id: str) -> Dict[str, Any]:
-    data = load_run(load_config().runs_dir, run_id)
+    runs_dir = load_config().runs_dir
+    data = load_run(runs_dir, run_id)
     if data is None:
         raise HTTPException(status_code=404, detail="run not found")
+    data["summary"] = dict(data["summary"], eval_id=run_eval_index(runs_dir).get(run_id))
+    data["security"] = security_for_run(data["summary"], data.get("result"), data.get("trace"))
     return data
 
 
@@ -311,9 +332,13 @@ def api_start_eval(req: EvalRequest) -> Dict[str, Any]:
     if req.tickets:
         cmd += ["--tickets"] + [t for t in re.split(r"[,\s]+", req.tickets.strip()) if _TICKET_RE.match(t)]
     cmd += ["--runs-dir", cfg.runs_dir]
-    proc = subprocess.Popen(cmd, cwd=REPO_ROOT, env=dict(os.environ),
-                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    return {"started": True, "pid": proc.pid, "label": label}
+    env = dict(os.environ)
+    if req.model_id:
+        # run the same case set on another serverless model; the eval header records the model actually used
+        env["MODEL_ID"] = req.model_id
+        env.setdefault("MODEL_PROVIDER", "openai_compatible")
+    proc = subprocess.Popen(cmd, cwd=REPO_ROOT, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return {"started": True, "pid": proc.pid, "label": label, "model_id": req.model_id or cfg.model_id}
 
 
 @app.get("/dashboard")

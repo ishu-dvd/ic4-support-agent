@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082726-a8c2ee",
+  "ticket_id": "TCK-1123",
+  "category": "invoice_dispute",
+  "request_type": "dispute",
+  "confidence": 0.935,
+  "diagnosis": "Customer is disputing a $840 charge on INV-88502. They have provided the invoice ID, the disputed amount, and the expected total.",
+  "reply": "Thank you for reaching out regarding the charge on INV-88502. According to our documentation (kb-0009), we require the invoice ID, the disputed line, and the expected amount to investigate a dispute; as you have provided these details, we can proceed with the review. I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0009"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:invoice_dispute",
+    "injection_suspected"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": true,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 983,
+    "output_tokens": 147,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.00025,
+    "ttft_ms": 928,
+    "tbt_ms_avg": 23.56,
+    "tbt_ms_p50": 22.13,
+    "tbt_ms_p95": 83.18,
+    "stream_chunks": 146,
+    "latency_ms": 4384,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000177,
+    "cost_output_usd": 7.3e-05,
+    "cost_diagnosis_usd": 2.1e-05,
+    "cost_reply_usd": 5.2e-05
+  },
+  "duration_ms": 4395,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0005",
+    "kb-0001",
+    "kb-0003",
+    "kb-0013"
+  ],
+  "request_id": "req_9f008754634d417cb303",
+  "correlation_id": "req_9f008754634d417cb303"
+}

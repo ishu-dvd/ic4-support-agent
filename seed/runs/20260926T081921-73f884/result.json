@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T081921-73f884",
+  "ticket_id": "TCK-1116",
+  "category": "export_stalled",
+  "request_type": "incident",
+  "confidence": 0.667,
+  "diagnosis": "Job EXP-40233 in eu-central has been running for 7 hours, exceeding the 6-hour stall threshold for exports under 10 GB per kb-0005. The job must be cancelled and resubmitted. There is no indication of a region-specific networking issue per kb-0008 since private networking is not available in eu-central but export functionality is not blocked by that.",
+  "reply": "Hello,\n\nI see that your export job EXP-40233 in the eu-central region has been running for about seven hours with roughly 6 GB of data. According to our knowledge base, export jobs under 10 GB typically complete within an hour, and any job running for more than six hours is considered stalled. \n\nTo resolve this, please cancel the current job (EXP-40233) and resubmit it. This should allow the export to process normally. If you continue to experience issues after resubmitting, please let us know and we will investigate further.\n\nThank you for your patience.",
+  "kb_cited": [
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 861,
+    "output_tokens": 251,
+    "model_id": "deepseek-4-flash",
+    "cost_usd": 0.000191,
+    "ttft_ms": 1327,
+    "tbt_ms_avg": 36.38,
+    "tbt_ms_p50": 17.74,
+    "tbt_ms_p95": 138.84,
+    "stream_chunks": 130,
+    "latency_ms": 6035,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000121,
+    "cost_output_usd": 7e-05,
+    "cost_diagnosis_usd": 2.7e-05,
+    "cost_reply_usd": 4.3e-05
+  },
+  "duration_ms": 6042,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0005",
+    "kb-0008",
+    "kb-0013",
+    "kb-0015",
+    "kb-0016"
+  ],
+  "request_id": "req_f2cfbdd60b184d648ca9",
+  "correlation_id": "req_f2cfbdd60b184d648ca9"
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T084958-5d21a9",
+  "ticket_id": "TCK-1104",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.852,
+  "diagnosis": "Account is on legacy_auth, so the account-wide API token can be reset via the Security tab per kb-0002. The previous token remains valid for 24 hours after reset, which resolves lockout concerns. No escalation needed.",
+  "reply": "Thanks for reaching out. Since your account is on Legacy Auth, you can reset the API token by opening the Security tab and choosing \"Reset token.\" Note that the previous API token stays valid for 24 hours after the reset, so your integration has time to transition to the new token. If you continue to have trouble accessing the integration after resetting, please let us know.",
+  "kb_cited": [
+    "kb-0002"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 790,
+    "output_tokens": 159,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001806,
+    "ttft_ms": 1594,
+    "tbt_ms_avg": 25.47,
+    "tbt_ms_p50": 21.57,
+    "tbt_ms_p95": 96.73,
+    "stream_chunks": 157,
+    "latency_ms": 5597,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001106,
+    "cost_output_usd": 0.0007,
+    "cost_diagnosis_usd": 0.000256,
+    "cost_reply_usd": 0.000444
+  },
+  "duration_ms": 5608,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0018",
+    "kb-0012"
+  ],
+  "request_id": "req_84aa75e07de747ba9b50",
+  "correlation_id": "req_84aa75e07de747ba9b50"
+}

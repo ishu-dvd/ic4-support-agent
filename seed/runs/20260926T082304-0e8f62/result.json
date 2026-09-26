@@ -1,0 +1,57 @@
+{
+  "run_id": "20260926T082304-0e8f62",
+  "ticket_id": "TCK-1114",
+  "category": "sla_expectation",
+  "request_type": "question",
+  "confidence": 0.895,
+  "diagnosis": "Enterprise account with priority_routing and custom_sla entitlements; the recorded first-response target is 4 hours, and the customer reports an 11-hour first response, which policy has already flagged as an SLA breach and routed for escalation. Confirm the target applied at the time of the ticket against the account's region and business-hours rules before quoting it back.",
+  "reply": "Thanks for flagging this. Your account carries a four-hour first-response target during business hours in your region, which is the number to hold us to.\n\nI have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0016"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "sla_breach:11h>4h"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 858,
+    "output_tokens": 351,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000679,
+    "ttft_ms": 4105,
+    "tbt_ms_avg": 29.04,
+    "tbt_ms_p50": 12.87,
+    "tbt_ms_p95": 90.8,
+    "stream_chunks": 149,
+    "latency_ms": 8442,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000257,
+    "cost_output_usd": 0.000421,
+    "cost_diagnosis_usd": 0.000267,
+    "cost_reply_usd": 0.000154
+  },
+  "duration_ms": 8452,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0016",
+    "kb-0009",
+    "kb-0018",
+    "kb-0001"
+  ],
+  "request_id": "req_e9347a82fcc14c4a8a26",
+  "correlation_id": "req_e9347a82fcc14c4a8a26"
+}

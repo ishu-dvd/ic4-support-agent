@@ -1,0 +1,54 @@
+{
+  "run_id": "20260926T081857-60d0ee",
+  "ticket_id": "TCK-1118",
+  "category": "region_unavailable",
+  "request_type": "incident",
+  "confidence": 0.412,
+  "diagnosis": "The Private Networking feature is currently not supported in the ap-south region. Attempting to enable it will have no effect, and the system will queue the request instead of producing an error.",
+  "reply": "I\u2019m seeing that Private Networking isn\u2019t available for the ap-south region. It\u2019s currently supported only in us-east, us-west and eu-west. Because of that, enabling the feature in ap-south will not have an effect. If you need this functionality for your production workloads, you could consider deploying your infrastructure in one of the supported regions, or we can discuss alternative networking options that are available in ap-south. Let me know which option you\u2019d like to explore next.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [
+    "availability_question:answered_from_kb"
+  ],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 894,
+    "output_tokens": 408,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000228,
+    "ttft_ms": 2373,
+    "tbt_ms_avg": 6.95,
+    "tbt_ms_p50": 6.26,
+    "tbt_ms_p95": 10.76,
+    "stream_chunks": 166,
+    "latency_ms": 3557,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4.5e-05,
+    "cost_output_usd": 0.000184,
+    "cost_diagnosis_usd": 5.2e-05,
+    "cost_reply_usd": 0.000132
+  },
+  "duration_ms": 3566,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0015"
+  ],
+  "request_id": "req_938144454d6d4325b962",
+  "correlation_id": "req_938144454d6d4325b962"
+}

@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082551-23ded2",
+  "ticket_id": "TCK-1101",
+  "category": "billing_proration",
+  "request_type": "question",
+  "confidence": 0.778,
+  "diagnosis": "Customer is questioning the first invoice after a mid-cycle upgrade to the Business plan. The invoice total differs from the standard list price due to proration.",
+  "reply": "Thank you for reaching out. When an account upgrades mid-billing cycle, the remaining days on the previous plan are prorated as a credit, and a charge for the new plan is issued on a combined invoice. Because of this, the total for the first invoice may differ from the standard plan list price. For more details, please see our guide on Understanding mid-cycle proration on plan upgrades (kb-0001).",
+  "kb_cited": [
+    "kb-0001"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 946,
+    "output_tokens": 159,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.00025,
+    "ttft_ms": 922,
+    "tbt_ms_avg": 30.14,
+    "tbt_ms_p50": 26.03,
+    "tbt_ms_p95": 87.32,
+    "stream_chunks": 158,
+    "latency_ms": 5696,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.00017,
+    "cost_output_usd": 8e-05,
+    "cost_diagnosis_usd": 2.3e-05,
+    "cost_reply_usd": 5.7e-05
+  },
+  "duration_ms": 5704,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0009",
+    "kb-0010",
+    "kb-0014",
+    "kb-0004"
+  ],
+  "request_id": "req_1c606f3a217b4d32ac17",
+  "correlation_id": "req_1c606f3a217b4d32ac17"
+}

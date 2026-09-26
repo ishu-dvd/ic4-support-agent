@@ -1,0 +1,54 @@
+{
+  "run_id": "20260926T081743-ae4722",
+  "ticket_id": "TCK-1118",
+  "category": "region_unavailable",
+  "request_type": "incident",
+  "confidence": 0.412,
+  "diagnosis": "The customer is in ap-south region and is trying to use private networking which is not available in their region.",
+  "reply": "Private networking is currently not available in the ap-south region. You can check the availability of features by region in our knowledge base. We will keep you updated on when this feature will be available in your region.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [
+    "availability_question:answered_from_kb"
+  ],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 839,
+    "output_tokens": 102,
+    "model_id": "llama-4-maverick",
+    "cost_usd": 0.000298,
+    "ttft_ms": 821,
+    "tbt_ms_avg": 60.89,
+    "tbt_ms_p50": 54.82,
+    "tbt_ms_p95": 116.02,
+    "stream_chunks": 101,
+    "latency_ms": 6976,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.00021,
+    "cost_output_usd": 8.9e-05,
+    "cost_diagnosis_usd": 3e-05,
+    "cost_reply_usd": 5.9e-05
+  },
+  "duration_ms": 6987,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0015"
+  ],
+  "request_id": "req_5b07eb697ff04c389d47",
+  "correlation_id": "req_5b07eb697ff04c389d47"
+}

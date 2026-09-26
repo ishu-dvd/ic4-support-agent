@@ -1,7 +1,9 @@
 # Solution — Senior AI/ML Engineer II exercise
 
 Variant: `support`. Language: Python 3.9+, standard library only for the agent (`pytest` is the one
-dev dependency). The fixture (`server/`, `data/`, `docs/API.md`) is untouched.
+dev dependency). The fixture data (`data/`) is untouched and `make agent-test` refuses to run if it is not; `server/`
+gained two additive, in-memory routes for ticket intake (`POST /v1/tickets`, `GET /v1/accounts`, documented in
+`docs/API.md`). Architecture and sequence diagrams are in [`README.md`](README.md).
 
 ```bash
 make run                       # fixture on :8080
@@ -115,7 +117,9 @@ the `applies_to` filter is what keeps "grounded" and "correct for this customer"
 - **No retrieval beyond the lexical endpoint.** Eighteen short articles; the two recall misses were an
   authorization problem (`applies_to`), not a retrieval one. Hybrid retrieval goes behind the same
   `kb_search` signature when the KB is real.
-- **Markdown report, not a dashboard.** Two runs side by side is the before/after.
+- **Markdown report first, dashboard later.** In the first hour two runs side by side in `reports/latest.md` was the
+  before/after; the dashboard (`/dashboard`, one dependency-free HTML file over the same `runs/` data) came with the
+  hosting work and is a view, not a second scorer.
 - **Traces without an OTel SDK.** Field names already follow the GenAI semantic conventions; an
   exporter is a small addition.
 - **Probable label noise left alone.** TCK-1127 asks about a custom SLA the account has; the label
@@ -211,6 +215,54 @@ upstream on demand, and the run reads the new ticket back over `GET /v1/tickets/
 the record lives in memory (gone on restart, `data/` untouched). Against a real systems-of-record API the
 same routes follow it; if that API has no listing/intake route the agent answers `501 upstream_unsupported`
 and the dashboard disables the card instead of showing an empty dropdown.
+
+## Which model? The golden set on every model this key can reach
+
+`scripts/probe_models.py` asks the inference endpoint for its catalogue and tries one tiny completion per id:
+22 of 107 listed models answer on this team's tier (`dashboard/models.json` keeps the snapshot; 403 = not in
+the subscription tier, 404 = listed but not served). `POST /api/evals {"model_id": …}` then replays the
+31-ticket golden set on a chosen model, and `GET /api/golden` (dashboard tab *Golden set*) puts the latest
+full pass of every model side by side, with the deterministic `rules` drafter as the free baseline.
+
+Two findings shaped the read-side code:
+
+- **Category and escalation tie at 100 % on every model, by design.** The rules/policy layer decides both;
+  the model only writes the diagnosis and reply. So the comparison axes that actually discriminate are KB
+  citation quality (recall / precision), how often the output guard had to fall back to rules, latency and
+  cost. The leaderboard sorts on KB recall and the quality-vs-cost chart plots KB recall on a log cost axis.
+- **Thinking models need two payload changes.** `kimi-k2.6` rejects `temperature` ("must be 1") and
+  `response_format: json_object`; `kimi` and `qwen3.5` stream `reasoning_content` and burn the whole output
+  budget before the JSON starts. `agent/llm.py` now sends `chat_template_kwargs.enable_thinking=false`, and
+  when a 400 names a parameter it drops that parameter, retries once (`retry_decision=retry:param_unsupported`,
+  event `llm_param_dropped`) and remembers the rejection per model for the rest of the process. Mistral, which
+  rejects `chat_template_kwargs` itself, is covered by the same path. A plain 400 is still never retried.
+
+Latest full pass per model (31 tickets, dry-run, DigitalOcean serverless, 26 Sep 2026):
+
+| model | KB recall / precision | LLM drafts | cost / ticket | TTFT p50 | e2e p50 |
+|---|---|---|---|---|---|
+| llama-4-maverick | 96.7 / 88.6 | 29 / 31 | $0.00030 | 0.9 s | 3.6 s |
+| kimi-k2.6 | 96.7 / 79.5 | 29 / 31 | $0.00144 | 1.1 s | 5.3 s |
+| deepseek-v4.1-flash | 96.7 / 75.6 | 29 / 31 | $0.00077 | 2.9 s | 7.9 s |
+| mistral-3-14B | 93.3 / 85.7 | 29 / 31 | $0.00021 | 0.9 s | 2.1 s |
+| openai-gpt-oss-120b | 93.3 / 88.2 | 28 / 31 | $0.00037 | 4.3 s | 7.4 s |
+| gemma-4-31B-it (default) | 83.3 / 96.4 | 29 / 31 | $0.00022 | 1.0 s | 4.2 s |
+| kimi-k3 | 93.3 / 93.8 | 15 / 31 | $0.00468 | 6.9 s | 27 s |
+| rules (baseline) | 83.3 / 90.0 | 0 / 31 | $0 | — | 2 ms |
+
+The two non-LLM drafts on most models are the injection ticket and the empty-after-strip ticket, which the
+policy routes to rules regardless. `kimi-k3` and `nemotron-3-nano-omni` fall back on half the set (timeouts
+at 60 s); `openai-gpt-4o-mini` appears with *no LLM drafts* because the tier returns 403 — the row is the
+rules layer under another name, and the leaderboard says so. On this evidence `llama-4-maverick` or
+`mistral-3-14B` would replace `gemma-4-31B-it` as the default: same price, better recall, same latency.
+
+The dashboard's other new tabs read the same artefacts: *Evals* lists every eval with its run ids, *Guardrails
+& Security* enumerates the seven guard layers with their patterns, the tests that cover each one (runnable
+from the page via `POST /api/guardrails/test`) and every run that carried an injection or guard flag, with
+the matched-pattern count now written on the `injection_suspected` trace event; *Models* is the probe
+snapshot joined with prices and run counts. `GET /api/glossary` backs the ⓘ tooltips so the KPIs are
+defined in one place. `obs/` holds this read-side code so the `agent/` package keeps its "never sees the
+golden labels" guarantee (`tests/test_no_golden_access.py`).
 
 ## Next 30 minutes with a model key
 

@@ -1,0 +1,54 @@
+{
+  "run_id": "20260926T082659-1029fd",
+  "ticket_id": "TCK-1118",
+  "category": "region_unavailable",
+  "request_type": "incident",
+  "confidence": 0.412,
+  "diagnosis": "The customer is attempting to use private networking in the ap-south region, where the feature is currently unavailable.",
+  "reply": "Thank you for reaching out. According to our documentation (kb-0008), private networking is not yet available in the ap-south region; requests made in unsupported regions remain queued rather than failing.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [
+    "availability_question:answered_from_kb"
+  ],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 898,
+    "output_tokens": 102,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000213,
+    "ttft_ms": 1019,
+    "tbt_ms_avg": 96.8,
+    "tbt_ms_p50": 24.74,
+    "tbt_ms_p95": 678.2,
+    "stream_chunks": 101,
+    "latency_ms": 10702,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000162,
+    "cost_output_usd": 5.1e-05,
+    "cost_diagnosis_usd": 1.9e-05,
+    "cost_reply_usd": 3.2e-05
+  },
+  "duration_ms": 10713,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0015"
+  ],
+  "request_id": "req_28d2a6ad9dbd454ea73a",
+  "correlation_id": "req_28d2a6ad9dbd454ea73a"
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T085426-784b7d",
+  "ticket_id": "TCK-1106",
+  "category": "export_stalled",
+  "request_type": "question",
+  "confidence": 0.929,
+  "diagnosis": "The customer's 4 GB export job has been running for roughly nine hours. Per kb-0005, exports under 10 GB normally complete within an hour, and any job running longer than six hours is considered stalled; the remedy is to cancel and resubmit. No escalation is warranted per the policy decision.",
+  "reply": "Thanks for the details on export job EXP-40128. For a 4 GB export, nine hours is longer than expected \u2014 jobs under 10 GB normally finish within an hour, and any job still running after six hours is considered stalled. Please cancel the job and resubmit it; it will re-enter the queue for your region and should complete in the usual timeframe. If the resubmitted job also stalls, let us know and we can take another look.",
+  "kb_cited": [
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 917,
+    "output_tokens": 486,
+    "model_id": "kimi-k3",
+    "cost_usd": 0.010041,
+    "ttft_ms": 7300,
+    "tbt_ms_avg": 22.09,
+    "tbt_ms_p50": 19.98,
+    "tbt_ms_p95": 84.08,
+    "stream_chunks": 193,
+    "latency_ms": 11620,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.002751,
+    "cost_output_usd": 0.00729,
+    "cost_diagnosis_usd": 0.002992,
+    "cost_reply_usd": 0.004298
+  },
+  "duration_ms": 11627,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0005",
+    "kb-0013",
+    "kb-0012",
+    "kb-0007"
+  ],
+  "request_id": "req_89751ee6dd4146cbbe67",
+  "correlation_id": "req_89751ee6dd4146cbbe67"
+}

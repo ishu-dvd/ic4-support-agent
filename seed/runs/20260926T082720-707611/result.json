@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082720-707611",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer on legacy auth (business plan, us-west) is asking for migration overview and rollback possibility for planning. Entitlements include sso, audit log, and data export, which are compatible with Unified Auth.",
+  "reply": "Thanks for reaching out. Moving to Unified Auth replaces the legacy account-wide token with scoped keys. The recommended flow is a dual-running period: first generate scoped keys, shift your traffic over while the old token remains active, and then disable the legacy token once everything is stable. One important note\u2014once the legacy token is disabled, the migration cannot be reversed to the old model. The attached article covers the steps in detail. Let us know when you're ready to go through your timeline\u2014we're happy to help you plan the transition.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 827,
+    "output_tokens": 200,
+    "model_id": "deepseek-v4-pro",
+    "cost_usd": 0.002135,
+    "ttft_ms": 975,
+    "tbt_ms_avg": 21.82,
+    "tbt_ms_p50": 21.36,
+    "tbt_ms_p95": 46.71,
+    "stream_chunks": 99,
+    "latency_ms": 3119,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001439,
+    "cost_output_usd": 0.000696,
+    "cost_diagnosis_usd": 0.000193,
+    "cost_reply_usd": 0.000503
+  },
+  "duration_ms": 3131,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_049c95964e9041a0b94c",
+  "correlation_id": "req_049c95964e9041a0b94c"
+}

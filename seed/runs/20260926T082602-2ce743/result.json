@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082602-2ce743",
+  "ticket_id": "TCK-1104",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.852,
+  "diagnosis": "Customer is requesting instructions on how to reset their API token and is currently using the legacy_auth model.",
+  "reply": "To reset your API token, please navigate to the Security tab and select 'Reset token'. Please note that the previous API token will remain valid for 24 hours after the reset process is completed.",
+  "kb_cited": [
+    "kb-0002"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 852,
+    "output_tokens": 99,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000203,
+    "ttft_ms": 901,
+    "tbt_ms_avg": 22.64,
+    "tbt_ms_p50": 22.15,
+    "tbt_ms_p95": 78.48,
+    "stream_chunks": 98,
+    "latency_ms": 3132,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000153,
+    "cost_output_usd": 5e-05,
+    "cost_diagnosis_usd": 1.8e-05,
+    "cost_reply_usd": 3.2e-05
+  },
+  "duration_ms": 3142,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0018",
+    "kb-0012"
+  ],
+  "request_id": "req_b20db8ae29294b5192ec",
+  "correlation_id": "req_b20db8ae29294b5192ec"
+}

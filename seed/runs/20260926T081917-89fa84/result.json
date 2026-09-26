@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T081917-89fa84",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "SSO is only available on Standard and Premium support tiers, not on the current Startup tier. An upgrade is required to receive that entitlement.",
+  "reply": "I\u2019ve checked your account, and SSO is not included in the Startup tier you\u2019re on. To enable SSO you\u2019ll need to upgrade to the Standard (or a higher) support tier. Once the upgrade is in place we can walk you through the configuration steps. Let me know if you\u2019d like assistance starting the upgrade process.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 927,
+    "output_tokens": 544,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000291,
+    "ttft_ms": 3863,
+    "tbt_ms_avg": 6.74,
+    "tbt_ms_p50": 6.4,
+    "tbt_ms_p95": 10.06,
+    "stream_chunks": 127,
+    "latency_ms": 4767,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4.6e-05,
+    "cost_output_usd": 0.000245,
+    "cost_diagnosis_usd": 7.9e-05,
+    "cost_reply_usd": 0.000166
+  },
+  "duration_ms": 4777,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_ddc8573ec6f941e493c1",
+  "correlation_id": "req_ddc8573ec6f941e493c1"
+}

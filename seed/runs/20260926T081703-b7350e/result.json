@@ -1,0 +1,58 @@
+{
+  "run_id": "20260926T081703-b7350e",
+  "ticket_id": "TCK-1103",
+  "category": "rate_limit_increase",
+  "request_type": "change_request",
+  "confidence": 0.688,
+  "diagnosis": "Customer reports 429s during nightly batch around 02:00 UTC at 5,400 rpm sustained for 20 minutes. Account is on enterprise plan; rate limit increase above plan ceiling requires a capacity review. This matches the policy for escalation.",
+  "reply": "Thank you for reaching out. I understand that your nightly reconciliation run is hitting 429 responses around 02:00 UTC at a sustained 5,400 requests per minute for roughly 20 minutes. Based on our documentation, requesting a rate limit increase requires a capacity review, and the metrics you provided (peak sustained RPM and the measurement window) are exactly what is needed. I have recommended this ticket for escalation to a specialist who can review your request and discuss options for raising the limit.",
+  "kb_cited": [
+    "kb-0004"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:rate_limit_increase"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 891,
+    "output_tokens": 195,
+    "model_id": "deepseek-4-flash",
+    "cost_usd": 0.000179,
+    "ttft_ms": 991,
+    "tbt_ms_avg": 35.39,
+    "tbt_ms_p50": 15.19,
+    "tbt_ms_p95": 130.82,
+    "stream_chunks": 96,
+    "latency_ms": 4363,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000125,
+    "cost_output_usd": 5.5e-05,
+    "cost_diagnosis_usd": 1.7e-05,
+    "cost_reply_usd": 3.8e-05
+  },
+  "duration_ms": 4376,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0004",
+    "kb-0012",
+    "kb-0015",
+    "kb-0017"
+  ],
+  "request_id": "req_25d86b4156114f74a17e",
+  "correlation_id": "req_25d86b4156114f74a17e"
+}

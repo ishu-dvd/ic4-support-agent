@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T082033-b346aa",
+  "ticket_id": "TCK-1113",
+  "category": "deprecated_endpoint",
+  "request_type": "question",
+  "confidence": 0.889,
+  "diagnosis": "The user is inquiring about the retirement of the /v1/reporting endpoint. According to the deprecation timeline, traffic to these endpoints will cease on 2026-11-01, and customers should migrate to the v2 reporting API.",
+  "reply": "The v1 reporting endpoints will stop accepting traffic on November 1, 2026. We recommend updating your dashboard to use the v2 reporting API, which returns the same fields within a paginated envelope. If you need assistance with the migration, please let us know.",
+  "kb_cited": [
+    "kb-0007"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 788,
+    "output_tokens": 399,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.000358,
+    "ttft_ms": 4786,
+    "tbt_ms_avg": 17.87,
+    "tbt_ms_p50": 15.77,
+    "tbt_ms_p95": 76.0,
+    "stream_chunks": 148,
+    "latency_ms": 7465,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 7.9e-05,
+    "cost_output_usd": 0.000279,
+    "cost_diagnosis_usd": 0.000127,
+    "cost_reply_usd": 0.000152
+  },
+  "duration_ms": 7475,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0007",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_0c14988c72b04db28b1b",
+  "correlation_id": "req_0c14988c72b04db28b1b"
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "20260926T091940-5a06fe",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "The customer is on the 'startup' plan with 'basic' support, but SSO is only available on 'standard' and 'premium' tiers per KB-0010. No escalation is required as this is a standard entitlement inquiry.",
+  "reply": "Thank you for reaching out. Single Sign-On (SSO) is currently available on our Standard and Premium support tiers, but it is not included in your current Startup plan. If you are interested in enabling this feature, you would need to upgrade your plan; please note that mid-cycle upgrades are prorated based on the remaining days in your billing cycle.",
+  "kb_cited": [
+    "kb-0010",
+    "kb-0001"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 893,
+    "output_tokens": 181,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.001125,
+    "ttft_ms": 3615,
+    "tbt_ms_avg": 139.24,
+    "tbt_ms_p50": 132.41,
+    "tbt_ms_p95": 281.29,
+    "stream_chunks": 180,
+    "latency_ms": 28690,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000491,
+    "cost_output_usd": 0.000633,
+    "cost_diagnosis_usd": 0.00023,
+    "cost_reply_usd": 0.000403
+  },
+  "duration_ms": 28701,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_6a213862077849609a31",
+  "correlation_id": "req_6a213862077849609a31"
+}

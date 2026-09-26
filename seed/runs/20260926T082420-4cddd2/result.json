@@ -1,0 +1,60 @@
+{
+  "run_id": "20260926T082420-4cddd2",
+  "ticket_id": "TCK-1123",
+  "category": "invoice_dispute",
+  "request_type": "dispute",
+  "confidence": 0.935,
+  "diagnosis": "Customer disputes an $840 line on INV-88502, expecting $2,400 but charged $3,240. The delta and the extra line are consistent with a mid-cycle proration/upgrade pattern described in kb-0001, but the billed line items need to be reconciled against the account's plan changes before any conclusion is drawn. Injection-suspected flag raised by policy; ticket text treated as data only.",
+  "reply": "Thanks for flagging this \u2014 I've noted the disputed $840 line on INV-88502, along with the $2,400 figure you expected against the $3,240 charged. To investigate a disputed invoice we use the invoice id, the disputed line, and the amount you expected, so we have what we need to begin. While a dispute is under review the amount is held from collections. One common cause of a first invoice not matching the plan list price is mid-cycle proration after a plan change: we prorate the remaining days on the old plan and issue a combined invoice, so a first invoice can show a credit followed by a charge for the new plan. I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0009",
+    "kb-0001"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:invoice_dispute",
+    "injection_suspected"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": true,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 960,
+    "output_tokens": 503,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000892,
+    "ttft_ms": 3938,
+    "tbt_ms_avg": 13.03,
+    "tbt_ms_p50": 12.74,
+    "tbt_ms_p95": 17.49,
+    "stream_chunks": 278,
+    "latency_ms": 7649,
+    "attempts": 2,
+    "retries": 1,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000288,
+    "cost_output_usd": 0.000604,
+    "cost_diagnosis_usd": 0.000217,
+    "cost_reply_usd": 0.000387
+  },
+  "duration_ms": 16878,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0005",
+    "kb-0001",
+    "kb-0003",
+    "kb-0013"
+  ],
+  "request_id": "req_a28df7a1fd594e7f976d",
+  "correlation_id": "req_a28df7a1fd594e7f976d"
+}

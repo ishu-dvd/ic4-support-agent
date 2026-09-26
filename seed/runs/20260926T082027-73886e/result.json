@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082027-73886e",
+  "ticket_id": "TCK-1103",
+  "category": "rate_limit_increase",
+  "request_type": "change_request",
+  "confidence": 0.688,
+  "diagnosis": "Customer reports sustained 429s over a ~20-minute window at ~5,400 rpm, consistent with hitting the plan ceiling. A rate limit increase above the plan ceiling requires a capacity review per kb-0004; they have submitted the peak and window needed.",
+  "reply": "Thank you for the details. Sustained 429s across a whole window like yours typically indicate you are reaching the plan's rate limit ceiling rather than a burst issue. In the meantime, make sure your client honours the Retry-After header returned with each 429, adding jitter to avoid synchronized retries. Requests for an increase above the plan ceiling go through a capacity review; please include the peak sustained requests per minute and the window over which it was measured, which you've already provided. I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0004",
+    "kb-0014"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:rate_limit_increase"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 866,
+    "output_tokens": 211,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000235,
+    "ttft_ms": 1627,
+    "tbt_ms_avg": 49.18,
+    "tbt_ms_p50": 20.07,
+    "tbt_ms_p95": 96.95,
+    "stream_chunks": 209,
+    "latency_ms": 11951,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.00013,
+    "cost_output_usd": 0.000106,
+    "cost_diagnosis_usd": 3.2e-05,
+    "cost_reply_usd": 7.4e-05
+  },
+  "duration_ms": 11963,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0004",
+    "kb-0012",
+    "kb-0015",
+    "kb-0017"
+  ],
+  "request_id": "req_eb7beb160a4b4722835f",
+  "correlation_id": "req_eb7beb160a4b4722835f"
+}

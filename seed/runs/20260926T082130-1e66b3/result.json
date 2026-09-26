@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082130-1e66b3",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer on a legacy authentication model asks about the migration process to Unified Auth and whether it can be undone. Provide migration overview and note that once legacy tokens are disabled the change is irreversible.",
+  "reply": "Thanks for reaching out! Moving from Legacy Auth to Unified Auth involves a few key steps:\n1. Generate scoped keys for your applications.\n2. Run both the legacy token and the new scoped keys in parallel during a transition window.\n3. Once you\u2019re confident the new keys work, disable the legacy account\u2011wide token.\n\nOur documentation outlines this workflow in detail. Please note that after the legacy token is disabled, the migration cannot be reversed, so it\u2019s important to fully test the new keys before the cut\u2011over. If you have any specific concerns or need assistance planning the dual\u2011running window, let us know and we\u2019ll be happy to help.\n\nYou can find the full migration guide here: [Migrating from Legacy Auth to Unified Auth](#).",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 869,
+    "output_tokens": 414,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.000377,
+    "ttft_ms": 3106,
+    "tbt_ms_avg": 16.05,
+    "tbt_ms_p50": 12.3,
+    "tbt_ms_p95": 22.83,
+    "stream_chunks": 242,
+    "latency_ms": 7022,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 8.7e-05,
+    "cost_output_usd": 0.00029,
+    "cost_diagnosis_usd": 6.7e-05,
+    "cost_reply_usd": 0.000223
+  },
+  "duration_ms": 7027,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_ebf2edb889874f57837f",
+  "correlation_id": "req_ebf2edb889874f57837f"
+}

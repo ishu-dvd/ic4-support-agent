@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081901-1bde25",
+  "trace_id": "ff364d725a4c4132989623bea236d71b",
+  "request_id": "req_7653126cbdf14bff93a9",
+  "correlation_id": "req_7653126cbdf14bff93a9",
+  "ticket_id": "TCK-1119",
+  "start_ms": 1790410741017,
+  "outcome": "completed",
+  "error": null,
+  "category": "seat_billing",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "openai-gpt-oss-20b",
+  "prompt_version": "v1",
+  "cost_usd": 0.000158,
+  "cost_input_usd": 4e-05,
+  "cost_output_usd": 0.000119,
+  "cost_diagnosis_usd": 5e-05,
+  "cost_reply_usd": 6.9e-05,
+  "input_tokens": 792,
+  "output_tokens": 264,
+  "usage_estimated": false,
+  "ttft_ms": 2048,
+  "tbt_ms_avg": 6.93,
+  "tbt_ms_p50": 6.54,
+  "tbt_ms_p95": 10.44,
+  "llm_latency_ms": 3108,
+  "llm_attempts": 1,
+  "duration_ms": 3114,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 1,
+    "read_entitlements": 1,
+    "kb_search": 2,
+    "read_parallel": 3,
+    "filter_kb": 0,
+    "classify_intent": 0,
+    "escalation_policy": 0,
+    "draft": 3109,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

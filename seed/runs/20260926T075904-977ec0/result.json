@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T075904-977ec0",
+  "ticket_id": "TCK-1121",
+  "category": "rate_limit_backoff",
+  "request_type": "how_to",
+  "confidence": 0.92,
+  "diagnosis": "The customer is reporting that their client is ignoring the Retry-After header during 429 responses and is asking for the correct backoff strategy.",
+  "reply": "For 429 responses, you should refer to the Retry-After header, which specifies the wait time in seconds. We recommend that clients honor this value and implement jitter to avoid synchronized retries. Please see article kb-0014 for more details on reading 429 responses and backing off correctly.",
+  "kb_cited": [
+    "kb-0014"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 922,
+    "output_tokens": 136,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000234,
+    "ttft_ms": 1427,
+    "tbt_ms_avg": 60.75,
+    "tbt_ms_p50": 60.55,
+    "tbt_ms_p95": 155.89,
+    "stream_chunks": 135,
+    "latency_ms": 9820,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000166,
+    "cost_output_usd": 6.8e-05,
+    "cost_diagnosis_usd": 2.3e-05,
+    "cost_reply_usd": 4.5e-05
+  },
+  "duration_ms": 9829,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0015",
+    "kb-0006",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_34930f6116044fbe9e8a",
+  "correlation_id": "req_34930f6116044fbe9e8a"
+}

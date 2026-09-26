@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081803-7f90bc",
+  "ticket_id": "TCK-1105",
+  "category": "region_unavailable",
+  "request_type": "question",
+  "confidence": 0.636,
+  "diagnosis": "The customer\u2019s request for private networking is queued because the eu-central region does not support private networking. Requests in unsupported regions are kept in queue status until the feature becomes available there.",
+  "reply": "Hi,\n\nI see you requested private networking in the eu\u2011central region. Unfortunately that region does not support private networking yet. Requests for unsupported regions remain queued and will only be processed once the feature is available in the requested region.\n\nThank you for your patience.\n\nI have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:region_unavailable",
+    "stuck_request"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 947,
+    "output_tokens": 489,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000267,
+    "ttft_ms": 3316,
+    "tbt_ms_avg": 7.27,
+    "tbt_ms_p50": 6.43,
+    "tbt_ms_p95": 14.22,
+    "stream_chunks": 135,
+    "latency_ms": 4336,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4.7e-05,
+    "cost_output_usd": 0.00022,
+    "cost_diagnosis_usd": 8.4e-05,
+    "cost_reply_usd": 0.000136
+  },
+  "duration_ms": 4347,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0001"
+  ],
+  "request_id": "req_55f104a2195f42689f1c",
+  "correlation_id": "req_55f104a2195f42689f1c"
+}

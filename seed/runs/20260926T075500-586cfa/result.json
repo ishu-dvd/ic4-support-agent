@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T075500-586cfa",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer on Legacy Auth planning the migration to Unified Auth.",
+  "reply": "Thanks for reaching out. Migration replaces account-wide tokens with scoped keys. Plan for a dual-running window: create scoped keys, cut traffic over, then disable the legacy token. Please note the migration cannot be reversed once legacy tokens are disabled, so keep the dual-running window until you are confident. See \"Migrating from Legacy Auth to Unified Auth\" (kb-0012) for the full details.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "rules_fallback",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "model_id": "rules",
+    "cost_usd": 0.0,
+    "ttft_ms": null,
+    "tbt_ms_avg": null,
+    "tbt_ms_p50": null,
+    "tbt_ms_p95": null,
+    "stream_chunks": 0,
+    "latency_ms": 0,
+    "attempts": 0,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.0,
+    "cost_output_usd": 0.0,
+    "cost_diagnosis_usd": 0.0,
+    "cost_reply_usd": 0.0
+  },
+  "duration_ms": 704,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_93ae336b22ab486bb8c0",
+  "correlation_id": "req_93ae336b22ab486bb8c0"
+}

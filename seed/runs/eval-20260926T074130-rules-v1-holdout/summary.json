@@ -1,0 +1,159 @@
+{
+  "eval_id": "eval-20260926T074130-rules-v1-holdout",
+  "label": "rules-v1-holdout",
+  "timestamp": "2026-09-26T07:41:30Z",
+  "variant": "support",
+  "case_set": "holdout",
+  "n": 10,
+  "n_total": 10,
+  "partial": null,
+  "model_id": "rules",
+  "prompt_version": "v1",
+  "provider": "rules",
+  "dry_run": true,
+  "fake": false,
+  "kb_filter": true,
+  "unknown_golden_fields": 0,
+  "baselines": {
+    "n": 10,
+    "category": 20.0,
+    "category_label": "credential_rotation",
+    "escalate": 60.0,
+    "escalate_label": false
+  },
+  "metrics": {
+    "n": 10,
+    "finished": 10,
+    "completion_rate": 100.0,
+    "category_accuracy": 90.0,
+    "escalate_accuracy": 90.0,
+    "escalate_precision": 80.0,
+    "escalate_recall": 100.0,
+    "escalate_f1": 88.88888888888889,
+    "escalate_tp": 4,
+    "escalate_fp": 1,
+    "escalate_fn": 0,
+    "kb_recall": 88.88888888888889,
+    "kb_hit_any": 88.88888888888889,
+    "kb_precision": 88.88888888888889,
+    "kb_cited_cases": 9,
+    "kb_cited_total": 9,
+    "kb_invalid_citations": 0,
+    "kb_visible_unknown": 0,
+    "kb_scored_cases": 9,
+    "kb_empty_expected": 1,
+    "kb_empty_expected_correct": 1,
+    "groundedness_total": 0,
+    "groundedness_by_type": {},
+    "groundedness_cases": [],
+    "groundedness_eval_total": 0,
+    "groundedness_eval_by_type": {},
+    "groundedness_eval_cases": [],
+    "injection": {
+      "ticket_id": "TCK-1123",
+      "present": false,
+      "detected": false,
+      "category_ok": false,
+      "escalate_ok": false,
+      "reply_clean": false,
+      "passed": false
+    },
+    "activity": {
+      "outcomes": {
+        "completed": 10
+      },
+      "draft_source": {
+        "rules": 10
+      },
+      "write_status": {
+        "skipped_dry_run": 5,
+        "none": 5
+      },
+      "injection_suspected": 0,
+      "entitlements_degraded": 0
+    },
+    "cost_total_usd": 0.0,
+    "cost_unknown": false,
+    "completed": 10,
+    "cost_per_completed_task": 0.0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "disagreements": 0,
+    "e2e_ms": {
+      "50": 2,
+      "95": 7
+    },
+    "confusion_top": [
+      {
+        "expected": "billing_proration",
+        "predicted": "invoice_dispute",
+        "count": 1
+      }
+    ],
+    "missed_ticket_ids": [
+      "HOLD-001"
+    ]
+  },
+  "traces": {
+    "available": 10,
+    "events": {
+      "policy_decided": 10,
+      "write_skipped_dry_run": 5
+    },
+    "call_counts": {
+      "http": 30,
+      "llm": 10
+    },
+    "step_ms": {
+      "read_ticket": {
+        "50": 0,
+        "95": 0
+      },
+      "read_parallel": {
+        "50": 1,
+        "95": 6
+      },
+      "filter_kb": {
+        "50": 0,
+        "95": 0
+      },
+      "classify_intent": {
+        "50": 0,
+        "95": 0
+      },
+      "escalation_policy": {
+        "50": 0,
+        "95": 0
+      },
+      "draft": {
+        "50": 0,
+        "95": 0
+      },
+      "output_guard": {
+        "50": 0,
+        "95": 0
+      },
+      "write": {
+        "50": 0,
+        "95": 0
+      },
+      "summarize": {
+        "50": 0,
+        "95": 0
+      },
+      "kb_search": {
+        "50": 1,
+        "95": 5
+      },
+      "read_account": {
+        "50": 1,
+        "95": 6
+      },
+      "read_entitlements": {
+        "50": 1,
+        "95": 5
+      }
+    }
+  },
+  "wall_ms": 32
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": "20260926T085014-d9cd27",
+  "ticket_id": "TCK-1107",
+  "category": "sso_metadata_mismatch",
+  "request_type": "incident",
+  "confidence": 0.76,
+  "diagnosis": "Customer rotated their IdP signing certificate and sign-in now fails with an assertion error, consistent with stale SSO metadata. Advise re-uploading IdP metadata and testing with a single account before re-enabling enforcement per kb-0006.",
+  "reply": "Thanks for the details. Since your identity provider's signing certificate was rotated recently, the most likely cause is that the SSO metadata on our side no longer matches your IdP. Please re-upload your updated IdP metadata, then test sign-in with a single account before re-enabling enforcement for everyone. This is covered in our knowledge base article \"SSO metadata mismatch after an identity provider change\" (kb-0006). If the issue persists after re-uploading the metadata, let us know and we'll take a further look.",
+  "kb_cited": [
+    "kb-0006"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 673,
+    "output_tokens": 190,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001778,
+    "ttft_ms": 968,
+    "tbt_ms_avg": 23.9,
+    "tbt_ms_p50": 22.55,
+    "tbt_ms_p95": 80.28,
+    "stream_chunks": 188,
+    "latency_ms": 5472,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000942,
+    "cost_output_usd": 0.000836,
+    "cost_diagnosis_usd": 0.000262,
+    "cost_reply_usd": 0.000574
+  },
+  "duration_ms": 5479,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0006",
+    "kb-0010"
+  ],
+  "request_id": "req_b5cfd4bd40994e30bd4a",
+  "correlation_id": "req_b5cfd4bd40994e30bd4a"
+}

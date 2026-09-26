@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081832-a6820a",
+  "trace_id": "663d316f16a34448aa418240d0a2f695",
+  "request_id": "req_09e4d681c19442599563",
+  "correlation_id": "req_09e4d681c19442599563",
+  "ticket_id": "TCK-1125",
+  "start_ms": 1790410712941,
+  "outcome": "completed",
+  "error": null,
+  "category": "audit_retention_limit",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "llama-4-maverick",
+  "prompt_version": "v1",
+  "cost_usd": 0.000285,
+  "cost_input_usd": 0.0002,
+  "cost_output_usd": 8.5e-05,
+  "cost_diagnosis_usd": 3.7e-05,
+  "cost_reply_usd": 4.8e-05,
+  "input_tokens": 800,
+  "output_tokens": 98,
+  "usage_estimated": false,
+  "ttft_ms": 835,
+  "tbt_ms_avg": 18.05,
+  "tbt_ms_p50": 14.26,
+  "tbt_ms_p95": 68.76,
+  "llm_latency_ms": 2589,
+  "llm_attempts": 1,
+  "duration_ms": 2600,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 4,
+    "kb_search": 4,
+    "read_entitlements": 4,
+    "read_parallel": 6,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 2590,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081728-b6f7b4",
+  "ticket_id": "TCK-1126",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.727,
+  "diagnosis": "Customer is on Unified Auth and needs guidance on rotating scoped API keys. No immediate escalation required as this aligns with documented procedures.",
+  "reply": "For accounts using Unified Auth, API tokens are managed as scoped keys rather than a single account-wide credential. To reset your token, follow these steps in our [Scoped API Keys guide](https://support.example.com/kb-0003): create a new key with the required scopes, update your application to use the new key, and then revoke the old key. Revocation is immediate, so plan for a seamless transition. Let us know if you need further clarification on scopes or migration steps.",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 834,
+    "output_tokens": 177,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000202,
+    "ttft_ms": 780,
+    "tbt_ms_avg": 6.21,
+    "tbt_ms_p50": 0.02,
+    "tbt_ms_p95": 9.85,
+    "stream_chunks": 176,
+    "latency_ms": 1885,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000167,
+    "cost_output_usd": 3.5e-05,
+    "cost_diagnosis_usd": 8e-06,
+    "cost_reply_usd": 2.7e-05
+  },
+  "duration_ms": 1894,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0017",
+    "kb-0012",
+    "kb-0003",
+    "kb-0009"
+  ],
+  "request_id": "req_b1b29d0c4dba487e9ff5",
+  "correlation_id": "req_b1b29d0c4dba487e9ff5"
+}

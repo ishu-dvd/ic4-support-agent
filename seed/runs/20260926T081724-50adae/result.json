@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081724-50adae",
+  "ticket_id": "TCK-1124",
+  "category": "entitlement_unknown",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "The customer reports a mismatch between their invoice seat count and the console, but entitlement services are unavailable for verification. The invoice ID, disputed line, and expected seat count are missing for further investigation. Escalation is required due to entitlement system unavailability and lack of actionable details.",
+  "reply": "I\u2019ve noted the discrepancy between your invoice seat count and the console. To proceed, I\u2019ll need the **invoice ID**, the **specific line item** showing the incorrect seat count, and the **seat count you expected**. This will help us verify the details accurately. Since our entitlement systems are currently unavailable, I\u2019ve recommended this ticket for escalation to a specialist for further review.",
+  "kb_cited": [
+    "kb-0009"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:entitlement_unknown",
+    "entitlements_unavailable:entitlement_service_error"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 921,
+    "output_tokens": 187,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000222,
+    "ttft_ms": 799,
+    "tbt_ms_avg": 6.64,
+    "tbt_ms_p50": 6.59,
+    "tbt_ms_p95": 8.72,
+    "stream_chunks": 186,
+    "latency_ms": 2051,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000184,
+    "cost_output_usd": 3.7e-05,
+    "cost_diagnosis_usd": 1.7e-05,
+    "cost_reply_usd": 2e-05
+  },
+  "duration_ms": 2064,
+  "outcome": "degraded",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0011",
+    "kb-0001",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_ecd09c85a32f489f9896",
+  "correlation_id": "req_ecd09c85a32f489f9896"
+}

@@ -1,0 +1,63 @@
+{
+  "run_id": "20260926T081747-dfccca",
+  "trace_id": "70a019d5af1f418bafb96a7522eaab07",
+  "request_id": "req_d66822707deb473b9985",
+  "correlation_id": "req_d66822707deb473b9985",
+  "ticket_id": "TCK-1109",
+  "start_ms": 1790410667982,
+  "outcome": "degraded",
+  "error": null,
+  "category": "entitlement_unknown",
+  "escalate": true,
+  "write_status": "skipped_dry_run",
+  "draft_source": "rules_fallback",
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "guard_violations": 0,
+  "model_id": "deepseek-4-flash",
+  "prompt_version": "v1",
+  "cost_usd": 0.000171,
+  "cost_input_usd": 0.000124,
+  "cost_output_usd": 4.6e-05,
+  "cost_diagnosis_usd": 2.4e-05,
+  "cost_reply_usd": 2.2e-05,
+  "input_tokens": 887,
+  "output_tokens": 166,
+  "usage_estimated": false,
+  "ttft_ms": 2248,
+  "tbt_ms_avg": 203.83,
+  "tbt_ms_p50": 94.25,
+  "tbt_ms_p95": 568.45,
+  "llm_latency_ms": 18160,
+  "llm_attempts": 1,
+  "duration_ms": 18172,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 4,
+    "read_entitlements": 4,
+    "kb_search": 3,
+    "read_parallel": 5,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 18161,
+    "output_guard": 2,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "upstream_degraded": 1,
+    "entitlements_degraded": 1,
+    "policy_decided": 1,
+    "guard_fallback": 1,
+    "write_skipped_dry_run": 1
+  }
+}

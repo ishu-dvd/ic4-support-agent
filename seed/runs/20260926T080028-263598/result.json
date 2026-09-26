@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T080028-263598",
+  "ticket_id": "TCK-1129",
+  "category": "webhook_replay",
+  "request_type": "question",
+  "confidence": 0.905,
+  "diagnosis": "Customer is asking to replay webhooks after a two-week outage. KB-0015 states the manual replay window is seven days.",
+  "reply": "According to our documentation, failed webhook deliveries are available for manual replay for seven days. Since your outage lasted two weeks, events older than seven days can no longer be replayed.",
+  "kb_cited": [
+    "kb-0015"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 831,
+    "output_tokens": 103,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000201,
+    "ttft_ms": 1025,
+    "tbt_ms_avg": 50.8,
+    "tbt_ms_p50": 50.44,
+    "tbt_ms_p95": 128.9,
+    "stream_chunks": 102,
+    "latency_ms": 6156,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.00015,
+    "cost_output_usd": 5.1e-05,
+    "cost_diagnosis_usd": 1.9e-05,
+    "cost_reply_usd": 3.2e-05
+  },
+  "duration_ms": 6166,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0015",
+    "kb-0004",
+    "kb-0012",
+    "kb-0014"
+  ],
+  "request_id": "req_8f7c50a457db45cc92ef",
+  "correlation_id": "req_8f7c50a457db45cc92ef"
+}

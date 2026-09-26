@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T085749-4228b1",
+  "ticket_id": "TCK-1116",
+  "category": "export_stalled",
+  "request_type": "incident",
+  "confidence": 0.667,
+  "diagnosis": "Job EXP-40233 (approx. 6 GB) has run for about seven hours, which exceeds the six-hour stall threshold in kb-0005. Per that article the job is stalled and the customer should cancel it and resubmit; queues are per region, so resubmission re-enters the eu-central queue. Policy decided no escalation, so handle with standard guidance.",
+  "reply": "Thanks for reporting this. A 6 GB export would normally complete within about an hour, and any job showing as running for more than six hours is considered stalled. Please cancel job EXP-40233 and resubmit it; export jobs are queued per region, so the new job will re-enter the eu-central queue. If the resubmitted job again runs past six hours, let us know and we can take another look.",
+  "kb_cited": [
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 965,
+    "output_tokens": 512,
+    "model_id": "kimi-k3",
+    "cost_usd": 0.010575,
+    "ttft_ms": 9514,
+    "tbt_ms_avg": 21.03,
+    "tbt_ms_p50": 20.23,
+    "tbt_ms_p95": 80.81,
+    "stream_chunks": 200,
+    "latency_ms": 13731,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.002895,
+    "cost_output_usd": 0.00768,
+    "cost_diagnosis_usd": 0.003552,
+    "cost_reply_usd": 0.004128
+  },
+  "duration_ms": 13742,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0005",
+    "kb-0008",
+    "kb-0013",
+    "kb-0015",
+    "kb-0016"
+  ],
+  "request_id": "req_d70335df3d2840538ffe",
+  "correlation_id": "req_d70335df3d2840538ffe"
+}

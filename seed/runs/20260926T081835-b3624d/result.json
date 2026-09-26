@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081835-b3624d",
+  "ticket_id": "TCK-1126",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.727,
+  "diagnosis": "The customer is on Unified Auth and is asking about resetting their API token, which implies they are using scoped API keys.",
+  "reply": "To reset your API token, create a new scoped key, migrate your traffic to it, and then revoke the old key. Note that revoking a key is immediate and there's no grace period. For detailed steps, refer to our documentation on managing scoped API keys.",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 802,
+    "output_tokens": 114,
+    "model_id": "llama-4-maverick",
+    "cost_usd": 0.0003,
+    "ttft_ms": 804,
+    "tbt_ms_avg": 21.12,
+    "tbt_ms_p50": 15.72,
+    "tbt_ms_p95": 85.98,
+    "stream_chunks": 113,
+    "latency_ms": 3195,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000201,
+    "cost_output_usd": 9.9e-05,
+    "cost_diagnosis_usd": 3.3e-05,
+    "cost_reply_usd": 6.6e-05
+  },
+  "duration_ms": 3207,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0017",
+    "kb-0012",
+    "kb-0003",
+    "kb-0009"
+  ],
+  "request_id": "req_7be602047e5f4f778d42",
+  "correlation_id": "req_7be602047e5f4f778d42"
+}

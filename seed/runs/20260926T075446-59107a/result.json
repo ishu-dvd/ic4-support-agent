@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T075446-59107a",
+  "ticket_id": "TCK-1104",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.852,
+  "diagnosis": "Customer needs to rotate an API credential; procedure depends on the account auth model.",
+  "reply": "Thanks for reaching out. Here is the safe procedure for rotating your API credential: create the replacement first, move your integration onto it, then revoke the old one. The linked article walks through each step for your account type. See \"Reset an API token on Legacy Auth accounts\" (kb-0002) for the full details.",
+  "kb_cited": [
+    "kb-0002"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "rules_fallback",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "model_id": "rules",
+    "cost_usd": 0.0,
+    "ttft_ms": null,
+    "tbt_ms_avg": null,
+    "tbt_ms_p50": null,
+    "tbt_ms_p95": null,
+    "stream_chunks": 0,
+    "latency_ms": 0,
+    "attempts": 0,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.0,
+    "cost_output_usd": 0.0,
+    "cost_diagnosis_usd": 0.0,
+    "cost_reply_usd": 0.0
+  },
+  "duration_ms": 1371,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0018",
+    "kb-0012"
+  ],
+  "request_id": "req_27ea3116ff06430894d9",
+  "correlation_id": "req_27ea3116ff06430894d9"
+}

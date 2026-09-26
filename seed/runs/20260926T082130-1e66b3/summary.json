@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082130-1e66b3",
+  "trace_id": "205a057203da4c74b7a1627e32ef4343",
+  "request_id": "req_ebf2edb889874f57837f",
+  "correlation_id": "req_ebf2edb889874f57837f",
+  "ticket_id": "TCK-1120",
+  "start_ms": 1790410890429,
+  "outcome": "completed",
+  "error": null,
+  "category": "auth_migration",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "openai-gpt-oss-120b",
+  "prompt_version": "v1",
+  "cost_usd": 0.000377,
+  "cost_input_usd": 8.7e-05,
+  "cost_output_usd": 0.00029,
+  "cost_diagnosis_usd": 6.7e-05,
+  "cost_reply_usd": 0.000223,
+  "input_tokens": 869,
+  "output_tokens": 414,
+  "usage_estimated": false,
+  "ttft_ms": 3106,
+  "tbt_ms_avg": 16.05,
+  "tbt_ms_p50": 12.3,
+  "tbt_ms_p95": 22.83,
+  "llm_latency_ms": 7022,
+  "llm_attempts": 1,
+  "duration_ms": 7027,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 1,
+    "read_account": 1,
+    "kb_search": 1,
+    "read_entitlements": 1,
+    "read_parallel": 2,
+    "filter_kb": 0,
+    "classify_intent": 0,
+    "escalation_policy": 0,
+    "draft": 7024,
+    "output_guard": 1,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

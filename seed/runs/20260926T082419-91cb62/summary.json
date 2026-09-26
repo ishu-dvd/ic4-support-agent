@@ -1,0 +1,63 @@
+{
+  "run_id": "20260926T082419-91cb62",
+  "trace_id": "a4c1a45ce8ce4706a9a79f697a078273",
+  "request_id": "req_ce8a7b5e2f46423db84c",
+  "correlation_id": "req_ce8a7b5e2f46423db84c",
+  "ticket_id": "TCK-1109",
+  "start_ms": 1790411059738,
+  "outcome": "degraded",
+  "error": null,
+  "category": "entitlement_unknown",
+  "escalate": true,
+  "write_status": "skipped_dry_run",
+  "draft_source": "rules_fallback",
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "guard_violations": 0,
+  "model_id": "nemotron-3-nano-omni",
+  "prompt_version": "v1",
+  "cost_usd": 0.000948,
+  "cost_input_usd": 0.000476,
+  "cost_output_usd": 0.000472,
+  "cost_diagnosis_usd": 0.000333,
+  "cost_reply_usd": 0.000139,
+  "input_tokens": 952,
+  "output_tokens": 525,
+  "usage_estimated": false,
+  "ttft_ms": 2456,
+  "tbt_ms_avg": 4.02,
+  "tbt_ms_p50": 3.53,
+  "tbt_ms_p95": 7.31,
+  "llm_latency_ms": 2982,
+  "llm_attempts": 1,
+  "duration_ms": 2993,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_entitlements": 2,
+    "read_account": 3,
+    "kb_search": 2,
+    "read_parallel": 4,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 2984,
+    "output_guard": 1,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "upstream_degraded": 1,
+    "entitlements_degraded": 1,
+    "policy_decided": 1,
+    "guard_fallback": 1,
+    "write_skipped_dry_run": 1
+  }
+}

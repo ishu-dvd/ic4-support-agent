@@ -1,0 +1,53 @@
+{
+  "run_id": "20260926T082002-9442d9",
+  "ticket_id": "TCK-1108",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.524,
+  "diagnosis": "User on a nonprofit (standard) tier can only retain audit logs for 90 days per KB. Longer retention (up to 400 days) is available on premium tier. No way to retrieve events older than 90 days without having been exported prior to expiration.",
+  "reply": "Our audit\u2011log retention is tied to the plan tier. On standard (including nonprofit) accounts, logs are kept for 90 days, which is why you only see that window. Retention of up to 400 days is available on the premium tier. If you need a full 12\u2011month history, you would need to upgrade to premium and then export the logs periodically. Unfortunately, we cannot recover log entries that have already passed the 90\u2011day retention period.",
+  "kb_cited": [
+    "kb-0013",
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 928,
+    "output_tokens": 467,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.00042,
+    "ttft_ms": 4391,
+    "tbt_ms_avg": 15.1,
+    "tbt_ms_p50": 12.71,
+    "tbt_ms_p95": 22.66,
+    "stream_chunks": 205,
+    "latency_ms": 7545,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 9.3e-05,
+    "cost_output_usd": 0.000327,
+    "cost_diagnosis_usd": 0.000117,
+    "cost_reply_usd": 0.00021
+  },
+  "duration_ms": 7555,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0001",
+    "kb-0002",
+    "kb-0015"
+  ],
+  "request_id": "req_06cd640b1f3048cb93c7",
+  "correlation_id": "req_06cd640b1f3048cb93c7"
+}

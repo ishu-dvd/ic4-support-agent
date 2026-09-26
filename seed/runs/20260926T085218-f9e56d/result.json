@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T085218-f9e56d",
+  "ticket_id": "TCK-1131",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.818,
+  "diagnosis": "Customer asks how to reset an API token for an ETL job. Unified Auth accounts use scoped keys; procedure is create replacement, migrate traffic, revoke old key. Note kb-0018: credential changes require confirmation from a named account owner.",
+  "reply": "Thanks for reaching out. Accounts on Unified Auth manage credentials as scoped keys rather than one account-wide credential. The recommended procedure is: create a replacement key with the scopes you need, move your ETL traffic onto it, and then revoke the previous key. Please note there is no grace period \u2014 revocation is immediate \u2014 and a key's scopes cannot be widened after creation, so make sure your new key has all the necessary scopes before you switch over. Also, requests that change credentials require confirmation from a named account owner on record.",
+  "kb_cited": [
+    "kb-0003",
+    "kb-0018"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 776,
+    "output_tokens": 199,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001962,
+    "ttft_ms": 1076,
+    "tbt_ms_avg": 23.65,
+    "tbt_ms_p50": 20.62,
+    "tbt_ms_p95": 88.43,
+    "stream_chunks": 197,
+    "latency_ms": 5718,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001086,
+    "cost_output_usd": 0.000876,
+    "cost_diagnosis_usd": 0.000263,
+    "cost_reply_usd": 0.000613
+  },
+  "duration_ms": 5728,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0003",
+    "kb-0009",
+    "kb-0017",
+    "kb-0018"
+  ],
+  "request_id": "req_4ef6fa862317472fa382",
+  "correlation_id": "req_4ef6fa862317472fa382"
+}

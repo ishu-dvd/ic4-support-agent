@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082018-c0adfb",
+  "ticket_id": "TCK-1102",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.778,
+  "diagnosis": "Customer reports a potentially leaked key and wants rotation guidance. Account is on Unified Auth, so kb-0003 applies: create a scoped replacement key, migrate traffic, then revoke the old key (revocation is immediate, no grace period).",
+  "reply": "Thank you for flagging this quickly. Since your account uses Unified Auth, credentials are managed as scoped keys rather than a single account-wide token. The safest sequence is: 1) create a new scoped key with only the permissions it needs, 2) move your traffic over to the new key, and 3) revoke the old key. Revocation takes effect immediately, with no grace period, so we recommend completing the traffic switch before revoking. Note that a key's scopes cannot be widened after creation, so choose the scopes carefully when creating the replacement.",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 793,
+    "output_tokens": 200,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000219,
+    "ttft_ms": 1640,
+    "tbt_ms_avg": 34.5,
+    "tbt_ms_p50": 20.37,
+    "tbt_ms_p95": 82.53,
+    "stream_chunks": 198,
+    "latency_ms": 8469,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000119,
+    "cost_output_usd": 0.0001,
+    "cost_diagnosis_usd": 3e-05,
+    "cost_reply_usd": 7e-05
+  },
+  "duration_ms": 8479,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0017",
+    "kb-0003",
+    "kb-0012"
+  ],
+  "request_id": "req_1000a67423a5493fb457",
+  "correlation_id": "req_1000a67423a5493fb457"
+}

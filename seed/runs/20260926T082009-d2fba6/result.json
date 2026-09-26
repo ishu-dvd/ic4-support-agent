@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082009-d2fba6",
+  "ticket_id": "TCK-1109",
+  "category": "entitlement_unknown",
+  "request_type": "question",
+  "confidence": 0.2,
+  "diagnosis": "Entitlement lookup unavailable; the plan question cannot be answered from tool data.",
+  "reply": "Thanks for contacting support. We could not verify your entitlement details at the moment, so we are not able to confirm plan-specific details in this reply. A support engineer will confirm them and follow up on this ticket. Reference: kb-0010. I have recommended this ticket for escalation to a specialist. What happens next: a specialist reviews the details above and replies on this ticket. You do not need to open a new request.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:entitlement_unknown",
+    "entitlements_unavailable:entitlement_service_error"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "draft_source": "rules_fallback",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 928,
+    "output_tokens": 422,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.000388,
+    "ttft_ms": 3955,
+    "tbt_ms_avg": 12.29,
+    "tbt_ms_p50": 11.94,
+    "tbt_ms_p95": 19.29,
+    "stream_chunks": 181,
+    "latency_ms": 6225,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 9.3e-05,
+    "cost_output_usd": 0.000295,
+    "cost_diagnosis_usd": 0.00015,
+    "cost_reply_usd": 0.000145
+  },
+  "duration_ms": 6239,
+  "outcome": "degraded",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0001",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_b07fc72a2e0042e5b4be",
+  "correlation_id": "req_b07fc72a2e0042e5b4be"
+}

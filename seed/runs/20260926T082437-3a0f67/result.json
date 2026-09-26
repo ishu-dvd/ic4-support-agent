@@ -1,0 +1,60 @@
+{
+  "run_id": "20260926T082437-3a0f67",
+  "ticket_id": "TCK-1124",
+  "category": "entitlement_unknown",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "Entitlement lookups are failing with entitlement_service_error, so the seat count cannot be verified from the account record. Seat/billing questions also cross into invoice-dispute territory, which policy routes to a specialist; gather invoice id, disputed line and expected count to speed that review.",
+  "reply": "Thanks for flagging this. We are currently unable to confirm the seat count your account is entitled to, because the service that holds entitlement details is not returning data for your account. So we can look into the invoice discrepancy, please reply with the invoice ID, the disputed line on the invoice, and the seat count you expected to see. Note that seat additions are billed pro rata from the day they are added, while seat removals take effect at the next renewal, which can make an invoice differ from the current console view; we can confirm whether that applies once we can read your entitlement record. In the meantime, I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0011",
+    "kb-0009"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:entitlement_unknown",
+    "entitlements_unavailable:entitlement_service_error"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": true,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 923,
+    "output_tokens": 388,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000742,
+    "ttft_ms": 2896,
+    "tbt_ms_avg": 13.01,
+    "tbt_ms_p50": 12.58,
+    "tbt_ms_p95": 17.1,
+    "stream_chunks": 238,
+    "latency_ms": 6023,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000277,
+    "cost_output_usd": 0.000466,
+    "cost_diagnosis_usd": 0.000141,
+    "cost_reply_usd": 0.000325
+  },
+  "duration_ms": 6034,
+  "outcome": "degraded",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0011",
+    "kb-0001",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_793e6f10b07d48a2a68b",
+  "correlation_id": "req_793e6f10b07d48a2a68b"
+}

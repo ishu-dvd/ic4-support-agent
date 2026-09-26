@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082605-99ab8a",
+  "ticket_id": "TCK-1105",
+  "category": "region_unavailable",
+  "request_type": "question",
+  "confidence": 0.636,
+  "diagnosis": "The account is located in eu-central, where private networking is not supported according to kb-0008. Requests in unsupported regions remain queued.",
+  "reply": "Thank you for reaching out. According to our documentation (kb-0008), private networking is currently available in us-east, us-west, and eu-west, but is not yet available in the eu-central region. Requests made in unsupported regions remain in a queued status. I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:region_unavailable",
+    "stuck_request"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 951,
+    "output_tokens": 140,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000241,
+    "ttft_ms": 1210,
+    "tbt_ms_avg": 23.7,
+    "tbt_ms_p50": 21.47,
+    "tbt_ms_p95": 80.77,
+    "stream_chunks": 139,
+    "latency_ms": 4573,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000171,
+    "cost_output_usd": 7e-05,
+    "cost_diagnosis_usd": 2.2e-05,
+    "cost_reply_usd": 4.8e-05
+  },
+  "duration_ms": 4583,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0001"
+  ],
+  "request_id": "req_d346c65e6ad8484da038",
+  "correlation_id": "req_d346c65e6ad8484da038"
+}

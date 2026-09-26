@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081858-851e4f",
+  "ticket_id": "TCK-1131",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.818,
+  "diagnosis": "The customer is using Unified Auth and needs to reset their API token, which involves rotating scoped API keys.",
+  "reply": "To reset your API token, create a new scoped API key with the required permissions, update your ETL job to use it, and then revoke the old key. Note that revocation is immediate and there's no grace period. For detailed steps, refer to our guide on managing scoped API keys.",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 790,
+    "output_tokens": 117,
+    "model_id": "llama-4-maverick",
+    "cost_usd": 0.000299,
+    "ttft_ms": 836,
+    "tbt_ms_avg": 68.52,
+    "tbt_ms_p50": 60.74,
+    "tbt_ms_p95": 135.86,
+    "stream_chunks": 116,
+    "latency_ms": 8790,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000198,
+    "cost_output_usd": 0.000102,
+    "cost_diagnosis_usd": 2.9e-05,
+    "cost_reply_usd": 7.3e-05
+  },
+  "duration_ms": 8801,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0003",
+    "kb-0009",
+    "kb-0017",
+    "kb-0018"
+  ],
+  "request_id": "req_598cdfc3dac04e6ebe88",
+  "correlation_id": "req_598cdfc3dac04e6ebe88"
+}

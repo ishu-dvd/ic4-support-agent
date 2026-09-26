@@ -1,0 +1,56 @@
+{
+  "run_id": "20260926T081736-896eca",
+  "ticket_id": "TCK-1130",
+  "category": "insufficient_information",
+  "request_type": "incident",
+  "confidence": 0.786,
+  "diagnosis": "The ticket lacks technical details to classify the issue. The customer references a recurring problem but does not specify symptoms, error messages, or the feature/endpoint affected. Without additional context, we cannot determine if this is a credential issue, rate limit, or another category.",
+  "reply": "Thank you for reaching out. To help us resolve this issue, could you provide more details about what is broken? For example, are you seeing an error message, a failed API call, or a specific feature not working? The more context you can share, the faster we can assist you.",
+  "kb_cited": [],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:insufficient_information"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 937,
+    "output_tokens": 153,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000218,
+    "ttft_ms": 811,
+    "tbt_ms_avg": 6.61,
+    "tbt_ms_p50": 0.07,
+    "tbt_ms_p95": 9.08,
+    "stream_chunks": 152,
+    "latency_ms": 1832,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000187,
+    "cost_output_usd": 3.1e-05,
+    "cost_diagnosis_usd": 1.6e-05,
+    "cost_reply_usd": 1.5e-05
+  },
+  "duration_ms": 1843,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0018",
+    "kb-0003",
+    "kb-0001",
+    "kb-0007",
+    "kb-0012"
+  ],
+  "request_id": "req_1458e59906584964b666",
+  "correlation_id": "req_1458e59906584964b666"
+}

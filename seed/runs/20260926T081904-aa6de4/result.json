@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081904-aa6de4",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "The customer is asking for a high\u2011level overview of migrating from Legacy Auth to Unified Auth and about rollback options. They need to know the dual\u2011run approach and that disabling legacy tokens is irreversible.",
+  "reply": "Hi there,\n\nThanks for reaching out about switching to Unified Auth. The migration flow is designed to be smooth with a brief dual\u2011run window:\n\n1. **Create scoped keys** \u2013 In the Security tab, generate one or more scoped keys that will replace the account\u2011wide legacy token.\n2. **Gradual traffic shift** \u2013 Point a small percentage of your applications or services to the new scoped keys while monitoring for any issues.\n3. **Cutover** \u2013 When you\u2019re confident the new keys are working correctly, stop issuing the legacy token.\n4. **Disable legacy token** \u2013 Once the token is disabled, it can no longer be used to access the API.\n\nThis process is fully documented in our [Migrating from Legacy Auth to Unified Auth] guide (KB\u20110012).\n\n**Rollback** \u2013 You can maintain the legacy token during the dual\u2011run phase, so if an unexpected problem arises you can continue using the legacy flow while you resolve it. However, once you disable the legacy token you cannot revert to the old system. If rollback is a concern, keep the legacy token active until you\u2019ve completed testing and have monitoring in place.\n\nWe recommend planning the cutover during low\u2011traffic hours and keeping an observability snapshot of metrics from both sides until you\u2019re comfortable with the switch.\n\nIf you have specific scenarios or any other questions, let me know and I\u2019ll be happy to help further.\n\nBest,\nYour Support Team",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 869,
+    "output_tokens": 519,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.000277,
+    "ttft_ms": 1851,
+    "tbt_ms_avg": 7.05,
+    "tbt_ms_p50": 3.79,
+    "tbt_ms_p95": 12.73,
+    "stream_chunks": 379,
+    "latency_ms": 4694,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4.3e-05,
+    "cost_output_usd": 0.000234,
+    "cost_diagnosis_usd": 3.1e-05,
+    "cost_reply_usd": 0.000203
+  },
+  "duration_ms": 4705,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_da85569b0af74bf7a63d",
+  "correlation_id": "req_da85569b0af74bf7a63d"
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T085121-f04823",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer on legacy_auth asks about Unified Auth migration process and reversibility. KB-0012 covers the migration steps and states it cannot be reversed once legacy tokens are disabled. No escalation required per policy.",
+  "reply": "Thanks for reaching out about migrating to Unified Auth. Migration replaces your account-wide token with scoped keys. The recommended approach is a dual-running window: first create the scoped keys, then cut your traffic over to them, and only disable the legacy token once you're confident everything is working. One important note: migration cannot be reversed once legacy tokens are disabled, so we recommend validating your integrations thoroughly during the dual-running period before disabling the legacy token. Please let us know if you have any other questions as you plan the move.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 804,
+    "output_tokens": 183,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001931,
+    "ttft_ms": 994,
+    "tbt_ms_avg": 24.55,
+    "tbt_ms_p50": 23.74,
+    "tbt_ms_p95": 84.35,
+    "stream_chunks": 181,
+    "latency_ms": 5516,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001126,
+    "cost_output_usd": 0.000805,
+    "cost_diagnosis_usd": 0.000219,
+    "cost_reply_usd": 0.000586
+  },
+  "duration_ms": 5526,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_e9d8218030884560bc39",
+  "correlation_id": "req_e9d8218030884560bc39"
+}

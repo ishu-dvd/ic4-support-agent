@@ -1,6 +1,7 @@
 .PHONY: run run-access smoke smoke-access clean \
         agent-run agent-eval agent-eval-write agent-test agent-report data-clean-check venv \
         serve docker-build docker-run do-validate do-create do-update do-logs prices-refresh
+.PHONY: db-sync db-export
 
 run:
 	python3 -m server
@@ -73,9 +74,35 @@ do-logs:
 prices-refresh:
 	$(PY) scripts/refresh_prices.py
 
+# ---- model catalogue and dashboard seed (Golden set / Models tabs) ----
+RUNS_DIR ?= runs
+.PHONY: probe-models seed-runs golden-model
+
+# Re-probe which serverless-inference models this key can call -> dashboard/models.json (needs OPENAI_API_KEY).
+probe-models:
+	$(PY) scripts/probe_models.py
+
+# Snapshot every finished eval (+ a few recent runs) into seed/runs so a fresh container has data to show.
+seed-runs:
+	$(PY) scripts/seed_runs.py --runs-dir $(RUNS_DIR) --out seed/runs --pattern eval- --extra-runs 40
+
+# Replay the golden set on one model: make golden-model MODEL=llama-4-maverick
+golden-model:
+	@test -n "$(MODEL)" || (echo "usage: make golden-model MODEL=<inference model id>" && exit 1)
+	MODEL_ID=$(MODEL) MODEL_PROVIDER=openai_compatible $(PY) scripts/eval_agent.py --label golden-$(MODEL)
+
+# ---- run history database (docs/DEPLOY-DIGITALOCEAN.md section 7) ----
+
+# Index runs/ into $(RUNS_DIR)/index.sqlite (idempotent). Add --push with DATABASE_URL set to load Postgres.
+db-sync:
+	$(PY) scripts/db_sync.py --runs-dir $(RUNS_DIR)
+
+# Same, plus Postgres upsert statements for `psql "$$DATABASE_URL" -f runs/export.postgres.sql`.
+db-export:
+	$(PY) scripts/db_sync.py --runs-dir $(RUNS_DIR) --export-postgres $(RUNS_DIR)/export.postgres.sql
+
 # ---- runs/ durability (agent/persist.py; needs DATABASE_URL, see .env.example) ----
 .PHONY: persist-status persist-backfill persist-restore
-RUNS_DIR ?= runs
 
 # Backend, reachability, how many runs / evals / files are mirrored. Never prints the URL.
 persist-status:

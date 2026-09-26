@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T090851-4deb57",
+  "ticket_id": "TCK-1103",
+  "category": "rate_limit_increase",
+  "request_type": "change_request",
+  "confidence": 0.688,
+  "diagnosis": "Customer is hitting 429 errors due to sustained high throughput (5,400 rpm) during a specific nightly window. As this exceeds standard plan ceilings, a capacity review is required per policy.",
+  "reply": "Thank you for contacting support regarding the 429 responses during your nightly batch. I have reviewed your account details and the traffic patterns you described. Rate limits are set per plan, and increases above the plan ceiling require a capacity review. To proceed, please confirm the peak sustained requests per minute and the specific window over which it was measured so we can evaluate your request. I have recommended this ticket for escalation to a specialist.\n\nFor more information on how we handle these requests, please refer to our article on Requesting a rate limit increase (kb-0004) and Reading 429 responses and backing off correctly (kb-0014).",
+  "kb_cited": [
+    "kb-0004",
+    "kb-0014"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:rate_limit_increase"
+  ],
+  "write": {
+    "status": "pending_manual",
+    "escalation_id": null,
+    "error": "past_deadline"
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 906,
+    "output_tokens": 247,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.001363,
+    "ttft_ms": 1211,
+    "tbt_ms_avg": 201.99,
+    "tbt_ms_p50": 175.72,
+    "tbt_ms_p95": 375.67,
+    "stream_chunks": 246,
+    "latency_ms": 50892,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000498,
+    "cost_output_usd": 0.000865,
+    "cost_diagnosis_usd": 0.000193,
+    "cost_reply_usd": 0.000672
+  },
+  "duration_ms": 50906,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0004",
+    "kb-0012",
+    "kb-0015",
+    "kb-0017"
+  ],
+  "request_id": "req_83d1a027481241b18677",
+  "correlation_id": "req_83d1a027481241b18677"
+}

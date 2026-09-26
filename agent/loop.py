@@ -193,7 +193,7 @@ def run(
             cls = classify(ctx.ticket, ctx.account, ctx.entitlements, ctx.entitlements_error, ctx.kb_visible)
             ctx.injection_suspected = cls.injection_suspected
             if cls.injection_suspected:
-                tracer.event("injection_suspected", category=cls.category)
+                tracer.event("injection_suspected", category=cls.category, patterns=int(getattr(cls, "injection_patterns", 0) or 0))
             if ctx.entitlements_error:
                 tracer.event("entitlements_degraded", code=ctx.entitlements_error)
 

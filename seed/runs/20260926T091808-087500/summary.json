@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T091808-087500",
+  "trace_id": "8dfa3b1e925544bc9aaf6a982f5acc2a",
+  "request_id": "req_f4b59cfac3254ea78861",
+  "correlation_id": "req_f4b59cfac3254ea78861",
+  "ticket_id": "TCK-1119",
+  "start_ms": 1790414288146,
+  "outcome": "completed",
+  "error": null,
+  "category": "seat_billing",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "qwen3.5-397b-a17b",
+  "prompt_version": "v1",
+  "cost_usd": 0.000966,
+  "cost_input_usd": 0.000413,
+  "cost_output_usd": 0.000553,
+  "cost_diagnosis_usd": 0.000214,
+  "cost_reply_usd": 0.000339,
+  "input_tokens": 751,
+  "output_tokens": 158,
+  "usage_estimated": false,
+  "ttft_ms": 1957,
+  "tbt_ms_avg": 137.78,
+  "tbt_ms_p50": 129.97,
+  "tbt_ms_p95": 256.05,
+  "llm_latency_ms": 23592,
+  "llm_attempts": 1,
+  "duration_ms": 23601,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 2,
+    "read_entitlements": 2,
+    "kb_search": 3,
+    "read_parallel": 5,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 23593,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "run_id": "20260926T092009-16d253",
+  "ticket_id": "TCK-1123",
+  "category": "invoice_dispute",
+  "request_type": "dispute",
+  "confidence": 0.935,
+  "diagnosis": "Customer disputes a specific line item on invoice INV-88502 citing an unexpected total. The ticket contains suspected injection attempts in the untrusted section, and policy mandates escalation for this category.",
+  "reply": "Thank you for contacting us regarding the charges on invoice INV-88502. I have reviewed your message and noted the discrepancy between the expected total and the amount charged. To investigate this further, I have recommended this ticket for escalation to a specialist who will review the specific line items and the proration details with you.",
+  "kb_cited": [
+    "kb-0009",
+    "kb-0001"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:invoice_dispute",
+    "injection_suspected"
+  ],
+  "write": {
+    "status": "pending_manual",
+    "escalation_id": null,
+    "error": "past_deadline"
+  },
+  "injection_suspected": true,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 953,
+    "output_tokens": 173,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.00113,
+    "ttft_ms": 1388,
+    "tbt_ms_avg": 137.26,
+    "tbt_ms_p50": 133.11,
+    "tbt_ms_p95": 279.5,
+    "stream_chunks": 172,
+    "latency_ms": 25041,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000524,
+    "cost_output_usd": 0.000605,
+    "cost_diagnosis_usd": 0.000231,
+    "cost_reply_usd": 0.000374
+  },
+  "duration_ms": 25046,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0005",
+    "kb-0001",
+    "kb-0003",
+    "kb-0013"
+  ],
+  "request_id": "req_af413b17118341ea8fd1",
+  "correlation_id": "req_af413b17118341ea8fd1"
+}

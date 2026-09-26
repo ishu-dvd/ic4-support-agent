@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082018-55f8c6",
+  "ticket_id": "TCK-1121",
+  "category": "rate_limit_backoff",
+  "request_type": "how_to",
+  "confidence": 0.92,
+  "diagnosis": "The customer reports receiving 429 responses and their client retrying immediately, indicating a misunderstanding of the Retry-After header. The knowledge base article provides guidance on honouring the header with jitter and distinguishing bursts from plan ceilings.",
+  "reply": "The correct backoff is to respect the `Retry-After` header included in the 429 response, which specifies the number of seconds to wait before retrying. For best results, add a small random delay (jitter) to that time. If you continue to see sustained 429 errors, please let us know so we can review your plan limit.",
+  "kb_cited": [
+    "kb-0014"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 884,
+    "output_tokens": 166,
+    "model_id": "deepseek-4-flash",
+    "cost_usd": 0.00017,
+    "ttft_ms": 1143,
+    "tbt_ms_avg": 75.9,
+    "tbt_ms_p50": 17.7,
+    "tbt_ms_p95": 431.34,
+    "stream_chunks": 82,
+    "latency_ms": 7302,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000124,
+    "cost_output_usd": 4.6e-05,
+    "cost_diagnosis_usd": 2.1e-05,
+    "cost_reply_usd": 2.5e-05
+  },
+  "duration_ms": 7310,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0015",
+    "kb-0006",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_dae06af747f7451bb6a9",
+  "correlation_id": "req_dae06af747f7451bb6a9"
+}

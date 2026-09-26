@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T085623-e15675",
+  "trace_id": "d3e60519077a493a87d51d3c728bc677",
+  "request_id": "req_b6a9b54e0f58432b9450",
+  "correlation_id": "req_b6a9b54e0f58432b9450",
+  "ticket_id": "TCK-1111",
+  "start_ms": 1790412983897,
+  "outcome": "completed",
+  "error": null,
+  "category": "webhook_replay",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "kimi-k3",
+  "prompt_version": "v1",
+  "cost_usd": 0.010704,
+  "cost_input_usd": 0.002649,
+  "cost_output_usd": 0.008055,
+  "cost_diagnosis_usd": 0.002945,
+  "cost_reply_usd": 0.00511,
+  "input_tokens": 883,
+  "output_tokens": 537,
+  "usage_estimated": false,
+  "ttft_ms": 9292,
+  "tbt_ms_avg": 20.89,
+  "tbt_ms_p50": 19.71,
+  "tbt_ms_p95": 83.34,
+  "llm_latency_ms": 13391,
+  "llm_attempts": 1,
+  "duration_ms": 13402,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 3,
+    "read_entitlements": 4,
+    "kb_search": 4,
+    "read_parallel": 6,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 13392,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

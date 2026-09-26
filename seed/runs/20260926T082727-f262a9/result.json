@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082727-f262a9",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "SSO is not available on the startup plan tier; the account's plan and basic support tier do not include this feature per kb-0010.",
+  "reply": "Thanks for asking about SSO. SSO is available on our standard and premium support tiers, but the startup plan you're currently on does not include it. To enable SSO, you would need to upgrade to a plan that includes a support tier with that entitlement. If you'd like more details on how a plan upgrade would work, I can share information about proration.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 886,
+    "output_tokens": 147,
+    "model_id": "deepseek-v4-pro",
+    "cost_usd": 0.002053,
+    "ttft_ms": 1438,
+    "tbt_ms_avg": 30.53,
+    "tbt_ms_p50": 26.5,
+    "tbt_ms_p95": 82.55,
+    "stream_chunks": 64,
+    "latency_ms": 3391,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001542,
+    "cost_output_usd": 0.000512,
+    "cost_diagnosis_usd": 0.000136,
+    "cost_reply_usd": 0.000376
+  },
+  "duration_ms": 3403,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_2773c025e13747e2b67c",
+  "correlation_id": "req_2773c025e13747e2b67c"
+}

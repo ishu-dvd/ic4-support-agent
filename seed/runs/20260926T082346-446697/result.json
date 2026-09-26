@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082346-446697",
+  "ticket_id": "TCK-1103",
+  "category": "rate_limit_increase",
+  "request_type": "change_request",
+  "confidence": 0.688,
+  "diagnosis": "The sustained 429s indicate the request rate has reached the enterprise plan ceiling. A capacity review is required to determine if the limit can be raised.",
+  "reply": "We see that your nightly batch is hitting the rate limit for your plan. To resolve this, we\u2019ll need to perform a capacity review; we have forwarded the request for escalation to a specialist who can assess whether the limit can be increased.",
+  "kb_cited": [
+    "kb-0004",
+    "kb-0014"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:rate_limit_increase"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 960,
+    "output_tokens": 556,
+    "model_id": "nemotron-3-nano-omni",
+    "cost_usd": 0.00098,
+    "ttft_ms": 2731,
+    "tbt_ms_avg": 3.87,
+    "tbt_ms_p50": 3.6,
+    "tbt_ms_p95": 6.58,
+    "stream_chunks": 137,
+    "latency_ms": 3303,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.00048,
+    "cost_output_usd": 0.0005,
+    "cost_diagnosis_usd": 0.000196,
+    "cost_reply_usd": 0.000304
+  },
+  "duration_ms": 3318,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0014",
+    "kb-0004",
+    "kb-0012",
+    "kb-0015",
+    "kb-0017"
+  ],
+  "request_id": "req_3d478ea8dbb444f79219",
+  "correlation_id": "req_3d478ea8dbb444f79219"
+}

@@ -1,0 +1,58 @@
+{
+  "run_id": "20260926T082102-7cbca4",
+  "ticket_id": "TCK-1128",
+  "category": "identity_unverified",
+  "request_type": "change_request",
+  "confidence": 0.909,
+  "diagnosis": "Billing/contact/refund change requested from an address we cannot verify as the account owner.",
+  "reply": "Thanks for reaching out. Changes to billing details, contacts, entitlements or credentials require confirmation from a named account owner on record, so we cannot action this request from this address. A colleague will need to complete identity confirmation with the account owner before anything changes. See \"What we cannot action without a named account owner\" (kb-0018) for the full details. I have recommended this ticket for escalation to a specialist. What happens next: a specialist reviews the details above and replies on this ticket within your plan's 48-hour first-response target. You do not need to open a new request.",
+  "kb_cited": [
+    "kb-0018"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "normal",
+  "policy_reasons": [
+    "category:identity_unverified"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "rules_fallback",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 891,
+    "output_tokens": 171,
+    "model_id": "deepseek-4-flash",
+    "cost_usd": 0.000173,
+    "ttft_ms": 908,
+    "tbt_ms_avg": 21.74,
+    "tbt_ms_p50": 15.54,
+    "tbt_ms_p95": 93.53,
+    "stream_chunks": 84,
+    "latency_ms": 2735,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000125,
+    "cost_output_usd": 4.8e-05,
+    "cost_diagnosis_usd": 1.7e-05,
+    "cost_reply_usd": 3.1e-05
+  },
+  "duration_ms": 2747,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0018",
+    "kb-0011",
+    "kb-0001",
+    "kb-0006",
+    "kb-0009"
+  ],
+  "request_id": "req_6f6f4d9ae97a436da79b",
+  "correlation_id": "req_6f6f4d9ae97a436da79b"
+}

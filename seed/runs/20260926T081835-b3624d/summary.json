@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081835-b3624d",
+  "trace_id": "db3b41efb31f4859ac1bb008cc79165e",
+  "request_id": "req_7be602047e5f4f778d42",
+  "correlation_id": "req_7be602047e5f4f778d42",
+  "ticket_id": "TCK-1126",
+  "start_ms": 1790410715544,
+  "outcome": "completed",
+  "error": null,
+  "category": "credential_rotation",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "llama-4-maverick",
+  "prompt_version": "v1",
+  "cost_usd": 0.0003,
+  "cost_input_usd": 0.000201,
+  "cost_output_usd": 9.9e-05,
+  "cost_diagnosis_usd": 3.3e-05,
+  "cost_reply_usd": 6.6e-05,
+  "input_tokens": 802,
+  "output_tokens": 114,
+  "usage_estimated": false,
+  "ttft_ms": 804,
+  "tbt_ms_avg": 21.12,
+  "tbt_ms_p50": 15.72,
+  "tbt_ms_p95": 85.98,
+  "llm_latency_ms": 3195,
+  "llm_attempts": 1,
+  "duration_ms": 3207,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 3,
+    "read_entitlements": 3,
+    "read_account": 3,
+    "kb_search": 3,
+    "read_parallel": 6,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 3196,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

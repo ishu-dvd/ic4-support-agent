@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T085840-295c30",
+  "ticket_id": "TCK-1119",
+  "category": "seat_billing",
+  "request_type": "how_to",
+  "confidence": 0.905,
+  "diagnosis": "The customer is asking whether adding four seats mid-cycle triggers a full-month charge. KB-0011 states that seat additions are billed pro rata from the day they are added. Current entitlement is 5 seats, so four additional seats would bring the account to 9 seats.",
+  "reply": "No. Added seats are billed pro rata from the day they are added, so adding 4 seats next week would be charged for the remaining days in the current billing cycle rather than the full month.",
+  "kb_cited": [
+    "kb-0011"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 864,
+    "output_tokens": 453,
+    "model_id": "kimi-k3",
+    "cost_usd": 0.009387,
+    "ttft_ms": 8167,
+    "tbt_ms_avg": 20.71,
+    "tbt_ms_p50": 19.13,
+    "tbt_ms_p95": 80.12,
+    "stream_chunks": 128,
+    "latency_ms": 10897,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.002592,
+    "cost_output_usd": 0.006795,
+    "cost_diagnosis_usd": 0.003966,
+    "cost_reply_usd": 0.002829
+  },
+  "duration_ms": 10906,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0011",
+    "kb-0001",
+    "kb-0006"
+  ],
+  "request_id": "req_b9b4fcb8ad474859b0ec",
+  "correlation_id": "req_b9b4fcb8ad474859b0ec"
+}

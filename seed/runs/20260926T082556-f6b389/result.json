@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082556-f6b389",
+  "ticket_id": "TCK-1102",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.778,
+  "diagnosis": "Customer is using unified_auth and needs to rotate a leaked API token. They should follow the scoped key rotation process.",
+  "reply": "Since your account uses Unified Auth, you manage credentials as scoped keys. To safely reset your token, please create a replacement key, move your traffic to the new key, and then revoke the previous one. Please note that revocation is immediate and there is no grace period. For more details, please refer to our documentation on Scoped API keys: create, rotate, revoke (kb-0003).",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 849,
+    "output_tokens": 145,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000225,
+    "ttft_ms": 917,
+    "tbt_ms_avg": 23.0,
+    "tbt_ms_p50": 22.59,
+    "tbt_ms_p95": 78.02,
+    "stream_chunks": 144,
+    "latency_ms": 4261,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000153,
+    "cost_output_usd": 7.3e-05,
+    "cost_diagnosis_usd": 1.8e-05,
+    "cost_reply_usd": 5.5e-05
+  },
+  "duration_ms": 4269,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0009",
+    "kb-0017",
+    "kb-0003",
+    "kb-0012"
+  ],
+  "request_id": "req_02a596c9b6504fa6bcba",
+  "correlation_id": "req_02a596c9b6504fa6bcba"
+}

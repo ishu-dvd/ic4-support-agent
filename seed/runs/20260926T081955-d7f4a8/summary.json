@@ -1,0 +1,60 @@
+{
+  "run_id": "20260926T081955-d7f4a8",
+  "trace_id": "bc327e1fe8d54f5fb9c9bedb747fd51b",
+  "request_id": "req_33746d8dadf942688236",
+  "correlation_id": "req_33746d8dadf942688236",
+  "ticket_id": "TCK-1128",
+  "start_ms": 1790410795679,
+  "outcome": "completed",
+  "error": null,
+  "category": "identity_unverified",
+  "escalate": true,
+  "write_status": "skipped_dry_run",
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "openai-gpt-oss-20b",
+  "prompt_version": "v1",
+  "cost_usd": 0.000262,
+  "cost_input_usd": 4.7e-05,
+  "cost_output_usd": 0.000216,
+  "cost_diagnosis_usd": 0.000173,
+  "cost_reply_usd": 4.3e-05,
+  "input_tokens": 932,
+  "output_tokens": 479,
+  "usage_estimated": false,
+  "ttft_ms": 3865,
+  "tbt_ms_avg": 7.41,
+  "tbt_ms_p50": 6.69,
+  "tbt_ms_p95": 11.35,
+  "llm_latency_ms": 4619,
+  "llm_attempts": 1,
+  "duration_ms": 4631,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 2,
+    "read_entitlements": 2,
+    "kb_search": 4,
+    "read_parallel": 6,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 4620,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1,
+    "write_skipped_dry_run": 1
+  }
+}

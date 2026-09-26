@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081715-7a5ede",
+  "trace_id": "299a704975f44efea150c611d3ece171",
+  "request_id": "req_7ee71e2b82b8483eb9dd",
+  "correlation_id": "req_7ee71e2b82b8483eb9dd",
+  "ticket_id": "TCK-1120",
+  "start_ms": 1790410635223,
+  "outcome": "completed",
+  "error": null,
+  "category": "auth_migration",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "mistral-3-14B",
+  "prompt_version": "v1",
+  "cost_usd": 0.000202,
+  "cost_input_usd": 0.000169,
+  "cost_output_usd": 3.2e-05,
+  "cost_diagnosis_usd": 9e-06,
+  "cost_reply_usd": 2.3e-05,
+  "input_tokens": 847,
+  "output_tokens": 161,
+  "usage_estimated": false,
+  "ttft_ms": 886,
+  "tbt_ms_avg": 6.55,
+  "tbt_ms_p50": 5.99,
+  "tbt_ms_p95": 11.14,
+  "llm_latency_ms": 1929,
+  "llm_attempts": 1,
+  "duration_ms": 1939,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 3,
+    "read_entitlements": 2,
+    "read_account": 3,
+    "kb_search": 2,
+    "read_parallel": 4,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 1930,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

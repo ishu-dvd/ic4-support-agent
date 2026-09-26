@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T081720-46283e",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "Customer is on the **Startup** tier, which does not include SSO (per KB-0010). No policy exceptions apply for this feature at this tier.",
+  "reply": "SSO is not available on the **Startup** plan. To enable SSO, you would need to upgrade to the **Standard** or **Premium** tier. Would you like assistance reviewing upgrade options?",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 914,
+    "output_tokens": 126,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000208,
+    "ttft_ms": 1022,
+    "tbt_ms_avg": 6.56,
+    "tbt_ms_p50": 6.16,
+    "tbt_ms_p95": 9.33,
+    "stream_chunks": 125,
+    "latency_ms": 1882,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000183,
+    "cost_output_usd": 2.5e-05,
+    "cost_diagnosis_usd": 1.1e-05,
+    "cost_reply_usd": 1.4e-05
+  },
+  "duration_ms": 1893,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_9a365fac634b45a1a41b",
+  "correlation_id": "req_9a365fac634b45a1a41b"
+}

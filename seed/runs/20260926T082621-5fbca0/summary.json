@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082621-5fbca0",
+  "trace_id": "6253f9103d164feeb70b28a94ddb5f4d",
+  "request_id": "req_1c9231b2fc7b483ab76b",
+  "correlation_id": "req_1c9231b2fc7b483ab76b",
+  "ticket_id": "TCK-1101",
+  "start_ms": 1790411181576,
+  "outcome": "completed",
+  "error": null,
+  "category": "billing_proration",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "deepseek-v4-pro",
+  "prompt_version": "v1",
+  "cost_usd": 0.002393,
+  "cost_input_usd": 0.001568,
+  "cost_output_usd": 0.000825,
+  "cost_diagnosis_usd": 0.000344,
+  "cost_reply_usd": 0.000481,
+  "input_tokens": 901,
+  "output_tokens": 237,
+  "usage_estimated": false,
+  "ttft_ms": 1936,
+  "tbt_ms_avg": 21.28,
+  "tbt_ms_p50": 21.05,
+  "tbt_ms_p95": 73.14,
+  "llm_latency_ms": 4116,
+  "llm_attempts": 1,
+  "duration_ms": 4123,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 4,
+    "read_account": 1,
+    "read_entitlements": 1,
+    "kb_search": 1,
+    "read_parallel": 2,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 4116,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

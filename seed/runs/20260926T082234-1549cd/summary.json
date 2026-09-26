@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T082234-1549cd",
+  "trace_id": "132b830e009d49508f4d8eac9ee4316d",
+  "request_id": "req_ff40dd6b95ca431689ca",
+  "correlation_id": "req_ff40dd6b95ca431689ca",
+  "ticket_id": "TCK-1131",
+  "start_ms": 1790410954880,
+  "outcome": "completed",
+  "error": null,
+  "category": "credential_rotation",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "glm-5.3-flash",
+  "prompt_version": "v1",
+  "cost_usd": 0.000245,
+  "cost_input_usd": 0.000116,
+  "cost_output_usd": 0.000129,
+  "cost_diagnosis_usd": 3.1e-05,
+  "cost_reply_usd": 9.8e-05,
+  "input_tokens": 776,
+  "output_tokens": 257,
+  "usage_estimated": false,
+  "ttft_ms": 2408,
+  "tbt_ms_avg": 28.51,
+  "tbt_ms_p50": 20.26,
+  "tbt_ms_p95": 76.91,
+  "llm_latency_ms": 8823,
+  "llm_attempts": 1,
+  "duration_ms": 8835,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 2,
+    "read_entitlements": 3,
+    "kb_search": 4,
+    "read_parallel": 7,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 8824,
+    "output_guard": 1,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

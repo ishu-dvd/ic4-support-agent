@@ -2,4 +2,5 @@
 fastapi>=0.115
 uvicorn>=0.30
 pydantic>=2.9
-psycopg[binary]>=3.2  # agent/persist.py: DATABASE_URL=postgresql://... (DigitalOcean Managed PostgreSQL)
+pytest>=8,<10  # guardrail tests are runnable from the dashboard (/api/guardrails/test)
+psycopg[binary]>=3.2  # agent/persist.py + scripts/db_sync.py --push: DATABASE_URL=postgresql://... (DO Managed PostgreSQL)

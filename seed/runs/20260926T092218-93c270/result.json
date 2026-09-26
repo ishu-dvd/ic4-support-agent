@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T092218-93c270",
+  "ticket_id": "TCK-1127",
+  "category": "feature_not_entitled",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "The account entitlements explicitly list 'custom_sla' as an active feature with a 4-hour SLA target. The customer's query stems from uncertainty rather than a lack of entitlement, so no feature gap exists, but the specific contractual details may require verification against the renewal notes.",
+  "reply": "Hello, I have reviewed your account configuration and can confirm that the Custom SLA feature is currently enabled on your Enterprise plan. Your entitlements reflect a 4-hour first-response target during business hours in your region, consistent with Premium Support. If you need to review the specific terms discussed during your renewal, I can connect you with the appropriate team to verify those details.",
+  "kb_cited": [
+    "kb-0010",
+    "kb-0016"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 830,
+    "output_tokens": 199,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.001153,
+    "ttft_ms": 1421,
+    "tbt_ms_avg": 151.25,
+    "tbt_ms_p50": 145.66,
+    "tbt_ms_p95": 297.62,
+    "stream_chunks": 198,
+    "latency_ms": 31352,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000456,
+    "cost_output_usd": 0.000697,
+    "cost_diagnosis_usd": 0.000292,
+    "cost_reply_usd": 0.000405
+  },
+  "duration_ms": 31365,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0010",
+    "kb-0016",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_407f4a9787424d0aa7ad",
+  "correlation_id": "req_407f4a9787424d0aa7ad"
+}

@@ -1,0 +1,504 @@
+{
+ "probed_at": "2026-09-26T08:26:30Z",
+ "team": "Blitz_team1_BLR",
+ "endpoint": "https://inference.do-ai.run/v1",
+ "note": "HTTP 403 = model not in this team's subscription tier; 404 = id not served by the inference endpoint (embedding/image/audio ids or retired). Re-probe with scripts/probe_models.py.",
+ "accessible": [
+  {
+   "model_id": "deepseek-3.2",
+   "name": "Deepseek 3.2",
+   "type": "chat",
+   "params_b": 680,
+   "context": 163840
+  },
+  {
+   "model_id": "deepseek-4-flash",
+   "name": "Deepseek V4 Flash",
+   "type": "chat",
+   "params_b": 284,
+   "context": 1048576
+  },
+  {
+   "model_id": "deepseek-v4-flash-0731",
+   "name": "DeepSeek V4 Flash 0731",
+   "type": "chat",
+   "params_b": 284,
+   "context": 1048576
+  },
+  {
+   "model_id": "deepseek-v4-pro",
+   "name": "Deepseek V4 Pro",
+   "type": "chat",
+   "params_b": 1600,
+   "context": 1048576
+  },
+  {
+   "model_id": "deepseek-v4-pro-0813",
+   "name": "DeepSeek V4 Pro 0813",
+   "type": "chat",
+   "params_b": null,
+   "context": 1048576
+  },
+  {
+   "model_id": "deepseek-v4.1-flash",
+   "name": "DeepSeek V4.1 Flash",
+   "type": "chat",
+   "params_b": 552,
+   "context": 1048576
+  },
+  {
+   "model_id": "gemma-4-31B-it",
+   "name": "Gemma 4",
+   "type": "chat",
+   "params_b": 31,
+   "context": 256000
+  },
+  {
+   "model_id": "glm-5.2",
+   "name": "GLM-5.2",
+   "type": "chat",
+   "params_b": null,
+   "context": 262144
+  },
+  {
+   "model_id": "glm-5.3",
+   "name": "GLM5.3",
+   "type": "chat",
+   "params_b": 753,
+   "context": 1048576
+  },
+  {
+   "model_id": "glm-5.3-flash",
+   "name": "GLM5.3 Flash",
+   "type": "chat",
+   "params_b": 320,
+   "context": 1048576
+  },
+  {
+   "model_id": "kimi-k2.6",
+   "name": "Kimi K2.6",
+   "type": "chat",
+   "params_b": 1000,
+   "context": 262144
+  },
+  {
+   "model_id": "kimi-k3",
+   "name": "Kimi K3",
+   "type": "chat",
+   "params_b": null,
+   "context": 1048576
+  },
+  {
+   "model_id": "llama-4-maverick",
+   "name": "Llama 4 Maverick",
+   "type": "chat",
+   "params_b": 400,
+   "context": 128000
+  },
+  {
+   "model_id": "mimo-v2.5-pro",
+   "name": "MiMo V2.5 Pro",
+   "type": "chat",
+   "params_b": 1000,
+   "context": 262144
+  },
+  {
+   "model_id": "mistral-3-14B",
+   "name": "Ministral 3 14B",
+   "type": "chat",
+   "params_b": 14,
+   "context": 262144
+  },
+  {
+   "model_id": "nemotron-3-nano-omni",
+   "name": "Nemotron 3 Nano Omni",
+   "type": "chat",
+   "params_b": 30,
+   "context": 65536
+  },
+  {
+   "model_id": "nemotron-3-ultra-550b",
+   "name": "Nemotron 3 Ultra",
+   "type": "chat",
+   "params_b": 550,
+   "context": 131072
+  },
+  {
+   "model_id": "nemotron-nano-12b-v2-vl",
+   "name": "Nemotron-nano 12b v2-vl",
+   "type": "chat",
+   "params_b": 12,
+   "context": 128000
+  },
+  {
+   "model_id": "openai-gpt-oss-120b",
+   "name": "OpenAI GPT-oss-120b",
+   "type": "reasoning",
+   "params_b": 117,
+   "context": 128000
+  },
+  {
+   "model_id": "openai-gpt-oss-20b",
+   "name": "OpenAI GPT-oss-20b",
+   "type": "reasoning",
+   "params_b": null,
+   "context": 128000
+  },
+  {
+   "model_id": "qwen3.5-397b-a17b",
+   "name": "Qwen 3.5 397B A17B",
+   "type": "chat",
+   "params_b": 397,
+   "context": 131072
+  },
+  {
+   "model_id": "qwen3.8-max",
+   "name": "Qwen3.8-Max",
+   "type": "chat",
+   "params_b": 2400,
+   "context": 1000000
+  }
+ ],
+ "inaccessible": [
+  {
+   "model_id": "alibaba-qwen3-32b",
+   "status": 404
+  },
+  {
+   "model_id": "all-mini-lm-l6-v2",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-3-opus",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-3.5-haiku",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-3.5-sonnet",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-3.7-sonnet",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-4.1-opus",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-4.5-haiku",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-4.5-sonnet",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-4.6-sonnet",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-5-sonnet",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-fable-5",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-fable-5.1",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-haiku-4.5",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-opus-4",
+   "status": 404
+  },
+  {
+   "model_id": "anthropic-claude-opus-4.5",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-opus-4.6",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-opus-4.7",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-opus-4.8",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-opus-5",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-opus-5.5",
+   "status": 403
+  },
+  {
+   "model_id": "anthropic-claude-sonnet-4",
+   "status": 404
+  },
+  {
+   "model_id": "arcee-trinity-large-thinking",
+   "status": 403
+  },
+  {
+   "model_id": "bge-m3",
+   "status": 404
+  },
+  {
+   "model_id": "bge-reranker-v2-m3",
+   "status": 404
+  },
+  {
+   "model_id": "deepseek-r1-distill-llama-70b",
+   "status": 404
+  },
+  {
+   "model_id": "deepseek-v3",
+   "status": 404
+  },
+  {
+   "model_id": "e5-large-v2",
+   "status": 404
+  },
+  {
+   "model_id": "fal-ai/elevenlabs/tts/eleven-v3",
+   "status": 404
+  },
+  {
+   "model_id": "fal-ai/elevenlabs/tts/multilingual-v2",
+   "status": 404
+  },
+  {
+   "model_id": "fal-ai/fast-sdxl",
+   "status": 404
+  },
+  {
+   "model_id": "fal-ai/flux/schnell",
+   "status": 404
+  },
+  {
+   "model_id": "fal-ai/stable-audio-25/text-to-audio",
+   "status": 404
+  },
+  {
+   "model_id": "glm-5",
+   "status": 404
+  },
+  {
+   "model_id": "glm-5.1",
+   "status": 404
+  },
+  {
+   "model_id": "gte-large-en-v1.5",
+   "status": 404
+  },
+  {
+   "model_id": "ideogram-3.0-default",
+   "status": 404
+  },
+  {
+   "model_id": "ideogram-3.0-flash",
+   "status": 404
+  },
+  {
+   "model_id": "ideogram-3.0-quality",
+   "status": 404
+  },
+  {
+   "model_id": "ideogram-3.0-turbo",
+   "status": 404
+  },
+  {
+   "model_id": "kimi-k2.5",
+   "status": 404
+  },
+  {
+   "model_id": "llama3-8b-instruct",
+   "status": 404
+  },
+  {
+   "model_id": "llama3.3-70b-instruct",
+   "status": 404
+  },
+  {
+   "model_id": "mimo-v2.5",
+   "status": 404
+  },
+  {
+   "model_id": "minimax-m2.5",
+   "status": 424
+  },
+  {
+   "model_id": "ministral-3-8b-instruct-2512",
+   "status": 404
+  },
+  {
+   "model_id": "mistral-7b-instruct-v0.3",
+   "status": 404
+  },
+  {
+   "model_id": "mistral-nemo-instruct-2407",
+   "status": 404
+  },
+  {
+   "model_id": "multi-qa-mpnet-base-dot-v1",
+   "status": 404
+  },
+  {
+   "model_id": "nemotron-3-diarization",
+   "status": 404
+  },
+  {
+   "model_id": "nemotron-3-nano-30b",
+   "status": 404
+  },
+  {
+   "model_id": "nvidia-nemotron-3-super-120b",
+   "status": 404
+  },
+  {
+   "model_id": "openai-gpt-4.1",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-4o",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-4o-mini",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5-mini",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5-nano",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.1-codex-max",
+   "status": 404
+  },
+  {
+   "model_id": "openai-gpt-5.2",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.2-pro",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.3-codex",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.4",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.4-mini",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.4-nano",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.4-pro",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.5",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.6-luna",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.6-sol",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-5.6-terra",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-6-astra",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-6-luna",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-6-sol",
+   "status": 403
+  },
+  {
+   "model_id": "openai-gpt-image-1",
+   "status": 404
+  },
+  {
+   "model_id": "openai-gpt-image-1.5",
+   "status": 404
+  },
+  {
+   "model_id": "openai-gpt-image-2",
+   "status": 404
+  },
+  {
+   "model_id": "openai-o1",
+   "status": 403
+  },
+  {
+   "model_id": "openai-o3",
+   "status": 403
+  },
+  {
+   "model_id": "openai-o3-mini",
+   "status": 403
+  },
+  {
+   "model_id": "qwen-2.5-14b-instruct",
+   "status": 404
+  },
+  {
+   "model_id": "qwen3-coder-flash",
+   "status": 404
+  },
+  {
+   "model_id": "qwen3-tts-voicedesign",
+   "status": 404
+  },
+  {
+   "model_id": "stable-diffusion-3.5-large",
+   "status": 404
+  },
+  {
+   "model_id": "typesafe-jev-1.13.0",
+   "status": 404
+  },
+  {
+   "model_id": "wan2-2-t2v-a14b",
+   "status": 404
+  }
+ ]
+}

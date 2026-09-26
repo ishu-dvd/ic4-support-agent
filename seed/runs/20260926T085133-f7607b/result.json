@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T085133-f7607b",
+  "ticket_id": "TCK-1122",
+  "category": "feature_not_entitled",
+  "request_type": "change_request",
+  "confidence": 0.81,
+  "diagnosis": "Account is on the startup plan with basic support tier, and SSO is only included on standard and premium support tiers per KB kb-0010. No entitlement exists, so an SSO feature call would return 403. Escalation is not recommended per policy.",
+  "reply": "Thank you for reaching out about SSO. SSO is not currently included on your plan's support tier; it is available on standard and premium support tiers. If you'd like to explore options for changing your plan, our team can help you review what would be involved. Please let us know if you have any other questions.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 864,
+    "output_tokens": 160,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001914,
+    "ttft_ms": 1135,
+    "tbt_ms_avg": 24.66,
+    "tbt_ms_p50": 23.89,
+    "tbt_ms_p95": 84.92,
+    "stream_chunks": 158,
+    "latency_ms": 5240,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.00121,
+    "cost_output_usd": 0.000704,
+    "cost_diagnosis_usd": 0.000306,
+    "cost_reply_usd": 0.000398
+  },
+  "duration_ms": 5250,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0006",
+    "kb-0010",
+    "kb-0004",
+    "kb-0008"
+  ],
+  "request_id": "req_0de52ef48a8d43fdb848",
+  "correlation_id": "req_0de52ef48a8d43fdb848"
+}

@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T085928-6cf618",
+  "trace_id": "fc19f7bd794e47f8af84a5348f0302fa",
+  "request_id": "req_068a37bfc4ba4cc18f37",
+  "correlation_id": "req_068a37bfc4ba4cc18f37",
+  "ticket_id": "TCK-1122",
+  "start_ms": 1790413168690,
+  "outcome": "completed",
+  "error": null,
+  "category": "feature_not_entitled",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "kimi-k3",
+  "prompt_version": "v1",
+  "cost_usd": 0.008835,
+  "cost_input_usd": 0.002985,
+  "cost_output_usd": 0.00585,
+  "cost_diagnosis_usd": 0.002147,
+  "cost_reply_usd": 0.003703,
+  "input_tokens": 995,
+  "output_tokens": 390,
+  "usage_estimated": false,
+  "ttft_ms": 6198,
+  "tbt_ms_avg": 37.45,
+  "tbt_ms_p50": 22.2,
+  "tbt_ms_p95": 197.32,
+  "llm_latency_ms": 13493,
+  "llm_attempts": 1,
+  "duration_ms": 13499,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 1,
+    "read_account": 1,
+    "read_entitlements": 1,
+    "kb_search": 2,
+    "read_parallel": 3,
+    "filter_kb": 0,
+    "classify_intent": 0,
+    "escalation_policy": 0,
+    "draft": 13494,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

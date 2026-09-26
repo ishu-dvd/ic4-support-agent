@@ -1,0 +1,60 @@
+{
+  "run_id": "20260926T085003-36cc31",
+  "ticket_id": "TCK-1105",
+  "category": "region_unavailable",
+  "request_type": "question",
+  "confidence": 0.636,
+  "diagnosis": "Account is in eu-central, where private networking is not yet available, so the request stays queued instead of failing. The entitlement is present on the premium tier, so this is a regional availability limitation, not an entitlement issue.",
+  "reply": "Thank you for reaching out. Your account has the private networking entitlement, but your account's region, eu-central, is not yet supported for private networking. Per our knowledge base, private networking is currently available in us-east, us-west and eu-west, and requests in unsupported regions remain queued rather than failing, which is why your request has stayed in a queued state. I have recommended this ticket for escalation to a specialist.",
+  "kb_cited": [
+    "kb-0008",
+    "kb-0010"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:region_unavailable",
+    "stuck_request"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 884,
+    "output_tokens": 174,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.002003,
+    "ttft_ms": 1718,
+    "tbt_ms_avg": 24.58,
+    "tbt_ms_p50": 22.44,
+    "tbt_ms_p95": 83.27,
+    "stream_chunks": 172,
+    "latency_ms": 5985,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001238,
+    "cost_output_usd": 0.000766,
+    "cost_diagnosis_usd": 0.000266,
+    "cost_reply_usd": 0.0005
+  },
+  "duration_ms": 5995,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0001"
+  ],
+  "request_id": "req_50a0b71c897041be9f2a",
+  "correlation_id": "req_50a0b71c897041be9f2a"
+}

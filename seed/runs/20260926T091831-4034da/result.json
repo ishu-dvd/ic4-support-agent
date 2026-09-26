@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T091831-4034da",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer is on legacy_auth and inquiring about migration steps and rollback capabilities. Knowledge base article kb-0012 confirms migration involves a dual-running window but explicitly states it cannot be reversed once legacy tokens are disabled. No escalation is required per policy; the agent should provide the migration details and the irreversibility warning.",
+  "reply": "Thank you for reaching out regarding your move to Unified Auth. Migration involves replacing your account-wide tokens with scoped keys, and we recommend planning for a dual-running window where you create scoped keys, cut traffic over, and then disable the legacy token. Please be aware that according to our migration guidelines, this process cannot be reversed once the legacy tokens are disabled.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 831,
+    "output_tokens": 186,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.001108,
+    "ttft_ms": 1376,
+    "tbt_ms_avg": 141.34,
+    "tbt_ms_p50": 132.64,
+    "tbt_ms_p95": 274.56,
+    "stream_chunks": 185,
+    "latency_ms": 27506,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000457,
+    "cost_output_usd": 0.000651,
+    "cost_diagnosis_usd": 0.000311,
+    "cost_reply_usd": 0.00034
+  },
+  "duration_ms": 27513,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_c8f15baca1334c71b765",
+  "correlation_id": "req_c8f15baca1334c71b765"
+}

@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T082343-e3cbb6",
+  "ticket_id": "TCK-1119",
+  "category": "seat_billing",
+  "request_type": "how_to",
+  "confidence": 0.905,
+  "diagnosis": "Customer asks how mid-cycle seat additions are billed on a startup plan. KB-0011 covers this: seat additions are billed pro rata from the day they are added, while removals take effect at renewal with no mid-cycle credit. No escalation needed.",
+  "reply": "Thanks for checking ahead of time. When you add seats partway through a billing cycle, they are billed pro rata from the day they are added, so you pay only for the portion of the cycle the new seats are active rather than the full month. If you later remove seats, that change takes effect at your next renewal and isn't credited mid-cycle. If you'd like, let us know the date you plan to add the 4 seats and we can walk through what that looks like on your account.",
+  "kb_cited": [
+    "kb-0011"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 777,
+    "output_tokens": 242,
+    "model_id": "deepseek-v4.1-flash",
+    "cost_usd": 0.000523,
+    "ttft_ms": 1581,
+    "tbt_ms_avg": 16.65,
+    "tbt_ms_p50": 12.17,
+    "tbt_ms_p95": 25.64,
+    "stream_chunks": 190,
+    "latency_ms": 4728,
+    "attempts": 2,
+    "retries": 1,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000233,
+    "cost_output_usd": 0.00029,
+    "cost_diagnosis_usd": 9.9e-05,
+    "cost_reply_usd": 0.000191
+  },
+  "duration_ms": 17150,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0011",
+    "kb-0001",
+    "kb-0006"
+  ],
+  "request_id": "req_f088d5c6b49043e38208",
+  "correlation_id": "req_f088d5c6b49043e38208"
+}

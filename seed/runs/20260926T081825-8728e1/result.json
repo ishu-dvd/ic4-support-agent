@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081825-8728e1",
+  "ticket_id": "TCK-1111",
+  "category": "webhook_replay",
+  "request_type": "incident",
+  "confidence": 0.857,
+  "diagnosis": "Webhook events are retained for up to 7 days after they are originally generated, and the platform automatically retries failed deliveries up to six times over roughly an hour. Once the retry window passes, the events become eligible for manual replay.",
+  "reply": "Thank you for reaching out. The events that were missed between 14:00 and 15:00 are still stored in our system for seven days from the time they were generated. You can replay them manually from the Webhook settings page in your account dashboard. If you need any assistance locating the replay option or if you encounter any issues during the process, let us know and we\u2019ll guide you through it.",
+  "kb_cited": [
+    "kb-0015"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 811,
+    "output_tokens": 443,
+    "model_id": "openai-gpt-oss-20b",
+    "cost_usd": 0.00024,
+    "ttft_ms": 2708,
+    "tbt_ms_avg": 7.4,
+    "tbt_ms_p50": 6.57,
+    "tbt_ms_p95": 13.78,
+    "stream_chunks": 161,
+    "latency_ms": 3893,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 4.1e-05,
+    "cost_output_usd": 0.000199,
+    "cost_diagnosis_usd": 7.7e-05,
+    "cost_reply_usd": 0.000122
+  },
+  "duration_ms": 3904,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0015",
+    "kb-0005",
+    "kb-0016",
+    "kb-0017"
+  ],
+  "request_id": "req_ce5cb458e9a44cf2ad36",
+  "correlation_id": "req_ce5cb458e9a44cf2ad36"
+}

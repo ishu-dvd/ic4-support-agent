@@ -1,0 +1,61 @@
+{
+  "run_id": "20260926T075500-586cfa",
+  "trace_id": "4e60aed3ebae430aa178070af3c40495",
+  "request_id": "req_93ae336b22ab486bb8c0",
+  "correlation_id": "req_93ae336b22ab486bb8c0",
+  "ticket_id": "TCK-1120",
+  "start_ms": 1790409300245,
+  "outcome": "completed",
+  "error": null,
+  "category": "auth_migration",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "rules_fallback",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "rules",
+  "prompt_version": "v1",
+  "cost_usd": 0.0,
+  "cost_input_usd": 0.0,
+  "cost_output_usd": 0.0,
+  "cost_diagnosis_usd": 0.0,
+  "cost_reply_usd": 0.0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "usage_estimated": false,
+  "ttft_ms": null,
+  "tbt_ms_avg": null,
+  "tbt_ms_p50": null,
+  "tbt_ms_p95": null,
+  "llm_latency_ms": 0,
+  "llm_attempts": 0,
+  "duration_ms": 704,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "read_account": 2,
+    "read_entitlements": 2,
+    "kb_search": 3,
+    "read_parallel": 5,
+    "filter_kb": 0,
+    "classify_intent": 1,
+    "escalation_policy": 0,
+    "draft": 695,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1,
+    "llm_retries_exhausted": 1,
+    "llm_error": 1
+  }
+}

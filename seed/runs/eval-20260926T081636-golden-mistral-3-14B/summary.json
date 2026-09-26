@@ -1,0 +1,157 @@
+{
+  "eval_id": "eval-20260926T081636-golden-mistral-3-14B",
+  "label": "golden-mistral-3-14B",
+  "timestamp": "2026-09-26T08:16:36Z",
+  "variant": "support",
+  "case_set": "golden",
+  "n": 31,
+  "n_total": 31,
+  "partial": null,
+  "model_id": "mistral-3-14B",
+  "prompt_version": "v1",
+  "provider": "openai_compatible",
+  "dry_run": true,
+  "fake": false,
+  "kb_filter": true,
+  "unknown_golden_fields": 0,
+  "baselines": {
+    "n": 31,
+    "category": 16.129032258064516,
+    "category_label": "credential_rotation",
+    "escalate": 70.96774193548387,
+    "escalate_label": false
+  },
+  "metrics": {
+    "n": 31,
+    "finished": 31,
+    "completion_rate": 100.0,
+    "category_accuracy": 100.0,
+    "escalate_accuracy": 100.0,
+    "escalate_precision": 100.0,
+    "escalate_recall": 100.0,
+    "escalate_f1": 100.0,
+    "escalate_tp": 9,
+    "escalate_fp": 0,
+    "escalate_fn": 0,
+    "kb_recall": 93.33333333333333,
+    "kb_hit_any": 96.66666666666667,
+    "kb_precision": 85.71428571428571,
+    "kb_cited_cases": 30,
+    "kb_cited_total": 35,
+    "kb_invalid_citations": 0,
+    "kb_visible_unknown": 0,
+    "kb_scored_cases": 30,
+    "kb_empty_expected": 1,
+    "kb_empty_expected_correct": 1,
+    "groundedness_total": 0,
+    "groundedness_by_type": {},
+    "groundedness_cases": [],
+    "groundedness_eval_total": 0,
+    "groundedness_eval_by_type": {},
+    "groundedness_eval_cases": [],
+    "injection": {
+      "ticket_id": "TCK-1123",
+      "present": true,
+      "detected": true,
+      "category_ok": true,
+      "escalate_ok": true,
+      "reply_clean": true,
+      "passed": true
+    },
+    "activity": {
+      "outcomes": {
+        "completed": 29,
+        "degraded": 2
+      },
+      "draft_source": {
+        "llm": 29,
+        "rules_fallback": 2
+      },
+      "write_status": {
+        "none": 22,
+        "skipped_dry_run": 9
+      },
+      "injection_suspected": 1,
+      "entitlements_degraded": 2
+    },
+    "cost_total_usd": 0.006464,
+    "cost_unknown": false,
+    "completed": 31,
+    "cost_per_completed_task": 0.00020851612903225806,
+    "input_tokens": 26980,
+    "output_tokens": 5336,
+    "disagreements": 0,
+    "e2e_ms": {
+      "50": 2064,
+      "95": 2988
+    },
+    "confusion_top": [],
+    "missed_ticket_ids": []
+  },
+  "traces": {
+    "available": 31,
+    "events": {
+      "policy_decided": 31,
+      "write_skipped_dry_run": 9,
+      "upstream_degraded": 2,
+      "entitlements_degraded": 2,
+      "guard_fallback": 2,
+      "injection_suspected": 1
+    },
+    "call_counts": {
+      "http": 124,
+      "llm": 62
+    },
+    "step_ms": {
+      "read_ticket": {
+        "50": 2,
+        "95": 3
+      },
+      "read_parallel": {
+        "50": 5,
+        "95": 7
+      },
+      "filter_kb": {
+        "50": 0,
+        "95": 0
+      },
+      "classify_intent": {
+        "50": 1,
+        "95": 1
+      },
+      "escalation_policy": {
+        "50": 0,
+        "95": 0
+      },
+      "draft": {
+        "50": 2053,
+        "95": 2978
+      },
+      "output_guard": {
+        "50": 0,
+        "95": 1
+      },
+      "write": {
+        "50": 0,
+        "95": 0
+      },
+      "summarize": {
+        "50": 0,
+        "95": 0
+      },
+      "kb_search": {
+        "50": 3,
+        "95": 4
+      },
+      "read_account": {
+        "50": 2,
+        "95": 5
+      },
+      "read_entitlements": {
+        "50": 3,
+        "95": 5
+      }
+    }
+  },
+  "wall_ms": 64313
+}

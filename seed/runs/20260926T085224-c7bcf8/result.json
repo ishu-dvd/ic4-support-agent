@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T085224-c7bcf8",
+  "ticket_id": "TCK-1101",
+  "category": "billing_proration",
+  "request_type": "question",
+  "confidence": 0.778,
+  "diagnosis": "The customer upgraded to the Business plan mid-cycle and is questioning why the first invoice is higher than the list price. This matches the standard proration pattern: a credit for the remaining old-plan period plus a charge for the new plan can make the first combined invoice differ from list price. No specialist escalation is required per the policy decision.",
+  "reply": "Thanks for providing invoice INV-88213. The additional lines are most likely proration from the upgrade: when a plan changes mid billing cycle, the invoice can include a credit for the unused portion of the prior plan and a charge for the new plan for the remainder of the cycle. Because of those lines, the first invoice total may differ from the plan list price; subsequent invoices should reflect the plan price unless billing details change again.",
+  "kb_cited": [
+    "kb-0001"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 1014,
+    "output_tokens": 451,
+    "model_id": "kimi-k3",
+    "cost_usd": 0.009807,
+    "ttft_ms": 9025,
+    "tbt_ms_avg": 40.67,
+    "tbt_ms_p50": 26.04,
+    "tbt_ms_p95": 95.56,
+    "stream_chunks": 185,
+    "latency_ms": 16577,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.003042,
+    "cost_output_usd": 0.006765,
+    "cost_diagnosis_usd": 0.003026,
+    "cost_reply_usd": 0.003739
+  },
+  "duration_ms": 16586,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0009",
+    "kb-0010",
+    "kb-0014",
+    "kb-0004"
+  ],
+  "request_id": "req_99b0ab36d5584902bd4d",
+  "correlation_id": "req_99b0ab36d5584902bd4d"
+}

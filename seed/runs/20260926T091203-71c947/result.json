@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T091203-71c947",
+  "ticket_id": "TCK-1108",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.524,
+  "diagnosis": "The customer is on the standard support tier which limits audit log retention to 90 days per KB-0013. They require 12 months of data, which exceeds their current plan's retention policy, and no escalation is required as this is a known plan limitation.",
+  "reply": "Hello,\n\nThank you for reaching out regarding your audit log retention needs.\n\nAccording to our current policy, audit log entries are retained for 90 days on standard support tiers. While your compliance team requires 12 months of data, the system is currently configured to maintain the 90-day window applicable to your plan.\n\nYou can utilize the data export feature available in your entitlements to download the existing logs as NDJSON files through the audit endpoint for your records before they rotate out. For more details on retention periods and export methods, please refer to our article on Audit log retention and export.\n\nBest regards,\nSupport Team",
+  "kb_cited": [
+    "kb-0013"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 903,
+    "output_tokens": 250,
+    "model_id": "qwen3.5-397b-a17b",
+    "cost_usd": 0.001372,
+    "ttft_ms": 2631,
+    "tbt_ms_avg": 190.34,
+    "tbt_ms_p50": 183.22,
+    "tbt_ms_p95": 294.37,
+    "stream_chunks": 249,
+    "latency_ms": 50046,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000497,
+    "cost_output_usd": 0.000875,
+    "cost_diagnosis_usd": 0.000242,
+    "cost_reply_usd": 0.000633
+  },
+  "duration_ms": 50055,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0001",
+    "kb-0002",
+    "kb-0015"
+  ],
+  "request_id": "req_7fbc463c823f429db357",
+  "correlation_id": "req_7fbc463c823f429db357"
+}

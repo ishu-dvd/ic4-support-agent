@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T082106-ab72be",
+  "ticket_id": "TCK-1117",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.826,
+  "diagnosis": "The user is on a Legacy Auth account and needs to reset their API token. Provide the step\u2011by\u2011step process from the Security tab and note the 24\u2011hour overlap period. No escalation required.",
+  "reply": "Sure! Since your account uses Legacy Auth, you can reset the account\u2011wide API token directly in the UI.\u202f1) Sign in to the admin console.\u202f2) Open the **Security** tab.\u202f3) Click **Reset token**. The new token will be displayed immediately, and the previous token will remain valid for the next 24\u202fhours to give you time to update your integration.\u202fIf you have already migrated to Unified Auth, this workflow no longer applies and you would need to create a new scoped key instead.\n\nLet us know if you need any help with the migration process.",
+  "kb_cited": [
+    "kb-0002"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 853,
+    "output_tokens": 398,
+    "model_id": "openai-gpt-oss-120b",
+    "cost_usd": 0.000364,
+    "ttft_ms": 4290,
+    "tbt_ms_avg": 16.95,
+    "tbt_ms_p50": 16.03,
+    "tbt_ms_p95": 26.39,
+    "stream_chunks": 210,
+    "latency_ms": 7976,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 8.5e-05,
+    "cost_output_usd": 0.000279,
+    "cost_diagnosis_usd": 7.2e-05,
+    "cost_reply_usd": 0.000207
+  },
+  "duration_ms": 7986,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0008",
+    "kb-0012"
+  ],
+  "request_id": "req_9a6020f5762c4f4fba40",
+  "correlation_id": "req_9a6020f5762c4f4fba40"
+}

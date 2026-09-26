@@ -156,6 +156,20 @@ def _handler(state: _State):
                 self.end_headers()
                 self.wfile.write(payload)
                 return
+            if kind == "reject_param":
+                # DigitalOcean serverless: a 400 that names the offending *parameter* while we still send it
+                # (kimi-k2.6: "temperature must be 1"; mistral: "chat_template is not supported ...").
+                if arg in body:
+                    msg = ("chat_template is not supported for Mistral tokenizers." if arg == "chat_template_kwargs"
+                           else "%s must be 1 for this model" % arg)
+                    payload = json.dumps({"error": {"message": msg, "type": "invalid_request_error"}}).encode()
+                    self.send_response(400)
+                    self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(payload)))
+                    self.end_headers()
+                    self.wfile.write(payload)
+                    return
+                kind = "stream"
             if kind == "sleep":
                 time.sleep(arg)
             draft = {"category": "billing_proration", "diagnosis": "Prorated first invoice.",
@@ -184,6 +198,16 @@ def _handler(state: _State):
                 self.wfile.write(data)
 
     return H
+
+
+@pytest.fixture(autouse=True)
+def _forget_learned_params():
+    """The per-model 'rejected parameter' memory is process-wide; tests must not leak it into each other."""
+    from agent import llm as llm_mod
+
+    llm_mod._UNSUPPORTED_PARAMS.clear()
+    yield
+    llm_mod._UNSUPPORTED_PARAMS.clear()
 
 
 @pytest.fixture
@@ -299,3 +323,65 @@ def test_attribute_cost_unknown_model_is_none_everywhere():
 def test_rules_usage_is_zero_cost_everywhere():
     u = attribute_cost(LLMUsage(0, 0, "rules", 0.0), Draft("c", "d", "r"))
     assert (u.cost_input_usd, u.cost_output_usd, u.cost_diagnosis_usd, u.cost_reply_usd) == (0.0, 0.0, 0.0, 0.0)
+
+
+def test_400_naming_a_parameter_drops_it_and_retries_once(llm_server):
+    base, state = llm_server
+    state.behaviour["/v1/chat/completions"] = [("reject_param", "temperature")]
+    tr = _Tracer()
+    llm = OpenAICompatibleLLM(_cfg(base), retry_policy=FAST)
+    llm.tracer = tr
+    draft, usage = llm.draft(PROMPT, Budget(20000, 2, 8))
+    assert draft.source == "llm"
+    assert usage.attempts == 2 and usage.retries == 1
+    assert state.hits["/v1/chat/completions"] == 2
+    assert tr.calls[0][1]["retry_decision"] == "retry:param_unsupported"
+    assert tr.calls[0][1]["error"] == "param_unsupported:temperature"
+    assert [e[0] for e in tr.events] == ["llm_param_dropped"] and tr.events[0][1]["param"] == "temperature"
+
+
+def test_plain_400_is_still_never_retried(llm_server):
+    base, state = llm_server
+    state.behaviour["/v1/chat/completions"] = [("status", 400), ("stream", None)]
+    tr = _Tracer()
+    llm = OpenAICompatibleLLM(_cfg(base), retry_policy=FAST)
+    llm.tracer = tr
+    with pytest.raises(LLMError) as ex:
+        llm.draft(PROMPT, Budget(20000, 2, 8))
+    assert ex.value.code == "http_400" and state.hits["/v1/chat/completions"] == 1
+    assert tr.calls[-1][1]["retry_decision"] == "stop:status_400"
+
+
+def test_thinking_kwarg_is_sent_by_default_and_dropped_when_the_body_uses_an_alias(llm_server):
+    base, state = llm_server
+    state.behaviour["/v1/chat/completions"] = [("reject_param", "chat_template_kwargs")]
+    tr = _Tracer()
+    llm = OpenAICompatibleLLM(_cfg(base), retry_policy=FAST)
+    llm.tracer = tr
+    draft, usage = llm.draft(PROMPT, Budget(20000, 2, 8))
+    assert draft.source == "llm" and usage.attempts == 2
+    assert tr.events[0][1]["param"] == "chat_template_kwargs"
+
+
+def test_thinking_kwarg_can_be_disabled(llm_server):
+    base, state = llm_server
+    state.behaviour["/v1/chat/completions"] = [("reject_param", "chat_template_kwargs")]
+    llm = OpenAICompatibleLLM(_cfg(base, llm_disable_thinking=False), retry_policy=FAST)
+    _, usage = llm.draft(PROMPT, Budget(20000, 2, 8))
+    assert usage.attempts == 1  # parameter never sent, so the scripted rejection never fires
+
+
+def test_rejected_parameter_is_remembered_for_the_next_call_to_that_model(llm_server):
+    from agent import llm as llm_mod
+
+    base, state = llm_server
+    state.behaviour["/v1/chat/completions"] = [("reject_param", "temperature")]
+    llm_mod._UNSUPPORTED_PARAMS.pop("openai-gpt-4o-mini", None)
+    try:
+        llm = OpenAICompatibleLLM(_cfg(base), retry_policy=FAST)
+        _, first = llm.draft(PROMPT, Budget(20000, 2, 8))
+        _, second = llm.draft(PROMPT, Budget(20000, 2, 8))
+        assert first.attempts == 2 and second.attempts == 1
+        assert llm_mod._UNSUPPORTED_PARAMS["openai-gpt-4o-mini"] == {"temperature"}
+    finally:
+        llm_mod._UNSUPPORTED_PARAMS.pop("openai-gpt-4o-mini", None)

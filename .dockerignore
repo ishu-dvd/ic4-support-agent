@@ -4,7 +4,6 @@ env/
 runs/
 reports/
 notes/
-tests/
 examples/
 .pytest_cache/
 __pycache__/

@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081645-3f2846",
+  "ticket_id": "TCK-1105",
+  "category": "region_unavailable",
+  "request_type": "question",
+  "confidence": 0.636,
+  "diagnosis": "The account is in **eu-central**, which does not support private networking per KB. The request remains queued rather than failing, as documented. No entitlement or SLA violation exists.",
+  "reply": "Private networking is not yet available in the **eu-central** region, which is why your request remains queued. I\u2019ve recommended this ticket for escalation to a specialist for further assistance.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "category:region_unavailable",
+    "stuck_request"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 945,
+    "output_tokens": 126,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000214,
+    "ttft_ms": 1270,
+    "tbt_ms_avg": 6.6,
+    "tbt_ms_p50": 5.01,
+    "tbt_ms_p95": 22.28,
+    "stream_chunks": 125,
+    "latency_ms": 2112,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000189,
+    "cost_output_usd": 2.5e-05,
+    "cost_diagnosis_usd": 1.2e-05,
+    "cost_reply_usd": 1.3e-05
+  },
+  "duration_ms": 2124,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0001"
+  ],
+  "request_id": "req_71a6b076086b45389038",
+  "correlation_id": "req_71a6b076086b45389038"
+}

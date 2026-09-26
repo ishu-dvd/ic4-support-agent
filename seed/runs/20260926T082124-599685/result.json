@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082124-599685",
+  "ticket_id": "TCK-1115",
+  "category": "feature_not_entitled",
+  "request_type": "incident",
+  "confidence": 0.682,
+  "diagnosis": "Account is on startup tier with basic support; audit log is only included on standard and premium tiers per kb-0010, so the 403 is the expected entitlement response, not a permissions misconfiguration. Recommend pointing the customer to the plan tiers article; no escalation needed.",
+  "reply": "Thanks for reaching out. Based on your account's current plan tier, the audit log endpoint is not included as an entitlement, and calls to it from accounts without that entitlement return a 403. So this isn't an issue with your code or permissions on your side \u2014 it's a plan-level feature restriction. If audit logging is important for your workflow, upgrading to a tier that includes the audit log feature would enable access. Please let us know if you have questions about the available options.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 862,
+    "output_tokens": 194,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000226,
+    "ttft_ms": 900,
+    "tbt_ms_avg": 9.63,
+    "tbt_ms_p50": 8.95,
+    "tbt_ms_p95": 17.2,
+    "stream_chunks": 192,
+    "latency_ms": 2741,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000129,
+    "cost_output_usd": 9.7e-05,
+    "cost_diagnosis_usd": 3.5e-05,
+    "cost_reply_usd": 6.2e-05
+  },
+  "duration_ms": 2750,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0007",
+    "kb-0001",
+    "kb-0005"
+  ],
+  "request_id": "req_f63c94998b454b178ff0",
+  "correlation_id": "req_f63c94998b454b178ff0"
+}

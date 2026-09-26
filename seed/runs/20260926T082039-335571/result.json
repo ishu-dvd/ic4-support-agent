@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082039-335571",
+  "ticket_id": "TCK-1104",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.852,
+  "diagnosis": "Customer is on Legacy Auth (business plan), so the KB-0002 reset flow applies. Credential changes require confirmation from the named account owner on record per KB-0018, so identity verification may be needed before any change is actioned.",
+  "reply": "Thanks for reaching out. Since your account is on Legacy Auth, you can reset the API token yourself: open the Security tab and choose Reset token. Note that the previous token remains valid for 24 hours after the reset, which can help you cut over the integration without downtime. Please be aware that credential changes on your account require confirmation from the named account owner on record, so we may need to verify identity before any change is actioned. If you'd like, we can also share guidance on migrating to Unified Auth, which replaces account-wide tokens with scoped keys.",
+  "kb_cited": [
+    "kb-0002",
+    "kb-0018"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 790,
+    "output_tokens": 248,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000242,
+    "ttft_ms": 2526,
+    "tbt_ms_avg": 24.66,
+    "tbt_ms_p50": 20.14,
+    "tbt_ms_p95": 55.77,
+    "stream_chunks": 204,
+    "latency_ms": 7573,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000118,
+    "cost_output_usd": 0.000124,
+    "cost_diagnosis_usd": 3.6e-05,
+    "cost_reply_usd": 8.8e-05
+  },
+  "duration_ms": 7582,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0002",
+    "kb-0017",
+    "kb-0018",
+    "kb-0012"
+  ],
+  "request_id": "req_4753ef4237a143868a8b",
+  "correlation_id": "req_4753ef4237a143868a8b"
+}

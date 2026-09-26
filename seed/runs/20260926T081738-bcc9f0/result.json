@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081738-bcc9f0",
+  "ticket_id": "TCK-1131",
+  "category": "credential_rotation",
+  "request_type": "how_to",
+  "confidence": 0.818,
+  "diagnosis": "Customer is requesting API token rotation for their ETL job. Unified Auth accounts use scoped keys, so they\u2019ll need to generate a new key, update their ETL job, and revoke the old key. No billing or entitlement changes are involved.",
+  "reply": "To reset your API token for the ETL job, follow these steps for scoped keys in Unified Auth (see [Scoped API keys: create, rotate, revoke](https://support.example.com/kb-0003)): generate a new key with the required scopes, update your ETL job to use the new key, then revoke the old key. Revocation is immediate, so ensure all traffic is migrated first.",
+  "kb_cited": [
+    "kb-0003"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 822,
+    "output_tokens": 188,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000202,
+    "ttft_ms": 771,
+    "tbt_ms_avg": 6.56,
+    "tbt_ms_p50": 2.93,
+    "tbt_ms_p95": 9.4,
+    "stream_chunks": 187,
+    "latency_ms": 1992,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000164,
+    "cost_output_usd": 3.8e-05,
+    "cost_diagnosis_usd": 1.5e-05,
+    "cost_reply_usd": 2.3e-05
+  },
+  "duration_ms": 2003,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0003",
+    "kb-0009",
+    "kb-0017",
+    "kb-0018"
+  ],
+  "request_id": "req_aea04325d76241e7bbb5",
+  "correlation_id": "req_aea04325d76241e7bbb5"
+}

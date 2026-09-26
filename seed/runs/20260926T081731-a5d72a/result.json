@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T081731-a5d72a",
+  "ticket_id": "TCK-1116",
+  "category": "export_stalled",
+  "request_type": "incident",
+  "confidence": 0.667,
+  "diagnosis": "The export job has stalled as it has been running for more than six hours. The job size is under 10 GB, so it should typically finish within an hour. The customer is entitled to data export.",
+  "reply": "Your export job EXP-40233 is stalled. According to our guidelines, jobs under 10 GB should finish within an hour. Please cancel and resubmit the job. For more information, see kb-0005.",
+  "kb_cited": [
+    "kb-0005"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 843,
+    "output_tokens": 126,
+    "model_id": "llama-4-maverick",
+    "cost_usd": 0.00032,
+    "ttft_ms": 765,
+    "tbt_ms_avg": 19.14,
+    "tbt_ms_p50": 16.5,
+    "tbt_ms_p95": 77.95,
+    "stream_chunks": 125,
+    "latency_ms": 3140,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000211,
+    "cost_output_usd": 0.00011,
+    "cost_diagnosis_usd": 5.6e-05,
+    "cost_reply_usd": 5.4e-05
+  },
+  "duration_ms": 3146,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0005",
+    "kb-0008",
+    "kb-0013",
+    "kb-0015",
+    "kb-0016"
+  ],
+  "request_id": "req_9e5d1be9a1bc4861b8e7",
+  "correlation_id": "req_9e5d1be9a1bc4861b8e7"
+}

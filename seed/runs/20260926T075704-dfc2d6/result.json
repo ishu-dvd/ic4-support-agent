@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T075704-dfc2d6",
+  "ticket_id": "TCK-1108",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.524,
+  "diagnosis": "Customer is on the standard support tier which has a 90-day audit log retention limit. They are requesting 12 months of data.",
+  "reply": "Based on your current standard support tier, audit log entries are retained for 90 days. For more information on retention and how to export your logs as NDJSON via the audit endpoint, please refer to our documentation.",
+  "kb_cited": [
+    "kb-0013"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 933,
+    "output_tokens": 115,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000225,
+    "ttft_ms": 999,
+    "tbt_ms_avg": 57.7,
+    "tbt_ms_p50": 50.31,
+    "tbt_ms_p95": 114.45,
+    "stream_chunks": 114,
+    "latency_ms": 7580,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000168,
+    "cost_output_usd": 5.8e-05,
+    "cost_diagnosis_usd": 2.1e-05,
+    "cost_reply_usd": 3.7e-05
+  },
+  "duration_ms": 7591,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0001",
+    "kb-0002",
+    "kb-0015"
+  ],
+  "request_id": "req_fea1e1c9e9e148a480a7",
+  "correlation_id": "req_fea1e1c9e9e148a480a7"
+}

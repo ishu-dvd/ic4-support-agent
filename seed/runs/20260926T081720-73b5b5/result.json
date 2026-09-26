@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T081720-73b5b5",
+  "ticket_id": "TCK-1113",
+  "category": "deprecated_endpoint",
+  "request_type": "question",
+  "confidence": 0.889,
+  "diagnosis": "The customer is inquiring about the status of the v1 reporting endpoints, which are being deprecated.",
+  "reply": "The v1 reporting endpoints are scheduled to stop accepting traffic on 2026-11-01. You should migrate your dashboard to use the v2 reporting endpoints, which provide the same fields under a paginated envelope.",
+  "kb_cited": [
+    "kb-0007"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 738,
+    "output_tokens": 101,
+    "model_id": "llama-4-maverick",
+    "cost_usd": 0.000272,
+    "ttft_ms": 1356,
+    "tbt_ms_avg": 20.56,
+    "tbt_ms_p50": 16.77,
+    "tbt_ms_p95": 74.75,
+    "stream_chunks": 100,
+    "latency_ms": 3419,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000185,
+    "cost_output_usd": 8.8e-05,
+    "cost_diagnosis_usd": 2.9e-05,
+    "cost_reply_usd": 5.9e-05
+  },
+  "duration_ms": 3431,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0007",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_d623d14e73ab49798d7e",
+  "correlation_id": "req_d623d14e73ab49798d7e"
+}

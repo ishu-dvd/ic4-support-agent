@@ -11,7 +11,8 @@ env/
 # local-only interview prep and agent artifacts (approved 2026-09-26)
 notes/
 .cursor/
-runs/
+# live run artefacts only - seed/runs (the shipped dashboard snapshot) is tracked
+/runs/
 .env
 .env.*
 !.env.example

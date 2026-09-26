@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T081730-5cfc09",
+  "ticket_id": "TCK-1127",
+  "category": "feature_not_entitled",
+  "request_type": "question",
+  "confidence": 0.6,
+  "diagnosis": "The account is on the **enterprise** plan with **premium support**, which includes a **custom SLA** entitlement (4-hour first-response target). The customer\u2019s question suggests a potential misalignment between sales communication and documented entitlements\u2014verify if the SLA was misrepresented or if the account owner needs confirmation of the active terms.",
+  "reply": "Your account is entitled to a **custom SLA** as part of the **premium support tier**, which includes a **4-hour first-response target** during business hours in your region. If the SLA discussed during renewal differs from this, I recommend confirming the details with your account owner or the sales team that handled the renewal. Let me know how you\u2019d like to proceed!",
+  "kb_cited": [
+    "kb-0010",
+    "kb-0016"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 854,
+    "output_tokens": 206,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000212,
+    "ttft_ms": 978,
+    "tbt_ms_avg": 6.2,
+    "tbt_ms_p50": 6.22,
+    "tbt_ms_p95": 9.16,
+    "stream_chunks": 205,
+    "latency_ms": 2263,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000171,
+    "cost_output_usd": 4.1e-05,
+    "cost_diagnosis_usd": 2e-05,
+    "cost_reply_usd": 2.1e-05
+  },
+  "duration_ms": 2273,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0010",
+    "kb-0016",
+    "kb-0018",
+    "kb-0003"
+  ],
+  "request_id": "req_90109795246945c7a9b3",
+  "correlation_id": "req_90109795246945c7a9b3"
+}

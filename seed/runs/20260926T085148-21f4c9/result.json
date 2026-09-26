@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T085148-21f4c9",
+  "ticket_id": "TCK-1125",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.765,
+  "diagnosis": "Account is on premium support tier with audit_log entitlement, so retention is 400 days per kb-0013. September of last year should fall within retention depending on today's date; export is available as NDJSON via the audit endpoint. No escalation required.",
+  "reply": "Thanks for reaching out. Your account includes the audit log feature, and on your support tier audit entries are retained for 400 days, so entries from September of last year should still be available. Audit log exports are provided as NDJSON files through the audit endpoint. If you run into any issues with the export, such as a job that runs unusually long, let us know and we can help troubleshoot.",
+  "kb_cited": [
+    "kb-0013",
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "high",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 788,
+    "output_tokens": 223,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.002084,
+    "ttft_ms": 2154,
+    "tbt_ms_avg": 23.8,
+    "tbt_ms_p50": 22.11,
+    "tbt_ms_p95": 82.67,
+    "stream_chunks": 177,
+    "latency_ms": 6383,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001103,
+    "cost_output_usd": 0.000981,
+    "cost_diagnosis_usd": 0.000383,
+    "cost_reply_usd": 0.000598
+  },
+  "duration_ms": 6390,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0005",
+    "kb-0009",
+    "kb-0010"
+  ],
+  "request_id": "req_c0723a0b3d0745318d8e",
+  "correlation_id": "req_c0723a0b3d0745318d8e"
+}

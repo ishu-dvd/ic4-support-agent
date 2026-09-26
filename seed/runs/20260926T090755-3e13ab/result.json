@@ -1,0 +1,49 @@
+{
+  "run_id": "20260926T090755-3e13ab",
+  "ticket_id": "TCK-1107",
+  "category": "sso_metadata_mismatch",
+  "request_type": "incident",
+  "confidence": 0.76,
+  "diagnosis": "Customer rotated IdP signing certificate yesterday evening without updating metadata in our system, causing assertion errors on sign-in since this morning. The account has SSO entitlement on business plan with standard support. Recommend re-uploading metadata and re-testing with single account per kb-0006.",
+  "reply": "Thanks for reporting this. Based on the timing and error description, this appears to be related to your recent identity provider certificate rotation. When the IdP certificate is rotated without updating the metadata on our side, sign-in fails with an assertion error.\n\nTo resolve this, please re-upload your current SSO metadata from your identity provider, then re-test sign-in with a single account before re-enabling enforcement for all users.\n\nYou can find detailed guidance in our knowledge base article \"SSO metadata mismatch after an identity provider change\" (kb-0006). If you continue to experience issues after re-uploading metadata, please let us know.",
+  "kb_cited": [
+    "kb-0006"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 671,
+    "output_tokens": 235,
+    "model_id": "kimi-k2.6",
+    "cost_usd": 0.001577,
+    "ttft_ms": 982,
+    "tbt_ms_avg": 14.9,
+    "tbt_ms_p50": 14.34,
+    "tbt_ms_p95": 27.23,
+    "stream_chunks": 234,
+    "latency_ms": 4485,
+    "attempts": 3,
+    "retries": 2,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000637,
+    "cost_output_usd": 0.00094,
+    "cost_diagnosis_usd": 0.000297,
+    "cost_reply_usd": 0.000643
+  },
+  "duration_ms": 5829,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0006",
+    "kb-0010"
+  ],
+  "request_id": "req_2049b71ca54a4e9dbd6d",
+  "correlation_id": "req_2049b71ca54a4e9dbd6d"
+}

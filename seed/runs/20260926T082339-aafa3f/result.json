@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082339-aafa3f",
+  "ticket_id": "TCK-1101",
+  "category": "billing_proration",
+  "request_type": "question",
+  "confidence": 0.778,
+  "diagnosis": "The invoice reflects mid\u2011cycle proration after upgrading to the Business plan, which combines charges for the remaining days of the prior plan with the new plan's rate, causing the total to exceed the listed price.",
+  "reply": "We see that you upgraded to the Business plan on the 14th. The first invoice includes proration for the remaining days of your previous plan and the charge for the new plan, which can make the total differ from the plan price. This is described in our article on mid\u2011cycle proration (kb-0001).",
+  "kb_cited": [
+    "kb-0001"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 971,
+    "output_tokens": 511,
+    "model_id": "nemotron-3-nano-omni",
+    "cost_usd": 0.000945,
+    "ttft_ms": 2399,
+    "tbt_ms_avg": 6.89,
+    "tbt_ms_p50": 3.37,
+    "tbt_ms_p95": 6.37,
+    "stream_chunks": 159,
+    "latency_ms": 3555,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000485,
+    "cost_output_usd": 0.00046,
+    "cost_diagnosis_usd": 0.000194,
+    "cost_reply_usd": 0.000266
+  },
+  "duration_ms": 3564,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0001",
+    "kb-0009",
+    "kb-0010",
+    "kb-0014",
+    "kb-0004"
+  ],
+  "request_id": "req_84aef7ca75fc42f4a9af",
+  "correlation_id": "req_84aef7ca75fc42f4a9af"
+}

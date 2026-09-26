@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T085117-e5e5f7",
+  "ticket_id": "TCK-1119",
+  "category": "seat_billing",
+  "request_type": "how_to",
+  "confidence": 0.905,
+  "diagnosis": "Customer asks whether mid-month seat additions are billed for the full month. KB-0011 confirms seat additions are billed pro rata from the day added, so no full-month charge applies.",
+  "reply": "Thanks for reaching out! No, you won't pay the full month for the new seats. Seat additions are billed pro rata from the day they are added, so you'll only be charged for the remaining days in the current billing cycle. If you have any other questions, just let us know.",
+  "kb_cited": [
+    "kb-0011"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 728,
+    "output_tokens": 136,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001618,
+    "ttft_ms": 897,
+    "tbt_ms_avg": 24.74,
+    "tbt_ms_p50": 23.43,
+    "tbt_ms_p95": 88.6,
+    "stream_chunks": 134,
+    "latency_ms": 4226,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001019,
+    "cost_output_usd": 0.000598,
+    "cost_diagnosis_usd": 0.000241,
+    "cost_reply_usd": 0.000357
+  },
+  "duration_ms": 4233,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0011",
+    "kb-0001",
+    "kb-0006"
+  ],
+  "request_id": "req_252dff87d74a408cac94",
+  "correlation_id": "req_252dff87d74a408cac94"
+}

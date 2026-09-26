@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T081715-7a5ede",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Customer on Legacy Auth inquiring about migration to Unified Auth and rollback feasibility. Requires guidance on process and limitations, with no immediate action needed.",
+  "reply": "Migration to Unified Auth replaces your current account-wide token with scoped keys. This involves a phased approach: generating scoped keys, transitioning traffic, and finally disabling the legacy token. **Rollback is not possible once legacy tokens are disabled**\u2014please plan accordingly. For detailed steps, see our [migration guide](kb-0012). Let us know if you\u2019d like to discuss timing or testing strategies.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 847,
+    "output_tokens": 161,
+    "model_id": "mistral-3-14B",
+    "cost_usd": 0.000202,
+    "ttft_ms": 886,
+    "tbt_ms_avg": 6.55,
+    "tbt_ms_p50": 5.99,
+    "tbt_ms_p95": 11.14,
+    "stream_chunks": 160,
+    "latency_ms": 1929,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000169,
+    "cost_output_usd": 3.2e-05,
+    "cost_diagnosis_usd": 9e-06,
+    "cost_reply_usd": 2.3e-05
+  },
+  "duration_ms": 1939,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_7ee71e2b82b8483eb9dd",
+  "correlation_id": "req_7ee71e2b82b8483eb9dd"
+}

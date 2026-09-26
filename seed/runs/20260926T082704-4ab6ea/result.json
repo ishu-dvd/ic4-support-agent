@@ -1,0 +1,57 @@
+{
+  "run_id": "20260926T082704-4ab6ea",
+  "ticket_id": "TCK-1114",
+  "category": "sla_expectation",
+  "request_type": "question",
+  "confidence": 0.895,
+  "diagnosis": "Customer asks about the first-response target after a slow response.",
+  "reply": "As a premium support customer, your ticket has been placed in the priority queue. We are sorry the first response took longer than you expected. Your plan's first-response target is 4 hours, which the response you describe exceeded. See \"Priority routing on premium support\" (kb-0016) for the full details. I have recommended this ticket for escalation to a specialist. What happens next: a specialist reviews the details above and replies on this ticket within your plan's 4-hour first-response target. You do not need to open a new request.",
+  "kb_cited": [
+    "kb-0016"
+  ],
+  "escalate": true,
+  "escalate_recommended_by_model": true,
+  "priority": "high",
+  "policy_reasons": [
+    "sla_breach:11h>4h"
+  ],
+  "write": {
+    "status": "skipped_dry_run",
+    "escalation_id": null,
+    "error": null
+  },
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "rules_fallback",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 832,
+    "output_tokens": 147,
+    "model_id": "deepseek-v4-pro",
+    "cost_usd": 0.001959,
+    "ttft_ms": 1042,
+    "tbt_ms_avg": 20.96,
+    "tbt_ms_p50": 21.65,
+    "tbt_ms_p95": 26.1,
+    "stream_chunks": 68,
+    "latency_ms": 2455,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001448,
+    "cost_output_usd": 0.000512,
+    "cost_diagnosis_usd": 0.000215,
+    "cost_reply_usd": 0.000297
+  },
+  "duration_ms": 2466,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0016",
+    "kb-0009",
+    "kb-0018",
+    "kb-0001"
+  ],
+  "request_id": "req_7d9530b33335422f8d1f",
+  "correlation_id": "req_7d9530b33335422f8d1f"
+}

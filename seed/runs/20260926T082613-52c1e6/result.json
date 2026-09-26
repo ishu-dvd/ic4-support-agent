@@ -1,0 +1,49 @@
+{
+  "run_id": "20260926T082613-52c1e6",
+  "ticket_id": "TCK-1107",
+  "category": "sso_metadata_mismatch",
+  "request_type": "incident",
+  "confidence": 0.76,
+  "diagnosis": "Customer rotated IdP signing certificate, resulting in assertion errors. This matches the symptoms of a metadata mismatch described in kb-0006.",
+  "reply": "I am sorry to hear that your users are experiencing assertion errors when signing in via SSO. Based on the certificate rotation you mentioned, this issue is often caused by a metadata mismatch. Please refer to our knowledge base article kb-0006, \"SSO metadata mismatch after an identity provider change,\" which recommends re-uploading the metadata and testing with a single account before re-enabling enforcement.",
+  "kb_cited": [
+    "kb-0006"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 731,
+    "output_tokens": 153,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000208,
+    "ttft_ms": 894,
+    "tbt_ms_avg": 26.15,
+    "tbt_ms_p50": 23.8,
+    "tbt_ms_p95": 84.2,
+    "stream_chunks": 152,
+    "latency_ms": 4876,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000132,
+    "cost_output_usd": 7.7e-05,
+    "cost_diagnosis_usd": 2e-05,
+    "cost_reply_usd": 5.7e-05
+  },
+  "duration_ms": 4886,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0006",
+    "kb-0010"
+  ],
+  "request_id": "req_4011e3d18ec14ee391cb",
+  "correlation_id": "req_4011e3d18ec14ee391cb"
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "20260926T090906-8516bb",
+  "ticket_id": "TCK-1120",
+  "category": "auth_migration",
+  "request_type": "question",
+  "confidence": 0.828,
+  "diagnosis": "Business tier customer on legacy auth asking about migration process and rollback capability. Knowledge base clearly states migration cannot be reversed once legacy tokens are disabled, and describes the dual-running window approach.",
+  "reply": "Migration to Unified Auth involves three main stages: first, you'll create new scoped keys alongside your existing legacy token; second, you'll gradually cut your traffic over to the scoped keys; and finally, once you've confirmed everything is working, you'll disable the legacy token. During the dual-running window, both authentication methods work in parallel so you can validate your integrations. Please note that once you disable the legacy token, the migration cannot be reversed. If you'd like, I can provide more detailed guidance on planning your cutover or help identify any specific integrations to test during the transition.",
+  "kb_cited": [
+    "kb-0012"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 806,
+    "output_tokens": 186,
+    "model_id": "kimi-k2.6",
+    "cost_usd": 0.00151,
+    "ttft_ms": 1326,
+    "tbt_ms_avg": 15.47,
+    "tbt_ms_p50": 14.89,
+    "tbt_ms_p95": 26.4,
+    "stream_chunks": 185,
+    "latency_ms": 4174,
+    "attempts": 3,
+    "retries": 2,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000766,
+    "cost_output_usd": 0.000744,
+    "cost_diagnosis_usd": 0.000199,
+    "cost_reply_usd": 0.000545
+  },
+  "duration_ms": 6184,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0012",
+    "kb-0002",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_aabff92644c847e08515",
+  "correlation_id": "req_aabff92644c847e08515"
+}

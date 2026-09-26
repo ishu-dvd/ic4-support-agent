@@ -1,0 +1,50 @@
+{
+  "run_id": "20260926T082119-1d5962",
+  "ticket_id": "TCK-1113",
+  "category": "deprecated_endpoint",
+  "request_type": "question",
+  "confidence": 0.889,
+  "diagnosis": "Customer asks about v1 reporting retirement. Per kb-0007, v1 reporting endpoints stop accepting traffic on 2026-11-01; migration path is v2 with same fields under a paginated envelope. No escalation needed.",
+  "reply": "Thanks for reaching out! Yes, the v1 reporting endpoints are scheduled to stop accepting traffic on 2026-11-01. We recommend migrating to v2, which returns the same fields but wrapped in a paginated envelope, so your dashboard may need small adjustments to handle pagination. Please let us know if you have questions during the migration.",
+  "kb_cited": [
+    "kb-0007"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 723,
+    "output_tokens": 155,
+    "model_id": "glm-5.3-flash",
+    "cost_usd": 0.000186,
+    "ttft_ms": 973,
+    "tbt_ms_avg": 10.77,
+    "tbt_ms_p50": 2.16,
+    "tbt_ms_p95": 29.54,
+    "stream_chunks": 153,
+    "latency_ms": 2611,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000108,
+    "cost_output_usd": 7.7e-05,
+    "cost_diagnosis_usd": 2.9e-05,
+    "cost_reply_usd": 4.8e-05
+  },
+  "duration_ms": 2622,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0007",
+    "kb-0009",
+    "kb-0018"
+  ],
+  "request_id": "req_2699acbbde70465b9241",
+  "correlation_id": "req_2699acbbde70465b9241"
+}

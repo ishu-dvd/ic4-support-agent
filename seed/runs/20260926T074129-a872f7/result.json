@@ -1,0 +1,39 @@
+{
+  "run_id": "20260926T074129-a872f7",
+  "ticket_id": "TCK-1118",
+  "category": "region_unavailable",
+  "request_type": "incident",
+  "confidence": 0.412,
+  "diagnosis": "Private networking requested in a region where it is not yet offered; request stays queued.",
+  "reply": "Thanks for reaching out. Private networking is available in a subset of regions today, and requests in other regions remain queued rather than failing. The linked article lists current availability by region. See \"Private networking availability by region\" (kb-0008) for the full details.",
+  "kb_cited": [
+    "kb-0008"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [
+    "availability_question:answered_from_kb"
+  ],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "rules",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "model_id": "rules",
+    "cost_usd": 0.0
+  },
+  "duration_ms": 2,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0008",
+    "kb-0010",
+    "kb-0005",
+    "kb-0013",
+    "kb-0015"
+  ]
+}

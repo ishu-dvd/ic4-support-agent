@@ -1,0 +1,52 @@
+{
+  "run_id": "20260926T082647-0bc67a",
+  "ticket_id": "TCK-1115",
+  "category": "feature_not_entitled",
+  "request_type": "incident",
+  "confidence": 0.682,
+  "diagnosis": "The account is on the startup plan tier. According to kb-0010, audit log access is only included on standard and premium tiers, resulting in a 403 error.",
+  "reply": "The 403 error you are encountering is due to the audit log feature not being included in your current startup plan tier. As noted in our documentation (kb-0010), audit log access is available for accounts on the standard and premium tiers.",
+  "kb_cited": [
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "low",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 928,
+    "output_tokens": 133,
+    "model_id": "gemma-4-31B-it",
+    "cost_usd": 0.000234,
+    "ttft_ms": 981,
+    "tbt_ms_avg": 24.53,
+    "tbt_ms_p50": 23.3,
+    "tbt_ms_p95": 78.35,
+    "stream_chunks": 132,
+    "latency_ms": 4228,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.000167,
+    "cost_output_usd": 6.7e-05,
+    "cost_diagnosis_usd": 2.6e-05,
+    "cost_reply_usd": 4.1e-05
+  },
+  "duration_ms": 4237,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0007",
+    "kb-0001",
+    "kb-0005"
+  ],
+  "request_id": "req_13b2d2e387144f579053",
+  "correlation_id": "req_13b2d2e387144f579053"
+}

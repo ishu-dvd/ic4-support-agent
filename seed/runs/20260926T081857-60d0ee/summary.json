@@ -1,0 +1,59 @@
+{
+  "run_id": "20260926T081857-60d0ee",
+  "trace_id": "35329e41818c408c8b621bcd3e39453b",
+  "request_id": "req_938144454d6d4325b962",
+  "correlation_id": "req_938144454d6d4325b962",
+  "ticket_id": "TCK-1118",
+  "start_ms": 1790410737450,
+  "outcome": "completed",
+  "error": null,
+  "category": "region_unavailable",
+  "escalate": false,
+  "write_status": null,
+  "draft_source": "llm",
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "guard_violations": 0,
+  "model_id": "openai-gpt-oss-20b",
+  "prompt_version": "v1",
+  "cost_usd": 0.000228,
+  "cost_input_usd": 4.5e-05,
+  "cost_output_usd": 0.000184,
+  "cost_diagnosis_usd": 5.2e-05,
+  "cost_reply_usd": 0.000132,
+  "input_tokens": 894,
+  "output_tokens": 408,
+  "usage_estimated": false,
+  "ttft_ms": 2373,
+  "tbt_ms_avg": 6.95,
+  "tbt_ms_p50": 6.26,
+  "tbt_ms_p95": 10.76,
+  "llm_latency_ms": 3557,
+  "llm_attempts": 1,
+  "duration_ms": 3566,
+  "retries": {
+    "http": 0,
+    "llm": 0
+  },
+  "step_durations": {
+    "read_ticket": 2,
+    "kb_search": 2,
+    "read_account": 3,
+    "read_entitlements": 3,
+    "read_parallel": 4,
+    "filter_kb": 0,
+    "classify_intent": 0,
+    "escalation_policy": 0,
+    "draft": 3558,
+    "output_guard": 0,
+    "write": 0,
+    "summarize": 0
+  },
+  "call_counts": {
+    "http": 4,
+    "llm": 2
+  },
+  "events": {
+    "policy_decided": 1
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "20260926T085020-bfccb4",
+  "ticket_id": "TCK-1108",
+  "category": "audit_retention_limit",
+  "request_type": "question",
+  "confidence": 0.524,
+  "diagnosis": "Account is on standard support tier with nonprofit plan, so audit log retention is 90 days. Extended 400-day retention requires premium tier; no entitlement issue, export via NDJSON is available within the 90-day window.",
+  "reply": "Thanks for reaching out. Your account's audit log entries are currently retained for 90 days, which matches what your team is seeing. Extended retention of 400 days is available on the premium support tier. Entries within your current retention window can be exported as NDJSON through the audit endpoint. If you're interested in exploring a plan change, we can help point you in the right direction.",
+  "kb_cited": [
+    "kb-0013",
+    "kb-0010"
+  ],
+  "escalate": false,
+  "escalate_recommended_by_model": false,
+  "priority": "normal",
+  "policy_reasons": [],
+  "write": null,
+  "injection_suspected": false,
+  "entitlements_degraded": false,
+  "draft_source": "llm",
+  "guard_violations": [],
+  "usage": {
+    "input_tokens": 867,
+    "output_tokens": 168,
+    "model_id": "glm-5.3",
+    "cost_usd": 0.001953,
+    "ttft_ms": 1951,
+    "tbt_ms_avg": 24.17,
+    "tbt_ms_p50": 18.82,
+    "tbt_ms_p95": 84.56,
+    "stream_chunks": 166,
+    "latency_ms": 5968,
+    "attempts": 1,
+    "retries": 0,
+    "usage_estimated": false,
+    "cost_input_usd": 0.001214,
+    "cost_output_usd": 0.000739,
+    "cost_diagnosis_usd": 0.000262,
+    "cost_reply_usd": 0.000477
+  },
+  "duration_ms": 5977,
+  "outcome": "completed",
+  "error": null,
+  "kb_visible": [
+    "kb-0013",
+    "kb-0010",
+    "kb-0001",
+    "kb-0002",
+    "kb-0015"
+  ],
+  "request_id": "req_faadc950d3114b6e8dd0",
+  "correlation_id": "req_faadc950d3114b6e8dd0"
+}
