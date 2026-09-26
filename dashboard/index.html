@@ -186,7 +186,9 @@ const isNum = v => typeof v === 'number' && isFinite(v);
 const fmtMs = v => isNum(v) ? Math.round(v).toLocaleString() : '—';
 const fmtMsU = v => isNum(v) ? Math.round(v).toLocaleString() + ' ms' : '—';
 const fmtUsd = v => isNum(v) ? '$' + v.toFixed(Math.abs(v) < 0.01 && v !== 0 ? 6 : 4) : (v === null ? 'unknown' : '—');
-const fmtPct = v => isNum(v) ? (v * 100).toFixed(1) + '%' : '—';
+// Every rate/accuracy/recall field from /api/metrics and eval summaries is ALREADY a percentage (0-100),
+// e.g. success_rate=100.0, kb_recall=86.67, escalate_f1=100.0. Never multiply by 100 here.
+const fmtPct = v => isNum(v) ? v.toFixed(1) + '%' : '—';
 const fmtInt = v => isNum(v) ? v.toLocaleString() : '—';
 const fmtTime = ms => isNum(ms) ? new Date(ms).toLocaleString(undefined, { hour12: false }) : '—';
 const fmtTimeShort = ms => isNum(ms) ? new Date(ms).toISOString().replace('T', ' ').slice(5, 19) : '—';
@@ -498,7 +500,7 @@ const EVAL_COLS = [
   { k: 'model_id', h: 'model', g: e => e.model_id, r: e => el('span', { class: 'mono', title: e.model_id || '' }, trunc(e.model_id, 20)) }, { k: 'prompt_version', h: 'prompt', g: e => e.prompt_version },
   { k: 'n', h: 'n', num: 1, g: e => e.n, r: e => `${fmtInt(e.n)}${e.metrics && isNum(e.metrics.completed) && e.metrics.completed !== e.n ? ' (' + e.metrics.completed + ' ok)' : ''}` },
   { k: 'category_accuracy', h: 'cat acc', num: 1, g: e => (e.metrics || {}).category_accuracy, r: e => fmtPct((e.metrics || {}).category_accuracy) },
-  { k: 'escalate_accuracy', h: 'esc acc / F1', num: 1, g: e => (e.metrics || {}).escalate_accuracy, r: e => `${fmtPct((e.metrics || {}).escalate_accuracy)} / ${isNum((e.metrics || {}).escalate_f1) ? e.metrics.escalate_f1.toFixed(3) : '—'}` },
+  { k: 'escalate_accuracy', h: 'esc acc / F1', num: 1, g: e => (e.metrics || {}).escalate_accuracy, r: e => `${fmtPct((e.metrics || {}).escalate_accuracy)} / ${fmtPct((e.metrics || {}).escalate_f1)}` },
   { k: 'kb_recall', h: 'kb recall', num: 1, g: e => (e.metrics || {}).kb_recall, r: e => fmtPct((e.metrics || {}).kb_recall) },
   { k: 'groundedness', h: 'grounded', num: 1, g: e => { const m = e.metrics || {}; return isNum(m.groundedness_total) && m.groundedness_eval_total ? m.groundedness_total / m.groundedness_eval_total : null; }, r: e => { const m = e.metrics || {}; return isNum(m.groundedness_total) && isNum(m.groundedness_eval_total) ? `${m.groundedness_total}/${m.groundedness_eval_total}` : '—'; } },
   { k: 'injection', h: 'injection', g: e => ((e.metrics || {}).injection || {}).passed, r: e => { const inj = (e.metrics || {}).injection; if (!inj || inj.passed == null) return el('span', { class: 'muted' }, '—'); return el('span', { class: inj.passed ? 'o-completed' : 'o-failed' }, inj.passed ? 'PASS' : 'FAIL'); } },
@@ -553,7 +555,7 @@ async function openEval(id) {
   $('#evd-summary').replaceChildren(kv([
     ['eval_id', s.eval_id || id, 1], ['timestamp', typeof s.timestamp === 'number' ? fmtTime(s.timestamp < 1e12 ? s.timestamp * 1000 : s.timestamp) : s.timestamp], ['model / prompt', `${s.model_id || '—'} / ${s.prompt_version || '—'}`], ['provider', `${s.provider || '—'}${s.dry_run ? ' · dry_run' : ''}${s.kb_filter != null ? ' · kb_filter=' + s.kb_filter : ''}`],
     ['n / completed', `${fmtInt(s.n)} / ${fmtInt(m.completed)} (${fmtPct(m.completion_rate)})`], ['category accuracy', `${fmtPct(m.category_accuracy)}  · baseline ${b.category_label || 'n/a'}: ${fmtPct(b.category)}`],
-    ['escalate acc / P / R / F1', `${fmtPct(m.escalate_accuracy)} / ${fmtPct(m.escalate_precision)} / ${fmtPct(m.escalate_recall)} / ${isNum(m.escalate_f1) ? m.escalate_f1.toFixed(3) : '—'}  · baseline ${b.escalate_label || 'n/a'}: ${fmtPct(b.escalate)}`],
+    ['escalate acc / P / R / F1', `${fmtPct(m.escalate_accuracy)} / ${fmtPct(m.escalate_precision)} / ${fmtPct(m.escalate_recall)} / ${fmtPct(m.escalate_f1)}  · baseline ${b.escalate_label || 'n/a'}: ${fmtPct(b.escalate)}`],
     ['kb recall / hit any', `${fmtPct(m.kb_recall)} / ${fmtPct(m.kb_hit_any)}`], ['groundedness', isNum(m.groundedness_total) ? `${m.groundedness_total} / ${fmtInt(m.groundedness_eval_total)}` : null],
     ['injection', m.injection ? (m.injection.passed ? 'PASS' : 'FAIL') + ' ' + Object.entries(m.injection).filter(([k]) => k !== 'passed').map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(' ') : null],
     ['cost total / per task', `${fmtUsd(m.cost_total_usd)} / ${fmtUsd(m.cost_per_completed_task)}`], ['e2e p50 / p95', `${fmtMs(((m.e2e_ms) || {})['50'])} / ${fmtMs(((m.e2e_ms) || {})['95'])} ms`],
