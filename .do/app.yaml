@@ -1,0 +1,98 @@
+# DigitalOcean App Platform spec for the IC4 support agent (team Blitz_team1_BLR pattern:
+# Dockerfile from GitHub, blr region, apps-s-1vcpu-1gb, secrets as encrypted SECRET env vars).
+#
+#   make do-validate                     # doctl apps spec validate .do/app.yaml
+#   make do-create                       # first deploy
+#   make do-update APP_ID=<id>           # re-apply spec
+#   make do-logs   APP_ID=<id>           # tail runtime logs
+#
+# Storage: App Platform has NO persistent disk. runs/ (and therefore the /dashboard history) resets on
+# every deploy/restart - history is per-deployment. Every trace record is also emitted as a JSON line
+# on stdout (TRACE_STDOUT=true) so it survives via Insights > Logs / log forwarding (OpenSearch, Datadog,
+# Papertrail). Use compose.yaml on a Droplet if durable run history is required.
+name: ic4-support-agent
+region: blr
+
+services:
+  - name: agent
+    git:
+      # Deploy mirror of senior-ai-ml-engineer-ic4/ (the interview monorepo is private): github.com/ishu-dvd/ic4-support-agent
+      repo_clone_url: https://github.com/ishu-dvd/ic4-support-agent.git
+      branch: main
+    source_dir: /
+    dockerfile_path: Dockerfile
+    http_port: 8080
+    instance_size_slug: apps-s-1vcpu-0.5gb  # $5/mo; stdlib agent + fixture fit in 512 MB
+    instance_count: 1
+    health_check:
+      http_path: /healthz
+      initial_delay_seconds: 20
+      period_seconds: 10
+      timeout_seconds: 5
+      failure_threshold: 3
+    envs:
+      # --- model: DigitalOcean serverless inference (OpenAI-compatible) ---
+      - key: OPENAI_BASE_URL
+        scope: RUN_TIME
+        type: GENERAL
+        value: https://inference.do-ai.run/v1
+      # Gradient model access key. Placeholder only: set via the console or
+      #   OPENAI_API_KEY=... envsubst < .do/app.yaml | doctl apps update <id> --spec -
+      # App Platform encrypts SECRET values at rest; the real key is never committed.
+      - key: OPENAI_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+        value: ${OPENAI_API_KEY}
+      - key: MODEL_ID
+        scope: RUN_TIME
+        type: GENERAL
+        value: gemma-4-31B-it  # available on the team's tier (gpt-4o-mini/gpt-5-* return 403 'not available for your subscription tier')
+      - key: MODEL_PROVIDER
+        scope: RUN_TIME
+        type: GENERAL
+        value: openai_compatible
+      # --- agent runtime ---
+      - key: UPSTREAM_BASE_URL
+        scope: RUN_TIME
+        type: GENERAL
+        value: http://127.0.0.1:8081
+      - key: RUNS_DIR
+        scope: RUN_TIME
+        type: GENERAL
+        value: /data/runs
+      - key: TRACE_STDOUT
+        scope: RUN_TIME
+        type: GENERAL
+        value: "true"
+      - key: DRY_RUN
+        scope: RUN_TIME
+        type: GENERAL
+        value: "true"
+      - key: MAX_RETRIES
+        scope: RUN_TIME
+        type: GENERAL
+        value: "3"
+      - key: LLM_MAX_RETRIES
+        scope: RUN_TIME
+        type: GENERAL
+        value: "3"
+      - key: LLM_STREAM
+        scope: RUN_TIME
+        type: GENERAL
+        value: "true"
+      - key: SERVICE_NAME
+        scope: RUN_TIME
+        type: GENERAL
+        value: ic4-support-agent
+
+ingress:
+  rules:
+    - match:
+        path:
+          prefix: /
+      component:
+        name: agent
+
+alerts:
+  - rule: DEPLOYMENT_FAILED
+  - rule: DOMAIN_FAILED

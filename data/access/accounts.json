@@ -1,0 +1,170 @@
+[
+  {
+    "account_id": "emp_2001",
+    "name": "Priya Raghavan",
+    "department": "Engineering",
+    "worker_type": "employee",
+    "region": "ap-south",
+    "level": "L4",
+    "manager_id": "mgr_3001",
+    "status": "active",
+    "primary_contact": {
+      "name": "Priya Raghavan",
+      "email": "priya@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2002",
+    "name": "Tomas Bergqvist",
+    "department": "Finance",
+    "worker_type": "employee",
+    "region": "eu-west",
+    "level": "L3",
+    "manager_id": "mgr_3002",
+    "status": "active",
+    "primary_contact": {
+      "name": "Tomas Bergqvist",
+      "email": "tomas@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2003",
+    "name": "Dana Whitfield",
+    "department": "Security",
+    "worker_type": "employee",
+    "region": "us-east",
+    "level": "L5",
+    "manager_id": "mgr_3003",
+    "status": "active",
+    "primary_contact": {
+      "name": "Dana Whitfield",
+      "email": "dana@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2004",
+    "name": "Marcus Ola",
+    "department": "Support",
+    "worker_type": "contractor",
+    "region": "us-east",
+    "level": "L3",
+    "manager_id": "mgr_3004",
+    "status": "active",
+    "primary_contact": {
+      "name": "Marcus Ola",
+      "email": "marcus@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2005",
+    "name": "Yuki Tanaka",
+    "department": "Engineering",
+    "worker_type": "employee",
+    "region": "ap-southeast",
+    "level": "L4",
+    "manager_id": "mgr_3001",
+    "status": "active",
+    "primary_contact": {
+      "name": "Yuki Tanaka",
+      "email": "yuki@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2006",
+    "name": "Helena Krause",
+    "department": "People",
+    "worker_type": "employee",
+    "region": "eu-central",
+    "level": "L4",
+    "manager_id": "mgr_3005",
+    "status": "active",
+    "primary_contact": {
+      "name": "Helena Krause",
+      "email": "helena@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2007",
+    "name": "Sam Idris",
+    "department": "Engineering",
+    "worker_type": "contractor",
+    "region": "us-west",
+    "level": "L3",
+    "manager_id": "mgr_3001",
+    "status": "active",
+    "primary_contact": {
+      "name": "Sam Idris",
+      "email": "sam@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2008",
+    "name": "Rosa Delgado",
+    "department": "Sales",
+    "worker_type": "employee",
+    "region": "us-east",
+    "level": "L3",
+    "manager_id": "mgr_3006",
+    "status": "active",
+    "primary_contact": {
+      "name": "Rosa Delgado",
+      "email": "rosa@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2009",
+    "name": "Nikhil Shetty",
+    "department": "Data",
+    "worker_type": "employee",
+    "region": "ap-south",
+    "level": "L5",
+    "manager_id": "mgr_3007",
+    "status": "active",
+    "primary_contact": {
+      "name": "Nikhil Shetty",
+      "email": "nikhil@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2010",
+    "name": "Aoife Byrne",
+    "department": "Finance",
+    "worker_type": "employee",
+    "region": "eu-west",
+    "level": "L4",
+    "manager_id": "mgr_3002",
+    "status": "active",
+    "primary_contact": {
+      "name": "Aoife Byrne",
+      "email": "aoife@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2011",
+    "name": "Peter Nwosu",
+    "department": "Support",
+    "worker_type": "employee",
+    "region": "us-east",
+    "level": "L2",
+    "manager_id": "mgr_3004",
+    "status": "active",
+    "primary_contact": {
+      "name": "Peter Nwosu",
+      "email": "peter@corp.example"
+    }
+  },
+  {
+    "account_id": "emp_2012",
+    "name": "Lin Wei",
+    "department": "Data",
+    "worker_type": "contractor",
+    "region": "ap-southeast",
+    "level": "L4",
+    "manager_id": "mgr_3007",
+    "status": "active",
+    "primary_contact": {
+      "name": "Lin Wei",
+      "email": "lin@corp.example"
+    }
+  }
+]

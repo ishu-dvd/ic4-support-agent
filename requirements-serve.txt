@@ -1,0 +1,4 @@
+# Only for hosting the agent behind HTTP (agent/serve.py). The agent core needs nothing from here.
+fastapi>=0.115
+uvicorn>=0.30
+pydantic>=2.9

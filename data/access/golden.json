@@ -1,0 +1,268 @@
+[
+  {
+    "case_id": "acc-001",
+    "ticket_id": "REQ-2101",
+    "expected_category": "standing_read_permitted",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0002"
+    ]
+  },
+  {
+    "case_id": "acc-002",
+    "ticket_id": "REQ-2102",
+    "expected_category": "contractor_security_signoff",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0001"
+    ]
+  },
+  {
+    "case_id": "acc-003",
+    "ticket_id": "REQ-2103",
+    "expected_category": "segregation_of_duties_conflict",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0004"
+    ]
+  },
+  {
+    "case_id": "acc-004",
+    "ticket_id": "REQ-2104",
+    "expected_category": "standing_read_permitted",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0002"
+    ]
+  },
+  {
+    "case_id": "acc-005",
+    "ticket_id": "REQ-2105",
+    "expected_category": "on_behalf_incomplete",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0014"
+    ]
+  },
+  {
+    "case_id": "acc-006",
+    "ticket_id": "REQ-2106",
+    "expected_category": "privacy_review_required",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0005"
+    ]
+  },
+  {
+    "case_id": "acc-007",
+    "ticket_id": "REQ-2107",
+    "expected_category": "external_collaborator_limit",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0011"
+    ]
+  },
+  {
+    "case_id": "acc-008",
+    "ticket_id": "REQ-2108",
+    "expected_category": "sales_leadership_approval",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0015"
+    ]
+  },
+  {
+    "case_id": "acc-009",
+    "ticket_id": "REQ-2109",
+    "expected_category": "steward_approval_required",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0010"
+    ]
+  },
+  {
+    "case_id": "acc-010",
+    "ticket_id": "REQ-2110",
+    "expected_category": "cross_region_transfer_basis",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0008"
+    ]
+  },
+  {
+    "case_id": "acc-011",
+    "ticket_id": "REQ-2111",
+    "expected_category": "privileged_write_requires_change",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0003"
+    ]
+  },
+  {
+    "case_id": "acc-012",
+    "ticket_id": "REQ-2112",
+    "expected_category": "contractor_security_signoff",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0001"
+    ]
+  },
+  {
+    "case_id": "acc-013",
+    "ticket_id": "REQ-2113",
+    "expected_category": "breakglass_time_bound",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0006"
+    ]
+  },
+  {
+    "case_id": "acc-014",
+    "ticket_id": "REQ-2114",
+    "expected_category": "baseline_no_approval",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0012"
+    ]
+  },
+  {
+    "case_id": "acc-015",
+    "ticket_id": "REQ-2115",
+    "expected_category": "renewal_requires_justification",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0013"
+    ]
+  },
+  {
+    "case_id": "acc-016",
+    "ticket_id": "REQ-2116",
+    "expected_category": "audit_read_time_bound",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0009"
+    ]
+  },
+  {
+    "case_id": "acc-017",
+    "ticket_id": "REQ-2117",
+    "expected_category": "external_collaborator_limit",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0011"
+    ]
+  },
+  {
+    "case_id": "acc-018",
+    "ticket_id": "REQ-2118",
+    "expected_category": "on_behalf_incomplete",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0014"
+    ]
+  },
+  {
+    "case_id": "acc-019",
+    "ticket_id": "REQ-2119",
+    "expected_category": "entitlement_unknown",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0002"
+    ]
+  },
+  {
+    "case_id": "acc-020",
+    "ticket_id": "REQ-2120",
+    "expected_category": "hris_read_scoped",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0005"
+    ]
+  },
+  {
+    "case_id": "acc-021",
+    "ticket_id": "REQ-2121",
+    "expected_category": "contractor_security_signoff",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0001"
+    ]
+  },
+  {
+    "case_id": "acc-022",
+    "ticket_id": "REQ-2122",
+    "expected_category": "segregation_of_duties_conflict",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0004"
+    ]
+  },
+  {
+    "case_id": "acc-023",
+    "ticket_id": "REQ-2123",
+    "expected_category": "privileged_write_requires_change",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0003"
+    ]
+  },
+  {
+    "case_id": "acc-024",
+    "ticket_id": "REQ-2124",
+    "expected_category": "entitlement_unknown",
+    "expected_escalate": true,
+    "expected_kb": []
+  },
+  {
+    "case_id": "acc-025",
+    "ticket_id": "REQ-2125",
+    "expected_category": "expiry_cannot_be_waived",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0013"
+    ]
+  },
+  {
+    "case_id": "acc-026",
+    "ticket_id": "REQ-2126",
+    "expected_category": "renewal_requires_justification",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0013"
+    ]
+  },
+  {
+    "case_id": "acc-027",
+    "ticket_id": "REQ-2127",
+    "expected_category": "external_collaborator_limit",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0011"
+    ]
+  },
+  {
+    "case_id": "acc-028",
+    "ticket_id": "REQ-2128",
+    "expected_category": "insufficient_information",
+    "expected_escalate": true,
+    "expected_kb": [
+      "pol-0007"
+    ]
+  },
+  {
+    "case_id": "acc-029",
+    "ticket_id": "REQ-2129",
+    "expected_category": "siem_restricted_to_security",
+    "expected_escalate": false,
+    "expected_kb": [
+      "pol-0009"
+    ]
+  },
+  {
+    "case_id": "acc-030",
+    "ticket_id": "REQ-2130",
+    "expected_category": "insufficient_information",
+    "expected_escalate": true,
+    "expected_kb": []
+  }
+]

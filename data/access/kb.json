@@ -1,0 +1,216 @@
+[
+  {
+    "id": "pol-0001",
+    "title": "Contractor access to production data stores",
+    "body": "Contractors may be granted production database read access only with a named business justification, a sponsoring manager, and an end date no more than 30 days out. Production database access for contractors requires Security sign-off in every case and is never granted standing.",
+    "tags": [
+      "contractor",
+      "production",
+      "database",
+      "access",
+      "read",
+      "justification",
+      "sponsor"
+    ],
+    "applies_to": {
+      "worker_type": [
+        "contractor"
+      ]
+    }
+  },
+  {
+    "id": "pol-0002",
+    "title": "Standing production read access for engineers",
+    "body": "Employees at L4 and above in Engineering or Data may hold standing production read on request from their manager. No Security sign-off is required where the request stays within the department's baseline. Access is reviewed at the quarterly access review.",
+    "tags": [
+      "standing",
+      "engineer",
+      "employee",
+      "read",
+      "quarterly",
+      "review",
+      "baseline"
+    ],
+    "applies_to": {
+      "worker_type": [
+        "employee"
+      ]
+    }
+  },
+  {
+    "id": "pol-0003",
+    "title": "Privileged production write access",
+    "body": "Production write is granted per change window, never standing, and always requires Security approval plus a linked change record.",
+    "tags": [
+      "privileged",
+      "write",
+      "production",
+      "change",
+      "window",
+      "approval"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0004",
+    "title": "Financial ledger access and segregation of duties",
+    "body": "Ledger write and invoice approval may not be held by the same person. Requests that would combine them are refused and referred to the Finance controller.",
+    "tags": [
+      "ledger",
+      "finance",
+      "segregation",
+      "duties",
+      "invoice",
+      "approval"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0005",
+    "title": "HRIS access and special category data",
+    "body": "HRIS write access is restricted to the People team. Any request touching special category data requires Privacy review regardless of requester department.",
+    "tags": [
+      "hris",
+      "people",
+      "privacy",
+      "special",
+      "category",
+      "personal"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0006",
+    "title": "Break-glass access during an incident",
+    "body": "Break-glass grants are valid for four hours, are logged to the SIEM, and must be reconciled by the incident commander within one business day.",
+    "tags": [
+      "breakglass",
+      "break",
+      "glass",
+      "incident",
+      "emergency",
+      "four",
+      "hours"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0007",
+    "title": "Access requests without a named approver",
+    "body": "A request that does not identify an approver in the requester's management chain cannot be actioned automatically and is routed to a human reviewer for confirmation.",
+    "tags": [
+      "approver",
+      "manager",
+      "chain",
+      "unnamed",
+      "human",
+      "review",
+      "routing"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0008",
+    "title": "Cross-region data access restrictions",
+    "body": "Access to data resident in eu-central and eu-west from outside the EU requires a documented transfer basis. Requests without one are held pending Privacy review.",
+    "tags": [
+      "cross",
+      "region",
+      "transfer",
+      "eu",
+      "residency",
+      "privacy"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0009",
+    "title": "SIEM and audit log access",
+    "body": "SIEM read is limited to Security. Audit log read may be granted to Engineering leads for their own services on a 90 day expiry.",
+    "tags": [
+      "siem",
+      "audit",
+      "log",
+      "security",
+      "expiry"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0010",
+    "title": "Warehouse access tiers",
+    "body": "Warehouse read is baseline for Data. Access to the restricted schema requires data steward approval and carries a 60 day expiry.",
+    "tags": [
+      "warehouse",
+      "schema",
+      "restricted",
+      "steward",
+      "data"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0011",
+    "title": "Repository access for external collaborators",
+    "body": "External collaborators receive read on named repositories only. Organisation-wide read is not available to non-employees.",
+    "tags": [
+      "repository",
+      "repo",
+      "external",
+      "collaborator",
+      "organisation"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0012",
+    "title": "Staging environment access",
+    "body": "Staging deploy is baseline for Engineering. Staging carries no production data and needs no additional approval.",
+    "tags": [
+      "staging",
+      "deploy",
+      "environment",
+      "baseline"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0013",
+    "title": "Expiry and renewal of time-bound grants",
+    "body": "Time-bound grants expire automatically. Renewal requires the original justification to be restated; renewals are not automatic.",
+    "tags": [
+      "expiry",
+      "renewal",
+      "time",
+      "bound",
+      "grant"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0014",
+    "title": "Requests on behalf of another person",
+    "body": "A request filed on behalf of someone else must name that person and their manager. Requests that do not are referred to a human reviewer.",
+    "tags": [
+      "behalf",
+      "another",
+      "proxy",
+      "name",
+      "reviewer"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "pol-0015",
+    "title": "CRM export limits",
+    "body": "Bulk CRM export above 10,000 records requires Sales leadership approval and is logged.",
+    "tags": [
+      "crm",
+      "export",
+      "bulk",
+      "records",
+      "sales"
+    ],
+    "applies_to": {}
+  }
+]

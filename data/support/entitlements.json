@@ -1,0 +1,163 @@
+[
+  {
+    "account_id": "acct_1001",
+    "support_tier": "standard",
+    "seats": 40,
+    "features": [
+      "sso",
+      "audit_log",
+      "data_export"
+    ],
+    "sla_hours": 12,
+    "rate_limit_rpm": 1200,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1002",
+    "support_tier": "basic",
+    "seats": 5,
+    "features": [
+      "data_export"
+    ],
+    "sla_hours": 48,
+    "rate_limit_rpm": 300,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1003",
+    "support_tier": "premium",
+    "seats": 250,
+    "features": [
+      "sso",
+      "audit_log",
+      "private_networking",
+      "data_export",
+      "priority_routing",
+      "custom_sla"
+    ],
+    "sla_hours": 4,
+    "rate_limit_rpm": 6000,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1004",
+    "support_tier": "standard",
+    "seats": 40,
+    "features": [
+      "sso",
+      "audit_log",
+      "data_export"
+    ],
+    "sla_hours": 12,
+    "rate_limit_rpm": 1200,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1005",
+    "support_tier": "premium",
+    "seats": 250,
+    "features": [
+      "sso",
+      "audit_log",
+      "private_networking",
+      "data_export",
+      "priority_routing",
+      "custom_sla"
+    ],
+    "sla_hours": 4,
+    "rate_limit_rpm": 6000,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1006",
+    "support_tier": "basic",
+    "seats": 5,
+    "features": [
+      "data_export"
+    ],
+    "sla_hours": 48,
+    "rate_limit_rpm": 300,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1007",
+    "support_tier": "standard",
+    "seats": 40,
+    "features": [
+      "sso",
+      "audit_log",
+      "data_export"
+    ],
+    "sla_hours": 12,
+    "rate_limit_rpm": 1200,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1008",
+    "support_tier": "standard",
+    "seats": 60,
+    "features": [
+      "sso",
+      "data_export"
+    ],
+    "sla_hours": 24,
+    "rate_limit_rpm": 600,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1009",
+    "support_tier": "premium",
+    "seats": "unlimited",
+    "features": [
+      "sso",
+      "audit_log",
+      "private_networking",
+      "data_export",
+      "priority_routing",
+      "custom_sla"
+    ],
+    "sla_hours": 4,
+    "rate_limit_rpm": 6000,
+    "updated_at": "2026-08-19T22:41:00Z"
+  },
+  {
+    "account_id": "acct_1010",
+    "support_tier": "basic",
+    "seats": 5,
+    "features": [
+      "data_export"
+    ],
+    "sla_hours": 48,
+    "rate_limit_rpm": 300,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1011",
+    "support_tier": "standard",
+    "seats": 40,
+    "features": [
+      "sso",
+      "audit_log",
+      "data_export"
+    ],
+    "sla_hours": 12,
+    "rate_limit_rpm": 1200,
+    "updated_at": "2026-08-02T09:14:00Z"
+  },
+  {
+    "account_id": "acct_1012",
+    "support_tier": "premium",
+    "seats": 250,
+    "features": [
+      "sso",
+      "audit_log",
+      "private_networking",
+      "data_export",
+      "priority_routing",
+      "custom_sla"
+    ],
+    "sla_hours": 4,
+    "rate_limit_rpm": 6000,
+    "updated_at": "2026-08-02T09:14:00Z"
+  }
+]

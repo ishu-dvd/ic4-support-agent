@@ -1,0 +1,146 @@
+[
+  {
+    "account_id": "acct_1001",
+    "name": "Northwind Retail",
+    "plan_tier": "business",
+    "region": "us-east",
+    "auth_model": "unified_auth",
+    "customer_since": "2023-04-11",
+    "primary_contact": {
+      "name": "Northwind Ops",
+      "email": "ops@northwind.example"
+    }
+  },
+  {
+    "account_id": "acct_1002",
+    "name": "Kestrel Labs",
+    "plan_tier": "startup",
+    "region": "eu-west",
+    "auth_model": "unified_auth",
+    "customer_since": "2024-09-02",
+    "primary_contact": {
+      "name": "Kestrel Ops",
+      "email": "ops@kestrel.example"
+    }
+  },
+  {
+    "account_id": "acct_1003",
+    "name": "Vantage Health",
+    "plan_tier": "enterprise",
+    "region": "us-east",
+    "auth_model": "unified_auth",
+    "customer_since": "2021-01-19",
+    "primary_contact": {
+      "name": "Vantage Ops",
+      "email": "ops@vantage.example"
+    }
+  },
+  {
+    "account_id": "acct_1004",
+    "name": "Bluepeak Media",
+    "plan_tier": "business",
+    "region": "us-west",
+    "auth_model": "legacy_auth",
+    "customer_since": "2020-06-30",
+    "primary_contact": {
+      "name": "Bluepeak Ops",
+      "email": "ops@bluepeak.example"
+    }
+  },
+  {
+    "account_id": "acct_1005",
+    "name": "Orinoco Freight",
+    "plan_tier": "enterprise",
+    "region": "eu-central",
+    "auth_model": "unified_auth",
+    "customer_since": "2022-03-14",
+    "primary_contact": {
+      "name": "Orinoco Ops",
+      "email": "ops@orinoco.example"
+    }
+  },
+  {
+    "account_id": "acct_1006",
+    "name": "Fernwood Analytics",
+    "plan_tier": "startup",
+    "region": "us-east",
+    "auth_model": "unified_auth",
+    "customer_since": "2025-02-08",
+    "primary_contact": {
+      "name": "Fernwood Ops",
+      "email": "ops@fernwood.example"
+    }
+  },
+  {
+    "account_id": "acct_1007",
+    "name": "Halcyon Games",
+    "plan_tier": "business",
+    "region": "ap-south",
+    "auth_model": "unified_auth",
+    "customer_since": "2023-11-21",
+    "primary_contact": {
+      "name": "Halcyon Ops",
+      "email": "ops@halcyon.example"
+    }
+  },
+  {
+    "account_id": "acct_1008",
+    "name": "Trellis Education",
+    "plan_tier": "nonprofit",
+    "region": "us-east",
+    "auth_model": "legacy_auth",
+    "customer_since": "2019-08-05",
+    "primary_contact": {
+      "name": "Trellis Ops",
+      "email": "ops@trellis.example"
+    }
+  },
+  {
+    "account_id": "acct_1009",
+    "name": "Sable Financial",
+    "plan_tier": "enterprise",
+    "region": "us-east",
+    "auth_model": "unified_auth",
+    "customer_since": "2021-07-27",
+    "primary_contact": {
+      "name": "Sable Ops",
+      "email": "ops@sable.example"
+    }
+  },
+  {
+    "account_id": "acct_1010",
+    "name": "Ridgeline Robotics",
+    "plan_tier": "startup",
+    "region": "us-west",
+    "auth_model": "unified_auth",
+    "customer_since": "2025-05-16",
+    "primary_contact": {
+      "name": "Ridgeline Ops",
+      "email": "ops@ridgeline.example"
+    }
+  },
+  {
+    "account_id": "acct_1011",
+    "name": "Copperfield Foods",
+    "plan_tier": "business",
+    "region": "eu-west",
+    "auth_model": "unified_auth",
+    "customer_since": "2022-12-01",
+    "primary_contact": {
+      "name": "Copperfield Ops",
+      "email": "ops@copperfield.example"
+    }
+  },
+  {
+    "account_id": "acct_1012",
+    "name": "Aster Biotech",
+    "plan_tier": "enterprise",
+    "region": "ap-southeast",
+    "auth_model": "unified_auth",
+    "customer_since": "2020-10-09",
+    "primary_contact": {
+      "name": "Aster Ops",
+      "email": "ops@aster.example"
+    }
+  }
+]

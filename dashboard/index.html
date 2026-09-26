@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support Agent Observability</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1e222b;--border:#2a2f3a;--fg:#d6dae3;--muted:#8b93a3;--accent:#5b9cf6;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--step:#4f86d8;--call:#b57bee;--evt:#e3b341;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:13px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+header{display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+header h1{font-size:15px;margin:0 8px 0 0;font-weight:600}
+.badge{display:inline-block;padding:2px 7px;border-radius:4px;background:var(--panel2);border:1px solid var(--border);font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.badge b{color:var(--fg);font-weight:500}
+.badge.ok{border-color:var(--ok);color:var(--ok)}
+.badge.bad{border-color:var(--bad);color:var(--bad)}
+.spacer{flex:1}
+.tabs{display:flex;gap:2px;margin-left:8px}
+.tabs button{background:transparent;border:1px solid var(--border);color:var(--muted);padding:4px 12px;cursor:pointer;border-radius:4px}
+.tabs button.active{background:var(--panel2);color:var(--fg);border-color:var(--accent)}
+#banner{display:none;background:#5a1e1e;color:#ffd7d7;padding:6px 14px;border-bottom:1px solid var(--bad);font-family:var(--mono);font-size:12px;white-space:pre-wrap}
+#banner.show{display:block}
+main{padding:10px 14px;max-width:1600px;margin:0 auto}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:end;padding:8px 10px;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:10px}
+.filters label{display:flex;flex-direction:column;gap:2px;font-size:11px;color:var(--muted)}
+input,select,button,textarea{background:var(--panel2);color:var(--fg);border:1px solid var(--border);border-radius:4px;padding:4px 6px;font:inherit;font-size:12.5px}
+input[type=text],input[type=number]{width:150px}
+button{cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:10px}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:8px 10px;min-height:62px}
+.kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.kpi .v{font-size:19px;font-weight:600;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:11px;color:var(--muted);margin-top:1px;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:8px 10px;min-width:0;overflow:hidden}
+.card h3{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+svg{display:block;max-width:100%}
+svg text{font-family:system-ui,sans-serif;font-size:11px;fill:var(--fg)}
+svg text.muted{fill:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{padding:4px 6px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+th{color:var(--muted);font-weight:600;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--panel)}
+th.sorted{color:var(--fg)}
+th .arr{font-size:10px;margin-left:2px}
+tbody tr:hover{background:var(--panel2)}
+tbody tr.clickable{cursor:pointer}
+td.num,th.num{text-align:right}
+.tblwrap{overflow:auto;max-height:520px}
+.mono{font-family:var(--mono);font-size:11.5px}
+.trunc{cursor:copy;border-bottom:1px dotted var(--muted)}
+.o-completed{color:var(--ok)}.o-degraded{color:var(--warn)}.o-failed{color:var(--bad)}
+.pill{display:inline-block;padding:0 6px;border-radius:9px;font-size:11px;border:1px solid currentColor}
+.muted{color:var(--muted)}
+.empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:6px;margin:10px 0}
+.empty code{background:var(--panel2);padding:1px 5px;border-radius:3px;font-family:var(--mono)}
+.pager{display:flex;gap:8px;align-items:center;justify-content:flex-end;padding:6px 0;color:var(--muted)}
+/* drawer */
+#drawer{position:fixed;top:0;right:0;width:760px;max-width:95vw;height:100vh;background:var(--panel);border-left:1px solid var(--border);box-shadow:-8px 0 30px rgba(0,0,0,.5);transform:translateX(105%);transition:transform .15s;z-index:20;display:flex;flex-direction:column}
+#drawer.open{transform:none}
+#drawer .dh{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--border)}
+#drawer .db{overflow:auto;padding:10px 12px;flex:1}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:3px 8px;font-size:12.5px}
+.kv .k{color:var(--muted)}
+.kv .v{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+.copy{font-size:10px;padding:0 5px;margin-left:5px;vertical-align:middle}
+.sec{margin-top:12px}
+.sec h4{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+pre{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:8px;overflow:auto;font-family:var(--mono);font-size:11px;max-height:400px;margin:0;white-space:pre-wrap;word-break:break-all}
+.reply{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:8px;white-space:pre-wrap;max-height:200px;overflow:auto;font-size:12px}
+.row{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
+.legend{display:inline-flex;gap:10px;font-size:11px;color:var(--muted);margin-left:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:3px}
+.toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--accent);padding:6px 12px;border-radius:4px;z-index:50;display:none}
+.small{font-size:11px}
+hr{border:0;border-top:1px solid var(--border);margin:10px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="svc">Support Agent</h1>
+  <span class="badge" id="b-provider">provider: <b>—</b></span>
+  <span class="badge" id="b-model">model: <b>—</b></span>
+  <span class="badge" id="b-host">host: <b>—</b></span>
+  <span class="badge" id="b-key">key: —</span>
+  <div class="tabs">
+    <button data-tab="overview" class="active">Overview</button>
+    <button data-tab="evals">Evals</button>
+  </div>
+  <span class="spacer"></span>
+  <label class="small"><input type="checkbox" id="autorefresh" checked> Auto-refresh 10s</label>
+  <span class="small muted" id="updated">last updated: —</span>
+  <button id="refresh">Refresh</button>
+</header>
+<div id="banner"></div>
+<main>
+<section id="tab-overview">
+  <div class="filters" id="filters">
+    <label>Outcome<select id="f-outcome"><option value="">all</option></select></label>
+    <label>Category<select id="f-category"><option value="">all</option></select></label>
+    <label>Model<select id="f-model"><option value="">all</option></select></label>
+    <label>Ticket<input type="text" id="f-ticket" placeholder="ticket id"></label>
+    <label>Correlation id<input type="text" id="f-correlation_id" placeholder="correlation id"></label>
+    <label>Search<input type="text" id="f-q" placeholder="free text"></label>
+    <label>Window<select id="f-window">
+      <option value="all">all time</option><option value="15m">last 15m</option><option value="1h">last 1h</option><option value="24h">last 24h</option><option value="7d">last 7d</option>
+    </select></label>
+    <button id="f-clear">Clear</button>
+    <span class="small muted" id="f-summary"></span>
+  </div>
+  <div id="empty" class="empty" style="display:none">No runs yet. Run <code>make agent-eval</code>, or use the <a href="#" id="goto-run">Run one ticket</a> box in the Evals tab.</div>
+  <div class="kpis" id="kpis"></div>
+  <div class="grid">
+    <div class="card" style="grid-column:span 2"><h3>Per-step latency (ms) <span class="legend"><i style="background:#3b6fd1"></i>p50 <i style="background:#7fa7ee"></i>p95 <i style="background:#c6d6f7"></i>p99</span></h3><div id="ch-steps"></div></div>
+    <div class="card"><h3>Outcomes</h3><div id="ch-outcomes"></div><h3 style="margin-top:10px">Retries histogram (per run)</h3><div id="ch-retries"></div></div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Cost by model (USD)</h3><div id="ch-models"></div><div id="tbl-models"></div></div>
+    <div class="card"><h3>Cost split</h3><div id="ch-cost"></div></div>
+    <div class="card"><h3>Top events</h3><div id="lst-events"></div><h3 style="margin-top:10px">Top errors</h3><div id="lst-errors"></div></div>
+  </div>
+  <div class="card">
+    <h3>Runs <span class="muted" id="runs-count"></span></h3>
+    <div class="tblwrap"><table id="runs"><thead></thead><tbody></tbody></table></div>
+    <div class="pager"><span id="pg-info"></span><button id="pg-prev">‹ prev</button><button id="pg-next">next ›</button></div>
+  </div>
+</section>
+
+<section id="tab-evals" style="display:none">
+  <div class="grid2">
+    <div class="card">
+      <h3>Run eval (POST /api/evals)</h3>
+      <div class="row">
+        <label class="small">Label<br><input type="text" id="ev-label" placeholder="label"></label>
+        <label class="small">Limit<br><input type="number" id="ev-limit" value="20" style="width:80px"></label>
+        <label class="small">Prompt version<br><input type="text" id="ev-pv" placeholder="(default)" style="width:110px"></label>
+        <button class="primary" id="ev-start">Run eval</button>
+      </div>
+      <div class="small mono muted" id="ev-status" style="margin-top:6px"></div>
+    </div>
+    <div class="card">
+      <h3>Run one ticket (POST /run, write=false)</h3>
+      <div class="row">
+        <label class="small">Ticket id<br><input type="text" id="r-ticket" placeholder="ticket id"></label>
+        <label class="small">Correlation id<br><input type="text" id="r-corr" placeholder="optional"></label>
+        <button class="primary" id="r-start">Run</button>
+      </div>
+      <div class="small mono" id="r-ids" style="margin-top:6px"></div>
+      <pre id="r-out" style="display:none;margin-top:6px"></pre>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Evals <span class="muted" id="ev-count"></span></h3>
+    <div class="tblwrap"><table id="evals"><thead></thead><tbody></tbody></table></div>
+    <div id="ev-empty" class="empty" style="display:none">No evals yet. Run <code>make agent-eval</code> or use the Run eval button.</div>
+  </div>
+  <div class="card" id="ev-detail" style="display:none;margin-top:10px">
+    <h3>Eval detail: <span id="evd-label"></span></h3>
+    <div id="evd-summary" class="kv"></div>
+    <hr>
+    <div class="row">
+      <label class="small">Show<select id="evd-filter"><option value="">all cases</option><option value="incorrect">incorrect (category or escalate)</option><option value="correct">all correct</option><option value="cat_wrong">category wrong</option><option value="esc_wrong">escalate wrong</option><option value="kb_miss">kb recall miss</option><option value="failed">outcome ≠ completed</option></select></label>
+      <span class="muted small" id="evd-count"></span>
+    </div>
+    <div class="tblwrap" style="margin-top:6px"><table id="cases"><thead></thead><tbody></tbody></table></div>
+  </div>
+</section>
+</main>
+
+<div id="drawer">
+  <div class="dh"><b id="d-title">Run</b><span class="badge" id="d-outcome"></span><span class="spacer"></span><button id="d-raw">Raw JSON</button><button id="d-close">✕</button></div>
+  <div class="db" id="d-body"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+// ---------- utils ----------
+const $ = s => document.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k === 'html') e.innerHTML = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(String(k))); return e; };
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isNum = v => typeof v === 'number' && isFinite(v);
+const fmtMs = v => isNum(v) ? Math.round(v).toLocaleString() : '—';
+const fmtMsU = v => isNum(v) ? Math.round(v).toLocaleString() + ' ms' : '—';
+const fmtUsd = v => isNum(v) ? '$' + v.toFixed(Math.abs(v) < 0.01 && v !== 0 ? 6 : 4) : (v === null ? 'unknown' : '—');
+const fmtPct = v => isNum(v) ? (v * 100).toFixed(1) + '%' : '—';
+const fmtInt = v => isNum(v) ? v.toLocaleString() : '—';
+const fmtTime = ms => isNum(ms) ? new Date(ms).toLocaleString(undefined, { hour12: false }) : '—';
+const fmtTimeShort = ms => isNum(ms) ? new Date(ms).toISOString().replace('T', ' ').slice(5, 19) : '—';
+const trunc = (s, n = 10) => { s = String(s ?? ''); return s.length > n ? s.slice(0, n) + '…' : s; };
+const pct = (o, k) => o && isNum(o[k]) ? o[k] : null;
+const outcomeColor = o => ({ completed: 'var(--ok)', degraded: 'var(--warn)', failed: 'var(--bad)' }[o] || 'var(--muted)');
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.style.display = 'block'; clearTimeout(toast._t); toast._t = setTimeout(() => t.style.display = 'none', 1500); }
+async function copy(text) { try { await navigator.clipboard.writeText(String(text)); toast('copied'); } catch (e) { const ta = el('textarea', {}, text); document.body.append(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast('copied'); } }
+const copyBtn = v => el('button', { class: 'copy', title: 'copy', onclick: e => { e.stopPropagation(); copy(v); } }, '⧉');
+const truncCell = v => v ? el('span', { class: 'trunc mono', title: v + ' (click to copy)', onclick: e => { e.stopPropagation(); copy(v); } }, trunc(v, 12)) : el('span', { class: 'muted' }, '—');
+
+// banner / fetch
+const banner = $('#banner'); const errors = new Map();
+function showErr(key, msg) { errors.set(key, msg); banner.textContent = [...errors.values()].join('\n'); banner.classList.add('show'); }
+function clearErr(key) { errors.delete(key); if (!errors.size) banner.classList.remove('show'); else banner.textContent = [...errors.values()].join('\n'); }
+async function api(path, opts) {
+  try {
+    const r = await fetch(path, opts);
+    if (!r.ok) { let body = ''; try { body = await r.text(); } catch (e) {} throw new Error(`HTTP ${r.status} ${r.statusText} ${trunc(body, 200)}`); }
+    clearErr(path.split('?')[0]);
+    return await r.json();
+  } catch (e) { showErr(path.split('?')[0], `${opts && opts.method || 'GET'} ${path.split('?')[0]} failed: ${e.message}`); throw e; }
+}
+const post = (path, body) => api(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+
+// ---------- SVG helpers ----------
+const NS = 'http://www.w3.org/2000/svg';
+const svgEl = (tag, attrs = {}, text) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (text != null) e.textContent = text; return e; };
+function svgRoot(w, h) { return svgEl('svg', { viewBox: `0 0 ${w} ${h}`, width: '100%', height: h, preserveAspectRatio: 'none' }); }
+// horizontal bars: rows=[{label, values:[{v,color,title}], text}] grouped per row
+function hbarChart(rows, { width = 560, rowH = 20, labelW = 110, fmt = fmtMs, max } = {}) {
+  const h = rows.length * rowH + 6;
+  const svg = svgRoot(width, h);
+  const mx = max || Math.max(1, ...rows.flatMap(r => r.values.map(v => v.v || 0)));
+  const plotW = width - labelW - 90;
+  rows.forEach((r, i) => {
+    const y = i * rowH + 3;
+    svg.append(svgEl('text', { x: labelW - 6, y: y + rowH / 2 + 4, 'text-anchor': 'end' }, r.label));
+    const n = r.values.length, bh = (rowH - 4) / n;
+    r.values.forEach((v, j) => {
+      const w = Math.max(v.v ? 1 : 0, (v.v || 0) / mx * plotW);
+      const rect = svgEl('rect', { x: labelW, y: y + j * bh, width: w, height: Math.max(1, bh - 1), fill: v.color || 'var(--accent)', rx: 1 });
+      rect.append(svgEl('title', {}, v.title || `${r.label}: ${fmt(v.v)}`));
+      svg.append(rect);
+    });
+    svg.append(svgEl('text', { x: labelW + plotW + 6, y: y + rowH / 2 + 4, class: 'muted' }, r.text != null ? r.text : r.values.map(v => fmt(v.v)).join(' / ')));
+  });
+  return svg;
+}
+// simple vertical bars: items=[{label, v, color}]
+function barChart(items, { width = 340, height = 130, fmt = fmtInt } = {}) {
+  const svg = svgRoot(width, height);
+  const mx = Math.max(1, ...items.map(i => i.v || 0)); const bottom = height - 18, top = 14;
+  const bw = Math.min(60, (width - 10) / Math.max(1, items.length) - 6);
+  items.forEach((it, i) => {
+    const x = 5 + i * ((width - 10) / items.length) + ((width - 10) / items.length - bw) / 2;
+    const hh = (it.v || 0) / mx * (bottom - top);
+    const rect = svgEl('rect', { x, y: bottom - hh, width: bw, height: hh, fill: it.color || 'var(--accent)', rx: 2 });
+    rect.append(svgEl('title', {}, `${it.label}: ${fmt(it.v)}`));
+    svg.append(rect);
+    svg.append(svgEl('text', { x: x + bw / 2, y: bottom - hh - 3, 'text-anchor': 'middle' }, fmt(it.v)));
+    svg.append(svgEl('text', { x: x + bw / 2, y: height - 4, 'text-anchor': 'middle', class: 'muted' }, trunc(it.label, Math.max(4, Math.floor(bw / 6)))));
+  });
+  return svg;
+}
+// waterfall: rows=[{label, depth, start, dur, color, title}], events=[{ts, name, color}] relative ms
+function waterfall(rows, events, { width = 720, rowH = 18, labelW = 260 } = {}) {
+  const total = Math.max(1, ...rows.map(r => r.start + (r.dur || 0)), ...events.map(e => e.ts));
+  const h = rows.length * rowH + 30;
+  const svg = svgRoot(width, h); const plotW = width - labelW - 70; const x0 = labelW;
+  // grid
+  const ticks = 5;
+  for (let i = 0; i <= ticks; i++) { const x = x0 + plotW * i / ticks; svg.append(svgEl('line', { x1: x, x2: x, y1: 14, y2: h - 14, stroke: 'var(--border)' })); svg.append(svgEl('text', { x, y: 10, 'text-anchor': 'middle', class: 'muted' }, fmtMs(total * i / ticks))); }
+  rows.forEach((r, i) => {
+    const y = 16 + i * rowH;
+    const t = svgEl('text', { x: 4 + r.depth * 12, y: y + rowH / 2 + 4 }, trunc(r.label, Math.floor((labelW - 8 - r.depth * 12) / 6)));
+    t.append(svgEl('title', {}, r.title || r.label)); svg.append(t);
+    const w = Math.max(2, (r.dur || 0) / total * plotW);
+    const rect = svgEl('rect', { x: x0 + r.start / total * plotW, y: y + 3, width: w, height: rowH - 6, fill: r.color, rx: 2, opacity: r.dur == null ? .4 : 1 });
+    rect.append(svgEl('title', {}, r.title || r.label)); svg.append(rect);
+    svg.append(svgEl('text', { x: x0 + plotW + 4, y: y + rowH / 2 + 4, class: 'muted' }, fmtMs(r.dur)));
+  });
+  events.forEach(e => {
+    const x = x0 + e.ts / total * plotW;
+    const l = svgEl('line', { x1: x, x2: x, y1: 14, y2: h - 14, stroke: e.color || 'var(--evt)', 'stroke-dasharray': '2 2' });
+    l.append(svgEl('title', {}, `${e.name} @ ${fmtMs(e.ts)} ms`)); svg.append(l);
+    const m = svgEl('polygon', { points: `${x - 4},${h - 12} ${x + 4},${h - 12} ${x},${h - 5}`, fill: e.color || 'var(--evt)' });
+    m.append(svgEl('title', {}, `${e.name} @ ${fmtMs(e.ts)} ms`)); svg.append(m);
+  });
+  return svg;
+}
+
+// ---------- state / filters ----------
+const STEPS = ['read_ticket', 'read_parallel', 'read_account', 'read_entitlements', 'kb_search', 'filter_kb', 'classify_intent', 'escalation_policy', 'draft', 'output_guard', 'write', 'summarize'];
+const state = { tab: 'overview', filters: { outcome: '', category: '', model: '', ticket: '', correlation_id: '', q: '', window: 'all' }, sort: 'start_ms', order: 'desc', offset: 0, limit: 50, runs: [], total: 0, evals: [], evalSort: 'timestamp', evalOrder: 'desc', cases: [], caseSort: 'case_id', caseOrder: 'asc' };
+const WINDOW_MS = { '15m': 15 * 60e3, '1h': 3600e3, '24h': 86400e3, '7d': 7 * 86400e3 };
+function readHash() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  for (const k of Object.keys(state.filters)) if (p.has(k)) state.filters[k] = p.get(k);
+  if (p.has('tab')) state.tab = p.get('tab');
+  if (p.has('sort')) state.sort = p.get('sort'); if (p.has('order')) state.order = p.get('order');
+  if (p.has('offset')) state.offset = +p.get('offset') || 0;
+  for (const k of Object.keys(state.filters)) { const e = $('#f-' + k); if (e) e.value = state.filters[k]; }
+}
+function writeHash() {
+  const p = new URLSearchParams();
+  for (const [k, v] of Object.entries(state.filters)) if (v && !(k === 'window' && v === 'all')) p.set(k, v);
+  if (state.tab !== 'overview') p.set('tab', state.tab);
+  if (state.sort !== 'start_ms') p.set('sort', state.sort); if (state.order !== 'desc') p.set('order', state.order);
+  if (state.offset) p.set('offset', state.offset);
+  if (state.evalId) p.set('eval', state.evalId);
+  history.replaceState(null, '', '#' + p.toString());
+}
+function filterQuery(extra = {}) {
+  const p = new URLSearchParams(); const f = state.filters;
+  for (const k of ['outcome', 'category', 'model', 'ticket', 'correlation_id', 'q']) if (f[k]) p.set(k, f[k]);
+  if (f.window !== 'all' && WINDOW_MS[f.window]) p.set('since_ms', Date.now() - WINDOW_MS[f.window]);
+  for (const [k, v] of Object.entries(extra)) if (v !== '' && v != null) p.set(k, v);
+  return p.toString();
+}
+function fillSelect(sel, values, current) {
+  const keep = current || ''; sel.innerHTML = '<option value="">all</option>';
+  for (const v of (values || [])) sel.append(el('option', { value: v }, v));
+  if (keep && ![...sel.options].some(o => o.value === keep)) sel.append(el('option', { value: keep }, keep));
+  sel.value = keep;
+}
+
+// ---------- config ----------
+async function loadConfig() {
+  const c = await api('/api/config').catch(() => null); if (!c) return;
+  $('#svc').textContent = c.service || 'Support Agent'; document.title = (c.service || 'Support Agent') + ' · observability';
+  $('#b-provider').innerHTML = 'provider: <b>' + esc(c.provider || '—') + '</b>';
+  $('#b-model').innerHTML = 'model: <b>' + esc(c.model_id || '—') + '</b>';
+  $('#b-host').innerHTML = 'host: <b>' + esc(c.inference_host || c.upstream || '—') + '</b>';
+  const k = $('#b-key'); k.textContent = c.key_set ? 'API key set' : 'API key missing'; k.className = 'badge ' + (c.key_set ? 'ok' : 'bad');
+  if (c.runs_dir) k.title = 'runs_dir: ' + c.runs_dir;
+}
+
+// ---------- metrics ----------
+function kpi(label, value, sub) { return el('div', { class: 'kpi' }, el('div', { class: 'l' }, label), el('div', { class: 'v' }, value), sub ? el('div', { class: 's' }, sub) : null); }
+function renderMetrics(m) {
+  const K = $('#kpis'); K.innerHTML = '';
+  const n = m.n || 0; $('#empty').style.display = n ? 'none' : 'block';
+  const lat = m.latency || {}, e2e = lat.e2e_ms || {}, ttft = lat.ttft_ms || {}, tbt = lat.tbt_ms || {};
+  const cost = m.cost || {}, ct = cost.total || {}, rt = m.retries || {};
+  const unknown = ct.unknown_price_runs || 0;
+  K.append(
+    kpi('runs', fmtInt(n), m.window && isNum(m.window.from_ms) ? `${fmtTimeShort(m.window.from_ms)} → ${fmtTimeShort(m.window.to_ms)}` : ''),
+    kpi('success rate', fmtPct(m.success_rate), `${fmtInt((m.outcomes || {}).completed)} completed`),
+    kpi('failure rate', fmtPct(m.failure_rate), `${fmtInt((m.outcomes || {}).failed)} failed · ${fmtInt((m.outcomes || {}).degraded)} degraded`),
+    kpi('escalations', fmtInt(m.escalations), n ? fmtPct(m.escalations / n) + ' of runs' : ''),
+    kpi('cost total', fmtUsd(ct.usd), unknown ? `unknown price for ${unknown} run${unknown > 1 ? 's' : ''}` : `per run ${fmtUsd(cost.per_run)}`),
+    kpi('cost / success', fmtUsd(cost.per_success), `${fmtUsd((cost.success || {}).usd)} on successes`),
+    kpi('cost of failures', fmtUsd((cost.failure || {}).usd), `burnt on failed runs · degraded ${fmtUsd((cost.degraded || {}).usd)}`),
+    kpi('diagnosis vs reply', `${fmtUsd(cost.diagnosis_usd)} / ${fmtUsd(cost.reply_usd)}`, `in ${fmtUsd(cost.input_usd)} · out ${fmtUsd(cost.output_usd)}`),
+    kpi('e2e p50 / p95 / p99', `${fmtMs(e2e.p50)} / ${fmtMs(e2e.p95)} / ${fmtMs(e2e.p99)}`, `ms · mean ${fmtMs(e2e.mean)} · max ${fmtMs(e2e.max)}`),
+    kpi('TTFT p50 / p95', `${fmtMs(ttft.p50)} / ${fmtMs(ttft.p95)}`, `ms · n=${fmtInt(ttft.n)}`),
+    kpi('TBT p50 / p95', `${fmtMs(tbt.p50)} / ${fmtMs(tbt.p95)}`, `ms inter-token · n=${fmtInt(tbt.n)}`),
+    kpi('retries', fmtInt(rt.total), `http ${fmtInt(rt.http)} · llm ${fmtInt(rt.llm)} · ${fmtInt(rt.runs_with_retries)} runs with retries`),
+    kpi('guard violation runs', fmtInt(m.guard_violation_runs), ''),
+    kpi('injection suspected', fmtInt(m.injection_suspected), `entitlements degraded ${fmtInt(m.entitlements_degraded)}`),
+    kpi('tokens in / out', `${fmtInt(cost.input_tokens)} / ${fmtInt(cost.output_tokens)}`, cost.estimated_usage_runs ? `usage estimated for ${cost.estimated_usage_runs} runs` : ''),
+  );
+  // steps chart
+  const steps = lat.steps_ms || {};
+  const names = [...STEPS.filter(s => steps[s]), ...Object.keys(steps).filter(s => !STEPS.includes(s))];
+  const rows = names.map(s => ({ label: s, values: [{ v: pct(steps[s], 'p50'), color: '#3b6fd1', title: `${s} p50 ${fmtMs(steps[s].p50)} ms` }, { v: pct(steps[s], 'p95'), color: '#7fa7ee', title: `${s} p95 ${fmtMs(steps[s].p95)} ms` }, { v: pct(steps[s], 'p99'), color: '#c6d6f7', title: `${s} p99 ${fmtMs(steps[s].p99)} ms` }], text: `${fmtMs(steps[s].p50)} / ${fmtMs(steps[s].p95)} / ${fmtMs(steps[s].p99)}` }));
+  $('#ch-steps').replaceChildren(rows.length ? hbarChart(rows, { width: 760, rowH: 22, labelW: 120 }) : el('div', { class: 'muted' }, 'no step data'));
+  // outcomes
+  const oc = m.outcomes || {};
+  $('#ch-outcomes').replaceChildren(barChart(['completed', 'degraded', 'failed'].map(o => ({ label: o, v: oc[o] || 0, color: outcomeColor(o) })), { height: 110 }));
+  // retries histogram
+  const hist = rt.histogram || {}; const keys = Object.keys(hist).sort((a, b) => +a - +b);
+  $('#ch-retries').replaceChildren(keys.length ? barChart(keys.map(k => ({ label: k + ' retr.', v: hist[k], color: k === '0' ? 'var(--ok)' : 'var(--warn)' })), { height: 110 }) : el('div', { class: 'muted' }, 'no data'));
+  // models
+  const bm = cost.by_model || {}; const models = Object.keys(bm);
+  $('#ch-models').replaceChildren(models.length ? barChart(models.map(k => ({ label: k, v: bm[k].cost_usd, color: 'var(--accent)' })), { height: 120, fmt: fmtUsd }) : el('div', { class: 'muted' }, 'no data'));
+  const mt = el('table', { class: 'small' }, el('thead', {}, el('tr', {}, ...['model', 'runs', 'cost', 'cost/run', 'TTFT p50', 'e2e p50', 'failed', 'unk. price'].map((h, i) => el('th', { class: i ? 'num' : '' }, h)))),
+    el('tbody', {}, ...models.map(k => { const r = bm[k]; return el('tr', {}, el('td', { class: 'mono', title: k }, trunc(k, 28)), el('td', { class: 'num' }, fmtInt(r.runs)), el('td', { class: 'num' }, fmtUsd(r.cost_usd)), el('td', { class: 'num' }, fmtUsd(r.cost_per_run)), el('td', { class: 'num' }, fmtMs(pct(r.ttft_ms, 'p50'))), el('td', { class: 'num' }, fmtMs(pct(r.e2e_ms, 'p50'))), el('td', { class: 'num' }, fmtInt(r.failed)), el('td', { class: 'num' }, fmtInt(r.unknown_price_runs))); })));
+  $('#tbl-models').replaceChildren(mt);
+  // cost split
+  const cs = [
+    { label: 'input vs output', values: [{ v: cost.input_usd, color: '#3b6fd1', title: 'input ' + fmtUsd(cost.input_usd) }, { v: cost.output_usd, color: '#7fa7ee', title: 'output ' + fmtUsd(cost.output_usd) }], text: `${fmtUsd(cost.input_usd)} / ${fmtUsd(cost.output_usd)}` },
+    { label: 'diagnosis vs reply', values: [{ v: cost.diagnosis_usd, color: '#b57bee', title: 'diagnosis ' + fmtUsd(cost.diagnosis_usd) }, { v: cost.reply_usd, color: '#d9bff7', title: 'reply ' + fmtUsd(cost.reply_usd) }], text: `${fmtUsd(cost.diagnosis_usd)} / ${fmtUsd(cost.reply_usd)}` },
+    { label: 'success / fail / degr.', values: [{ v: (cost.success || {}).usd, color: 'var(--ok)', title: 'success ' + fmtUsd((cost.success || {}).usd) }, { v: (cost.failure || {}).usd, color: 'var(--bad)', title: 'failure ' + fmtUsd((cost.failure || {}).usd) }, { v: (cost.degraded || {}).usd, color: 'var(--warn)', title: 'degraded ' + fmtUsd((cost.degraded || {}).usd) }], text: `${fmtUsd((cost.success || {}).usd)} / ${fmtUsd((cost.failure || {}).usd)} / ${fmtUsd((cost.degraded || {}).usd)}` },
+  ];
+  $('#ch-cost').replaceChildren(hbarChart(cs, { width: 480, rowH: 40, labelW: 120, fmt: fmtUsd }));
+  // events / errors
+  const topList = (obj, n = 10) => { const ents = Object.entries(obj || {}).sort((a, b) => b[1] - a[1]).slice(0, n); if (!ents.length) return el('div', { class: 'muted small' }, 'none'); const mx = ents[0][1] || 1; return el('table', { class: 'small' }, el('tbody', {}, ...ents.map(([k, v]) => el('tr', {}, el('td', { class: 'mono', title: k, style: 'max-width:200px;overflow:hidden;text-overflow:ellipsis' }, k), el('td', { style: 'width:100px' }, el('div', { style: `height:8px;width:${Math.max(2, v / mx * 100)}%;background:var(--accent);border-radius:2px` })), el('td', { class: 'num' }, fmtInt(v)))))); };
+  $('#lst-events').replaceChildren(topList(m.events)); $('#lst-errors').replaceChildren(topList(m.errors));
+}
+
+// ---------- runs table ----------
+const RUN_COLS = [
+  { k: 'start_ms', h: 'start', r: r => fmtTimeShort(r.start_ms) },
+  { k: 'ticket_id', h: 'ticket', r: r => el('span', { class: 'mono' }, r.ticket_id ?? '—') },
+  { k: 'outcome', h: 'outcome', r: r => el('span', { class: 'pill o-' + r.outcome, title: r.error || '' }, r.outcome || '—') },
+  { k: 'category', h: 'category', r: r => r.category ?? '—' },
+  { k: 'escalate', h: 'esc', r: r => r.escalate == null ? '—' : (r.escalate ? '▲ yes' : 'no') },
+  { k: 'model_id', h: 'model', r: r => el('span', { class: 'mono', title: r.model_id || '' }, trunc(r.model_id, 18)) },
+  { k: 'cost_usd', h: 'cost', num: 1, r: r => fmtUsd(r.cost_usd) },
+  { k: 'duration_ms', h: 'duration', num: 1, r: r => fmtMs(r.duration_ms) },
+  { k: 'ttft_ms', h: 'ttft', num: 1, r: r => fmtMs(r.ttft_ms) },
+  { k: 'retries', h: 'retries', num: 1, r: r => { const t = r.retries || {}; const s = (t.http || 0) + (t.llm || 0); return s ? `${s} (h${t.http || 0}/l${t.llm || 0})` : '0'; } },
+  { k: 'write_status', h: 'write', r: r => r.write_status ?? '—' },
+  { k: 'guard_violations', h: 'guard', num: 1, r: r => r.guard_violations ? el('span', { class: 'o-degraded' }, r.guard_violations) : '0' },
+  { k: 'flags', h: 'flags', sort: false, r: r => [r.injection_suspected ? 'inj' : null, r.entitlements_degraded ? 'ent↓' : null, r.usage_estimated ? 'est' : null, r.draft_source && r.draft_source !== 'llm' ? r.draft_source : null].filter(Boolean).join(' ') || '' },
+  { k: 'request_id', h: 'request_id', sort: false, r: r => truncCell(r.request_id) },
+  { k: 'correlation_id', h: 'correlation_id', sort: false, r: r => truncCell(r.correlation_id) },
+];
+function renderTableHead(table, cols, sortKey, order, onSort) {
+  table.tHead.replaceChildren(el('tr', {}, ...cols.map(c => el('th', { class: (c.num ? 'num ' : '') + (sortKey === c.k ? 'sorted' : ''), onclick: () => c.sort !== false && onSort(c.k) }, c.h, sortKey === c.k ? el('span', { class: 'arr' }, order === 'asc' ? '▲' : '▼') : null))));
+}
+function renderRuns() {
+  const t = $('#runs');
+  renderTableHead(t, RUN_COLS, state.sort, state.order, k => { if (state.sort === k) state.order = state.order === 'asc' ? 'desc' : 'asc'; else { state.sort = k; state.order = k === 'start_ms' ? 'desc' : 'asc'; } state.offset = 0; writeHash(); loadRuns(); });
+  t.tBodies[0].replaceChildren(...state.runs.map(r => el('tr', { class: 'clickable', onclick: () => openRun(r.run_id) }, ...RUN_COLS.map(c => el('td', { class: c.num ? 'num' : '' }, c.r(r))))));
+  $('#runs-count').textContent = `(${state.total} matching)`;
+  $('#pg-info').textContent = state.total ? `${state.offset + 1}–${Math.min(state.total, state.offset + state.runs.length)} of ${state.total}` : 'no runs';
+  $('#pg-prev').disabled = state.offset <= 0; $('#pg-next').disabled = state.offset + state.limit >= state.total;
+}
+async function loadRuns() {
+  const d = await api('/api/runs?' + filterQuery({ limit: state.limit, offset: state.offset, sort: state.sort, order: state.order })).catch(() => null); if (!d) return;
+  state.runs = d.runs || []; state.total = d.total || 0;
+  const f = d.facets || {};
+  fillSelect($('#f-outcome'), f.outcomes && f.outcomes.length ? f.outcomes : ['completed', 'degraded', 'failed'], state.filters.outcome);
+  fillSelect($('#f-category'), f.categories, state.filters.category); fillSelect($('#f-model'), f.models, state.filters.model);
+  renderRuns();
+}
+async function loadMetrics() { const m = await api('/api/metrics?' + filterQuery()).catch(() => null); if (m) renderMetrics(m); }
+async function refreshOverview() {
+  await Promise.all([loadMetrics(), loadRuns()]);
+  $('#updated').textContent = 'last updated: ' + new Date().toLocaleTimeString(undefined, { hour12: false });
+  const active = Object.entries(state.filters).filter(([k, v]) => v && !(k === 'window' && v === 'all')).map(([k, v]) => `${k}=${v}`);
+  $('#f-summary').textContent = active.length ? 'active: ' + active.join(', ') : '';
+}
+
+// ---------- drill-down ----------
+let currentRun = null, rawMode = false;
+function kv(pairs) { const g = el('div', { class: 'kv' }); for (const [k, v, copyable] of pairs) { g.append(el('div', { class: 'k' }, k)); const vv = el('div', { class: 'v' }); if (v && v.nodeType) vv.append(v); else vv.append(v == null || v === '' ? el('span', { class: 'muted' }, '—') : String(v)); if (copyable && v) vv.append(copyBtn(v)); g.append(vv); } return g; }
+function buildTrace(trace) {
+  const spans = trace.filter(t => t.kind !== 'event'), events = trace.filter(t => t.kind === 'event');
+  const root = spans.find(s => s.kind === 'run') || spans.reduce((a, b) => (!a || b.start_ms < a.start_ms) ? b : a, null);
+  const t0 = root ? root.start_ms : Math.min(...spans.map(s => s.start_ms), ...events.map(e => e.ts_ms));
+  const byId = new Map(spans.map(s => [s.span_id, s]));
+  const depth = s => { let d = 0, p = s; const seen = new Set(); while (p && p.parent_span_id && byId.has(p.parent_span_id) && !seen.has(p.parent_span_id)) { seen.add(p.parent_span_id); p = byId.get(p.parent_span_id); d++; } return d; };
+  // DFS in start order to keep children under parents
+  const kids = new Map(); for (const s of spans) { const k = s.parent_span_id && byId.has(s.parent_span_id) ? s.parent_span_id : null; if (!kids.has(k)) kids.set(k, []); kids.get(k).push(s); }
+  for (const arr of kids.values()) arr.sort((a, b) => a.start_ms - b.start_ms);
+  const ordered = []; const walk = pid => { for (const s of kids.get(pid) || []) { ordered.push(s); walk(s.span_id); } }; walk(null);
+  const rows = ordered.filter(s => s.kind !== 'run').map(s => {
+    const a = s.attributes || {}; const isCall = s.kind === 'call';
+    const extra = isCall ? [a['http.status'] != null ? 'status ' + a['http.status'] : null, a.attempt != null ? 'attempt ' + a.attempt : null, a.retry_decision ? a.retry_decision : null, a.ttft_ms != null ? 'ttft ' + fmtMs(a.ttft_ms) : null].filter(Boolean).join(' · ') : '';
+    const label = `${s.name}  ${fmtMs(s.duration_ms)}ms${extra ? '  [' + extra + ']' : ''}`;
+    const color = isCall ? (a['http.status'] >= 400 || a.retry_decision === 'retry' ? 'var(--bad)' : 'var(--call)') : 'var(--step)';
+    return { label, depth: depth(s), start: s.start_ms - t0, dur: s.duration_ms, color, title: `${s.name}\nstart +${fmtMs(s.start_ms - t0)} ms, duration ${fmtMs(s.duration_ms)} ms\n${Object.entries(a).map(([k, v]) => k + '=' + JSON.stringify(v)).join('\n')}` };
+  });
+  const evs = events.map(e => ({ ts: e.ts_ms - t0, name: e.name, color: /error|exhausted|fail|injection|degraded|fallback/.test(e.name) ? 'var(--bad)' : /retry/.test(e.name) ? 'var(--warn)' : 'var(--evt)' , rec: e }));
+  return { rows, evs, t0 };
+}
+function renderRunDetail(d) {
+  const s = d.summary || {}, r = d.result || {}, trace = d.trace || [];
+  $('#d-title').textContent = `run ${s.run_id || ''} · ticket ${s.ticket_id ?? r.ticket_id ?? '—'}`;
+  const ob = $('#d-outcome'); ob.textContent = s.outcome || r.outcome || '—'; ob.style.color = outcomeColor(s.outcome || r.outcome); ob.style.borderColor = outcomeColor(s.outcome || r.outcome);
+  const body = $('#d-body'); body.innerHTML = '';
+  if (rawMode) { const pre = el('pre', {}, JSON.stringify(d, null, 2)); body.append(el('div', { class: 'row' }, el('button', { onclick: () => copy(JSON.stringify(d, null, 2)) }, 'Copy JSON'), el('span', { class: 'muted small' }, `${trace.length} trace records`)), el('div', { style: 'height:6px' }), pre); return; }
+  body.append(el('div', { class: 'sec' }, el('h4', {}, 'Identifiers'), kv([['run_id', s.run_id, 1], ['trace_id', s.trace_id, 1], ['request_id', s.request_id ?? r.request_id, 1], ['correlation_id', s.correlation_id ?? r.correlation_id, 1], ['ticket_id', s.ticket_id ?? r.ticket_id, 1], ['started', fmtTime(s.start_ms)], ['model / prompt', `${s.model_id || '—'} / ${s.prompt_version || '—'}`]])));
+  const policyReasons = r.policy_reasons || r.reasons || (r.policy && (r.policy.reasons || r.policy.reason)) || r.escalation_reasons || null;
+  const gv = r.guard_violations || (s.guard_violations ? s.guard_violations + ' violation(s)' : null);
+  body.append(el('div', { class: 'sec' }, el('h4', {}, 'Result'), kv([
+    ['outcome', el('span', { class: 'o-' + (s.outcome || r.outcome) }, s.outcome || r.outcome || '—')], ['error', s.error || r.error || null],
+    ['category', r.category ?? s.category], ['escalate', (r.escalate ?? s.escalate) == null ? null : ((r.escalate ?? s.escalate) ? 'yes' : 'no')],
+    ['write status', s.write_status || r.write_status], ['draft source', s.draft_source || r.draft_source],
+    ['kb_cited', Array.isArray(r.kb_cited) ? (r.kb_cited.length ? r.kb_cited.join(', ') : 'none') : null],
+    ['guard violations', Array.isArray(gv) ? (gv.length ? gv.map(v => typeof v === 'string' ? v : JSON.stringify(v)).join('; ') : 'none') : gv],
+    ['policy reasons', Array.isArray(policyReasons) ? policyReasons.join('; ') : policyReasons],
+    ['flags', [s.injection_suspected ? 'injection_suspected' : null, s.entitlements_degraded ? 'entitlements_degraded' : null, s.usage_estimated ? 'usage_estimated' : null].filter(Boolean).join(', ') || 'none'],
+  ])));
+  if (r.diagnosis) body.append(el('div', { class: 'sec' }, el('h4', {}, 'Diagnosis'), el('div', { class: 'reply' }, typeof r.diagnosis === 'string' ? r.diagnosis : JSON.stringify(r.diagnosis, null, 2))));
+  if (r.reply != null) body.append(el('div', { class: 'sec' }, el('h4', {}, 'Reply (as stored, redacted upstream)'), el('div', { class: 'reply' }, String(r.reply))));
+  const rt = s.retries || {}, cc = s.call_counts || {};
+  body.append(el('div', { class: 'sec' }, el('h4', {}, 'Cost & timing'), el('div', { class: 'kpis' },
+    kpi('duration', fmtMsU(s.duration_ms)), kpi('TTFT', fmtMsU(s.ttft_ms)), kpi('TBT avg / p50 / p95', `${fmtMs(s.tbt_ms_avg)} / ${fmtMs(s.tbt_ms_p50)} / ${fmtMs(s.tbt_ms_p95)}`, 'ms'),
+    kpi('LLM latency', fmtMsU(s.llm_latency_ms), `${fmtInt(s.llm_attempts)} attempt(s)`), kpi('retries', `${fmtInt(rt.http)} http / ${fmtInt(rt.llm)} llm`, `calls: ${fmtInt(cc.http)} http / ${fmtInt(cc.llm)} llm`),
+    kpi('cost total', fmtUsd(s.cost_usd), s.cost_usd === null ? 'unknown model price' : ''), kpi('cost in / out', `${fmtUsd(s.cost_input_usd)} / ${fmtUsd(s.cost_output_usd)}`), kpi('cost diagnosis / reply', `${fmtUsd(s.cost_diagnosis_usd)} / ${fmtUsd(s.cost_reply_usd)}`),
+    kpi('tokens in / out', `${fmtInt(s.input_tokens)} / ${fmtInt(s.output_tokens)}`, s.usage_estimated ? 'estimated' : ''))));
+  if (s.step_durations && Object.keys(s.step_durations).length) {
+    const sd = s.step_durations; const names = [...STEPS.filter(x => x in sd), ...Object.keys(sd).filter(x => !STEPS.includes(x))];
+    body.append(el('div', { class: 'sec' }, el('h4', {}, 'Step durations'), hbarChart(names.map(n => ({ label: n, values: [{ v: sd[n], color: 'var(--step)' }] })), { width: 700, rowH: 16, labelW: 120 })));
+  }
+  if (trace.length) {
+    const { rows, evs } = buildTrace(trace);
+    body.append(el('div', { class: 'sec' }, el('h4', {}, 'Trace waterfall ', el('span', { class: 'legend' }, el('i', { style: 'background:var(--step)' }), 'step ', el('i', { style: 'background:var(--call)' }), 'call ', el('i', { style: 'background:var(--bad)' }), 'call err/retry ', el('i', { style: 'background:var(--evt)' }), 'event')), rows.length ? waterfall(rows, evs, { width: 720 }) : el('div', { class: 'muted' }, 'no spans')));
+    body.append(el('div', { class: 'sec' }, el('h4', {}, `Events (${evs.length})`), evs.length ? el('table', { class: 'small' }, el('thead', {}, el('tr', {}, el('th', { class: 'num' }, '+ms'), el('th', {}, 'event'), el('th', {}, 'attributes'))), el('tbody', {}, ...evs.sort((a, b) => a.ts - b.ts).map(e => el('tr', {}, el('td', { class: 'num' }, fmtMs(e.ts)), el('td', { style: 'color:' + e.color }, e.name), el('td', { class: 'mono', style: 'white-space:normal;word-break:break-all' }, Object.entries(e.rec.attributes || {}).map(([k, v]) => `${k}=${typeof v === 'string' ? v : JSON.stringify(v)}`).join('  ') || '—'))))) : el('div', { class: 'muted small' }, 'none')));
+  } else body.append(el('div', { class: 'sec muted' }, 'no trace records'));
+}
+async function openRun(runId) {
+  $('#drawer').classList.add('open'); $('#d-body').innerHTML = '<div class="muted">loading…</div>'; $('#d-title').textContent = 'run ' + runId;
+  const d = await api('/api/runs/' + encodeURIComponent(runId)).catch(() => null); if (!d) { $('#d-body').innerHTML = '<div class="o-failed">failed to load run</div>'; return; }
+  currentRun = d; rawMode = false; $('#d-raw').textContent = 'Raw JSON'; renderRunDetail(d);
+}
+$('#d-close').onclick = () => $('#drawer').classList.remove('open');
+$('#d-raw').onclick = () => { if (!currentRun) return; rawMode = !rawMode; $('#d-raw').textContent = rawMode ? 'Formatted' : 'Raw JSON'; renderRunDetail(currentRun); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('#drawer').classList.remove('open'); });
+
+// ---------- evals ----------
+const EVAL_COLS = [
+  { k: 'label', h: 'label', g: e => e.label }, { k: 'timestamp', h: 'timestamp', g: e => e.timestamp, r: e => typeof e.timestamp === 'number' ? fmtTime(e.timestamp < 1e12 ? e.timestamp * 1000 : e.timestamp) : (e.timestamp || '—') },
+  { k: 'model_id', h: 'model', g: e => e.model_id, r: e => el('span', { class: 'mono', title: e.model_id || '' }, trunc(e.model_id, 20)) }, { k: 'prompt_version', h: 'prompt', g: e => e.prompt_version },
+  { k: 'n', h: 'n', num: 1, g: e => e.n, r: e => `${fmtInt(e.n)}${e.metrics && isNum(e.metrics.completed) && e.metrics.completed !== e.n ? ' (' + e.metrics.completed + ' ok)' : ''}` },
+  { k: 'category_accuracy', h: 'cat acc', num: 1, g: e => (e.metrics || {}).category_accuracy, r: e => fmtPct((e.metrics || {}).category_accuracy) },
+  { k: 'escalate_accuracy', h: 'esc acc / F1', num: 1, g: e => (e.metrics || {}).escalate_accuracy, r: e => `${fmtPct((e.metrics || {}).escalate_accuracy)} / ${isNum((e.metrics || {}).escalate_f1) ? e.metrics.escalate_f1.toFixed(3) : '—'}` },
+  { k: 'kb_recall', h: 'kb recall', num: 1, g: e => (e.metrics || {}).kb_recall, r: e => fmtPct((e.metrics || {}).kb_recall) },
+  { k: 'groundedness', h: 'grounded', num: 1, g: e => { const m = e.metrics || {}; return isNum(m.groundedness_total) && m.groundedness_eval_total ? m.groundedness_total / m.groundedness_eval_total : null; }, r: e => { const m = e.metrics || {}; return isNum(m.groundedness_total) && isNum(m.groundedness_eval_total) ? `${m.groundedness_total}/${m.groundedness_eval_total}` : '—'; } },
+  { k: 'injection', h: 'injection', g: e => ((e.metrics || {}).injection || {}).passed, r: e => { const inj = (e.metrics || {}).injection; if (!inj || inj.passed == null) return el('span', { class: 'muted' }, '—'); return el('span', { class: inj.passed ? 'o-completed' : 'o-failed' }, inj.passed ? 'PASS' : 'FAIL'); } },
+  { k: 'cost_per_completed_task', h: 'cost/task', num: 1, g: e => (e.metrics || {}).cost_per_completed_task, r: e => fmtUsd((e.metrics || {}).cost_per_completed_task) },
+  { k: 'cost_total_usd', h: 'cost total', num: 1, g: e => (e.metrics || {}).cost_total_usd, r: e => fmtUsd((e.metrics || {}).cost_total_usd) },
+  { k: 'e2e50', h: 'e2e p50 / p95', num: 1, g: e => (((e.metrics || {}).e2e_ms) || {})['50'], r: e => { const l = (e.metrics || {}).e2e_ms || {}; return `${fmtMs(l['50'] ?? l.p50)} / ${fmtMs(l['95'] ?? l.p95)}`; } },
+];
+const cmp = (a, b) => { if (a == null && b == null) return 0; if (a == null) return 1; if (b == null) return -1; return typeof a === 'number' && typeof b === 'number' ? a - b : String(a).localeCompare(String(b)); };
+function sortBy(arr, cols, key, order) { const c = cols.find(x => x.k === key); if (!c) return arr; return [...arr].sort((x, y) => cmp(c.g(x), c.g(y)) * (order === 'asc' ? 1 : -1)); }
+function renderEvals() {
+  const t = $('#evals'); const rows = sortBy(state.evals, EVAL_COLS, state.evalSort, state.evalOrder);
+  renderTableHead(t, EVAL_COLS, state.evalSort, state.evalOrder, k => { if (state.evalSort === k) state.evalOrder = state.evalOrder === 'asc' ? 'desc' : 'asc'; else { state.evalSort = k; state.evalOrder = 'desc'; } renderEvals(); });
+  t.tBodies[0].replaceChildren(...rows.map(e => el('tr', { class: 'clickable' + (state.evalId === e.eval_id ? ' sorted' : ''), style: state.evalId === e.eval_id ? 'background:var(--panel2)' : '', onclick: () => openEval(e.eval_id) }, ...EVAL_COLS.map(c => el('td', { class: c.num ? 'num' : '' }, c.r ? c.r(e) : (c.g(e) ?? '—'))))));
+  $('#ev-count').textContent = `(${state.evals.length})`; $('#ev-empty').style.display = state.evals.length ? 'none' : 'block';
+}
+async function loadEvals() { const d = await api('/api/evals').catch(() => null); if (!d) return; state.evals = d.evals || []; renderEvals(); }
+const CASE_COLS = [
+  { k: 'case_id', h: 'case', g: c => c.case_id }, { k: 'ticket_id', h: 'ticket', g: c => c.ticket_id, r: c => el('span', { class: 'mono' }, c.ticket_id ?? '—') },
+  { k: 'outcome', h: 'outcome', g: c => c.outcome, r: c => el('span', { class: 'pill o-' + c.outcome, title: c.error || '' }, c.outcome || '—') },
+  { k: 'expected_category', h: 'expected cat', g: c => c.expected_category }, { k: 'predicted_category', h: 'predicted cat', g: c => c.predicted_category, r: c => el('span', { class: c.category_correct === false ? 'o-failed' : c.category_correct ? 'o-completed' : '' }, c.predicted_category ?? '—') },
+  { k: 'expected_escalate', h: 'exp esc', g: c => c.expected_escalate, r: c => c.expected_escalate == null ? '—' : (c.expected_escalate ? 'yes' : 'no') },
+  { k: 'predicted_escalate', h: 'pred esc', g: c => c.predicted_escalate, r: c => el('span', { class: c.escalate_correct === false ? 'o-failed' : c.escalate_correct ? 'o-completed' : '' }, c.predicted_escalate == null ? '—' : (c.predicted_escalate ? 'yes' : 'no')) },
+  { k: 'kb_recall_hit', h: 'kb hit', g: c => c.kb_recall_hit, r: c => c.kb_recall_hit == null ? '—' : el('span', { class: c.kb_recall_hit ? 'o-completed' : 'o-failed', title: `cited: ${(c.kb_cited || []).join(', ') || '—'}\nexpected: ${(c.expected_kb || []).join(', ') || '—'}` }, c.kb_recall_hit ? 'hit' : 'miss') },
+  { k: 'draft_source', h: 'draft', g: c => c.draft_source }, { k: 'violations', h: 'guard/eval viol.', num: 1, g: c => (c.guard_violations || []).length + (c.eval_violations || []).length, r: c => { const g = c.guard_violations || [], e = c.eval_violations || []; return el('span', { title: [...g, ...e].map(v => typeof v === 'string' ? v : JSON.stringify(v)).join('\n'), class: g.length + e.length ? 'o-degraded' : '' }, `${g.length} / ${e.length}`); } },
+  { k: 'disagree', h: 'model≠policy', g: c => c.model_vs_policy_disagree, r: c => c.model_vs_policy_disagree == null ? '—' : (c.model_vs_policy_disagree ? 'yes' : 'no') },
+  { k: 'reply_clean', h: 'clean', g: c => c.reply_clean, r: c => c.reply_clean == null ? '—' : (c.reply_clean ? 'yes' : el('span', { class: 'o-failed' }, 'no')) },
+  { k: 'cost_usd', h: 'cost', num: 1, g: c => c.cost_usd, r: c => fmtUsd(c.cost_usd) }, { k: 'duration_ms', h: 'duration', num: 1, g: c => c.duration_ms, r: c => fmtMs(c.duration_ms) },
+  { k: 'run_id', h: 'run', g: c => c.run_id, r: c => c.run_id ? el('a', { href: '#', class: 'mono', onclick: e => { e.preventDefault(); openRun(c.run_id); } }, trunc(c.run_id, 12)) : '—' },
+];
+function caseFilter(c) {
+  switch ($('#evd-filter').value) {
+    case 'incorrect': return c.category_correct === false || c.escalate_correct === false;
+    case 'correct': return c.category_correct !== false && c.escalate_correct !== false;
+    case 'cat_wrong': return c.category_correct === false; case 'esc_wrong': return c.escalate_correct === false;
+    case 'kb_miss': return c.kb_recall_hit === false; case 'failed': return c.outcome && c.outcome !== 'completed';
+    default: return true;
+  }
+}
+function renderCases() {
+  const t = $('#cases'); const rows = sortBy(state.cases.filter(caseFilter), CASE_COLS, state.caseSort, state.caseOrder);
+  renderTableHead(t, CASE_COLS, state.caseSort, state.caseOrder, k => { if (state.caseSort === k) state.caseOrder = state.caseOrder === 'asc' ? 'desc' : 'asc'; else { state.caseSort = k; state.caseOrder = 'asc'; } renderCases(); });
+  t.tBodies[0].replaceChildren(...rows.map(c => el('tr', {}, ...CASE_COLS.map(col => el('td', { class: col.num ? 'num' : '' }, col.r ? col.r(c) : (col.g(c) ?? '—'))))));
+  $('#evd-count').textContent = `${rows.length} of ${state.cases.length} cases`;
+}
+$('#evd-filter').onchange = renderCases;
+async function openEval(id) {
+  state.evalId = id; writeHash(); renderEvals();
+  const d = await api('/api/evals/' + encodeURIComponent(id)).catch(() => null); if (!d) return;
+  const s = d.summary || {}, m = s.metrics || {}, b = s.baselines || {}; state.cases = d.cases || [];
+  $('#ev-detail').style.display = 'block'; $('#evd-label').textContent = `${s.label || id} (${id})`;
+  const missed = (m.missed_ticket_ids || []);
+  $('#evd-summary').replaceChildren(kv([
+    ['eval_id', s.eval_id || id, 1], ['timestamp', typeof s.timestamp === 'number' ? fmtTime(s.timestamp < 1e12 ? s.timestamp * 1000 : s.timestamp) : s.timestamp], ['model / prompt', `${s.model_id || '—'} / ${s.prompt_version || '—'}`], ['provider', `${s.provider || '—'}${s.dry_run ? ' · dry_run' : ''}${s.kb_filter != null ? ' · kb_filter=' + s.kb_filter : ''}`],
+    ['n / completed', `${fmtInt(s.n)} / ${fmtInt(m.completed)} (${fmtPct(m.completion_rate)})`], ['category accuracy', `${fmtPct(m.category_accuracy)}  · baseline ${b.category_label || 'n/a'}: ${fmtPct(b.category)}`],
+    ['escalate acc / P / R / F1', `${fmtPct(m.escalate_accuracy)} / ${fmtPct(m.escalate_precision)} / ${fmtPct(m.escalate_recall)} / ${isNum(m.escalate_f1) ? m.escalate_f1.toFixed(3) : '—'}  · baseline ${b.escalate_label || 'n/a'}: ${fmtPct(b.escalate)}`],
+    ['kb recall / hit any', `${fmtPct(m.kb_recall)} / ${fmtPct(m.kb_hit_any)}`], ['groundedness', isNum(m.groundedness_total) ? `${m.groundedness_total} / ${fmtInt(m.groundedness_eval_total)}` : null],
+    ['injection', m.injection ? (m.injection.passed ? 'PASS' : 'FAIL') + ' ' + Object.entries(m.injection).filter(([k]) => k !== 'passed').map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(' ') : null],
+    ['cost total / per task', `${fmtUsd(m.cost_total_usd)} / ${fmtUsd(m.cost_per_completed_task)}`], ['e2e p50 / p95', `${fmtMs(((m.e2e_ms) || {})['50'])} / ${fmtMs(((m.e2e_ms) || {})['95'])} ms`],
+    ['disagreements', fmtInt(m.disagreements)], ['missed tickets', missed.length ? missed.join(', ') : 'none'],
+  ]));
+  const st = (s.traces || {}).step_ms || {};
+  if (Object.keys(st).length) { const names = [...STEPS.filter(x => st[x]), ...Object.keys(st).filter(x => !STEPS.includes(x))]; $('#evd-summary').append(el('div', { class: 'k' }, 'step p50 / p95'), el('div', {}, hbarChart(names.map(n => ({ label: n, values: [{ v: st[n]['50'], color: '#3b6fd1' }, { v: st[n]['95'], color: '#7fa7ee' }] })), { width: 560, rowH: 16, labelW: 120 }))); }
+  renderCases(); $('#ev-detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+$('#ev-start').onclick = async () => {
+  const body = { label: $('#ev-label').value || 'dashboard-' + new Date().toISOString().slice(0, 19), limit: +$('#ev-limit').value || undefined }; if ($('#ev-pv').value) body.prompt_version = $('#ev-pv').value;
+  $('#ev-status').textContent = 'starting…'; $('#ev-start').disabled = true;
+  try { const r = await post('/api/evals', body); $('#ev-status').textContent = `started=${r.started} pid=${r.pid} label=${r.label} — results appear in the table when finished (auto-refresh).`; }
+  catch (e) { $('#ev-status').textContent = 'failed: ' + e.message; } finally { $('#ev-start').disabled = false; }
+};
+$('#r-start').onclick = async () => {
+  const ticket = $('#r-ticket').value.trim(); if (!ticket) { $('#r-ids').textContent = 'ticket_id required'; return; }
+  const body = { ticket_id: ticket, write: false }; if ($('#r-corr').value.trim()) body.correlation_id = $('#r-corr').value.trim();
+  $('#r-ids').textContent = 'running…'; $('#r-out').style.display = 'none'; $('#r-start').disabled = true;
+  try {
+    const r = await post('/run', body);
+    $('#r-ids').replaceChildren(el('span', { class: 'o-' + r.outcome }, r.outcome || '—'), ' · ', `category ${r.category ?? '—'} · escalate ${r.escalate == null ? '—' : r.escalate ? 'yes' : 'no'} · ${fmtMsU(r.duration_ms)}`, el('br'),
+      'request_id: ', r.request_id || '—', r.request_id ? copyBtn(r.request_id) : null, ' · correlation_id: ', r.correlation_id || '—', r.correlation_id ? copyBtn(r.correlation_id) : null, ' · run_id: ', r.run_id ? el('a', { href: '#', onclick: e => { e.preventDefault(); openRun(r.run_id); } }, r.run_id) : '—');
+    const pre = $('#r-out'); pre.textContent = JSON.stringify(r, null, 2); pre.style.display = 'block';
+    if (state.tab === 'overview') refreshOverview();
+  } catch (e) { $('#r-ids').textContent = 'failed: ' + e.message; } finally { $('#r-start').disabled = false; }
+};
+
+// ---------- tabs / wiring ----------
+function setTab(t) { state.tab = t; document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === t)); $('#tab-overview').style.display = t === 'overview' ? '' : 'none'; $('#tab-evals').style.display = t === 'evals' ? '' : 'none'; writeHash(); refresh(); }
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => setTab(b.dataset.tab));
+$('#goto-run').onclick = e => { e.preventDefault(); setTab('evals'); $('#r-ticket').focus(); };
+for (const k of Object.keys(state.filters)) { const e = $('#f-' + k); const h = () => { state.filters[k] = e.value.trim ? e.value.trim() : e.value; state.offset = 0; writeHash(); refreshOverview(); }; e.addEventListener('change', h); if (e.tagName === 'INPUT') e.addEventListener('keydown', ev => { if (ev.key === 'Enter') h(); }); }
+$('#f-clear').onclick = () => { for (const k of Object.keys(state.filters)) { state.filters[k] = k === 'window' ? 'all' : ''; $('#f-' + k).value = state.filters[k]; } state.offset = 0; writeHash(); refreshOverview(); };
+$('#pg-prev').onclick = () => { state.offset = Math.max(0, state.offset - state.limit); writeHash(); loadRuns(); };
+$('#pg-next').onclick = () => { state.offset += state.limit; writeHash(); loadRuns(); };
+$('#refresh').onclick = () => refresh();
+async function refresh() { if (state.tab === 'overview') await refreshOverview(); else { await loadEvals(); $('#updated').textContent = 'last updated: ' + new Date().toLocaleTimeString(undefined, { hour12: false }); } }
+setInterval(() => { if ($('#autorefresh').checked && !document.hidden) refresh(); }, 10000);
+window.addEventListener('hashchange', () => { readHash(); setTab(state.tab); });
+// boot
+readHash();
+loadConfig();
+document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === state.tab));
+$('#tab-overview').style.display = state.tab === 'overview' ? '' : 'none'; $('#tab-evals').style.display = state.tab === 'evals' ? '' : 'none';
+refresh().then(() => { const p = new URLSearchParams(location.hash.slice(1)); if (p.get('eval') && state.tab === 'evals') openEval(p.get('eval')); });
+</script>
+</body>
+</html>

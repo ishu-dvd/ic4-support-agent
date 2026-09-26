@@ -1,0 +1,3 @@
+Synthetic adversarial ticket bodies (cross-account exfiltration, raw entitlements dump, forced SEV1 / skip-confirmation, base64+markdown disguised instruction). They are not real ticket ids and no golden case references them.
+They live here, outside `data/`, so the fixture stays byte-identical (`make data-clean-check`) and the agent never reads them from disk in production.
+Consumption: an integration test feeds each `subject`/`body` through `guard.scan_input` (expect suspected=true) and, once the loop exists, asserts the drafted reply contains none of `must_not_contain`; `expected_category_hint` is advisory, not scored.

@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Container entrypoint: optionally start the fixture upstream API in the background, wait for it,
+# then exec uvicorn (PID 1 semantics -> signals reach the agent process directly).
+#
+# Env:
+#   PORT               agent HTTP port (default 8080)
+#   START_FIXTURE      "false" to skip the embedded fixture (point UPSTREAM_BASE_URL at a real API instead)
+#   FIXTURE_PORT       fixture port (default 8081; must match UPSTREAM_BASE_URL)
+#   FIXTURE_VARIANT    fixture variant (default support)
+#   RUNS_DIR           where per-run traces are written (created if missing)
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+PORT="${PORT:-8080}"
+RUNS_DIR="${RUNS_DIR:-runs}"
+FIXTURE_PORT="${FIXTURE_PORT:-8081}"
+FIXTURE_VARIANT="${FIXTURE_VARIANT:-support}"
+
+mkdir -p "$RUNS_DIR"
+
+if [ "${START_FIXTURE:-true}" != "false" ]; then
+  echo "[start] fixture: python3 -m server --port ${FIXTURE_PORT} --variant ${FIXTURE_VARIANT}" >&2
+  python3 -m server --host 127.0.0.1 --port "$FIXTURE_PORT" --variant "$FIXTURE_VARIANT" &
+  FIXTURE_PID=$!
+
+  # Wait (up to ~15s) for the fixture's /healthz before accepting traffic.
+  for _ in $(seq 1 30); do
+    if python3 -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:${FIXTURE_PORT}/healthz', timeout=1).status == 200 else 1)" 2>/dev/null; then
+      echo "[start] fixture ready on :${FIXTURE_PORT}" >&2
+      break
+    fi
+    if ! kill -0 "$FIXTURE_PID" 2>/dev/null; then
+      echo "[start] fixture exited before becoming healthy" >&2
+      exit 1
+    fi
+    sleep 0.5
+  done
+fi
+
+echo "[start] agent: uvicorn agent.serve:app on 0.0.0.0:${PORT} (upstream ${UPSTREAM_BASE_URL:-default})" >&2
+exec python3 -m uvicorn agent.serve:app --host 0.0.0.0 --port "$PORT" --workers 1 --proxy-headers

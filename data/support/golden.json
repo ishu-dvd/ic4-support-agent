@@ -1,0 +1,281 @@
+[
+  {
+    "case_id": "sup-001",
+    "ticket_id": "TCK-1101",
+    "expected_category": "billing_proration",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0001"
+    ]
+  },
+  {
+    "case_id": "sup-002",
+    "ticket_id": "TCK-1102",
+    "expected_category": "credential_rotation",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0003"
+    ]
+  },
+  {
+    "case_id": "sup-003",
+    "ticket_id": "TCK-1103",
+    "expected_category": "rate_limit_increase",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0004"
+    ]
+  },
+  {
+    "case_id": "sup-004",
+    "ticket_id": "TCK-1104",
+    "expected_category": "credential_rotation",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0002"
+    ]
+  },
+  {
+    "case_id": "sup-005",
+    "ticket_id": "TCK-1105",
+    "expected_category": "region_unavailable",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0008"
+    ]
+  },
+  {
+    "case_id": "sup-006",
+    "ticket_id": "TCK-1106",
+    "expected_category": "export_stalled",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0005"
+    ]
+  },
+  {
+    "case_id": "sup-007",
+    "ticket_id": "TCK-1107",
+    "expected_category": "sso_metadata_mismatch",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0006"
+    ]
+  },
+  {
+    "case_id": "sup-008",
+    "ticket_id": "TCK-1108",
+    "expected_category": "audit_retention_limit",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0013"
+    ]
+  },
+  {
+    "case_id": "sup-009",
+    "ticket_id": "TCK-1109",
+    "expected_category": "entitlement_unknown",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0008",
+      "kb-0010"
+    ]
+  },
+  {
+    "case_id": "sup-010",
+    "ticket_id": "TCK-1110",
+    "expected_category": "sandbox_limit",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0017"
+    ]
+  },
+  {
+    "case_id": "sup-011",
+    "ticket_id": "TCK-1111",
+    "expected_category": "webhook_replay",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0015"
+    ]
+  },
+  {
+    "case_id": "sup-012",
+    "ticket_id": "TCK-1112",
+    "expected_category": "invoice_dispute",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0011",
+      "kb-0009"
+    ]
+  },
+  {
+    "case_id": "sup-013",
+    "ticket_id": "TCK-1113",
+    "expected_category": "deprecated_endpoint",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0007"
+    ]
+  },
+  {
+    "case_id": "sup-014",
+    "ticket_id": "TCK-1114",
+    "expected_category": "sla_expectation",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0016"
+    ]
+  },
+  {
+    "case_id": "sup-015",
+    "ticket_id": "TCK-1115",
+    "expected_category": "feature_not_entitled",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0010"
+    ]
+  },
+  {
+    "case_id": "sup-016",
+    "ticket_id": "TCK-1116",
+    "expected_category": "export_stalled",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0005"
+    ]
+  },
+  {
+    "case_id": "sup-017",
+    "ticket_id": "TCK-1117",
+    "expected_category": "credential_rotation",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0002"
+    ]
+  },
+  {
+    "case_id": "sup-018",
+    "ticket_id": "TCK-1118",
+    "expected_category": "region_unavailable",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0008"
+    ]
+  },
+  {
+    "case_id": "sup-019",
+    "ticket_id": "TCK-1119",
+    "expected_category": "seat_billing",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0011"
+    ]
+  },
+  {
+    "case_id": "sup-020",
+    "ticket_id": "TCK-1120",
+    "expected_category": "auth_migration",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0012"
+    ]
+  },
+  {
+    "case_id": "sup-021",
+    "ticket_id": "TCK-1121",
+    "expected_category": "rate_limit_backoff",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0014"
+    ]
+  },
+  {
+    "case_id": "sup-022",
+    "ticket_id": "TCK-1122",
+    "expected_category": "feature_not_entitled",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0010"
+    ]
+  },
+  {
+    "case_id": "sup-023",
+    "ticket_id": "TCK-1123",
+    "expected_category": "invoice_dispute",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0009"
+    ]
+  },
+  {
+    "case_id": "sup-024",
+    "ticket_id": "TCK-1124",
+    "expected_category": "entitlement_unknown",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0011"
+    ]
+  },
+  {
+    "case_id": "sup-025",
+    "ticket_id": "TCK-1125",
+    "expected_category": "audit_retention_limit",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0013"
+    ]
+  },
+  {
+    "case_id": "sup-026",
+    "ticket_id": "TCK-1126",
+    "expected_category": "credential_rotation",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0003"
+    ]
+  },
+  {
+    "case_id": "sup-027",
+    "ticket_id": "TCK-1127",
+    "expected_category": "feature_not_entitled",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0010"
+    ]
+  },
+  {
+    "case_id": "sup-028",
+    "ticket_id": "TCK-1128",
+    "expected_category": "identity_unverified",
+    "expected_escalate": true,
+    "expected_kb": [
+      "kb-0018"
+    ]
+  },
+  {
+    "case_id": "sup-029",
+    "ticket_id": "TCK-1129",
+    "expected_category": "webhook_replay",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0015"
+    ]
+  },
+  {
+    "case_id": "sup-030",
+    "ticket_id": "TCK-1130",
+    "expected_category": "insufficient_information",
+    "expected_escalate": true,
+    "expected_kb": []
+  },
+  {
+    "case_id": "sup-031",
+    "ticket_id": "TCK-1131",
+    "expected_category": "credential_rotation",
+    "expected_escalate": false,
+    "expected_kb": [
+      "kb-0003"
+    ]
+  }
+]

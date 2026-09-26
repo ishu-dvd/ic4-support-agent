@@ -1,0 +1,32 @@
+# Local / Droplet deployment: one container runs the fixture upstream (:8081, loopback) and the agent (:8080)
+# via scripts/start.sh. The named volume keeps runs/ (dashboard history) across restarts and redeploys,
+# which App Platform cannot do.
+#
+#   docker compose up --build
+#   open http://localhost:8080/dashboard
+services:
+  agent:
+    build: .
+    image: ic4-agent
+    ports:
+      - "8080:8080"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PORT: "8080"
+      UPSTREAM_BASE_URL: http://127.0.0.1:8081
+      RUNS_DIR: /data/runs
+      TRACE_STDOUT: "true"
+      DRY_RUN: "${DRY_RUN:-true}"
+      MAX_RETRIES: "${MAX_RETRIES:-3}"
+      LLM_MAX_RETRIES: "${LLM_MAX_RETRIES:-3}"
+      LLM_STREAM: "${LLM_STREAM:-true}"
+      SERVICE_NAME: "${SERVICE_NAME:-ic4-support-agent}"
+      # Model config comes from .env (OPENAI_BASE_URL / OPENAI_API_KEY / MODEL_ID); unset -> rules provider.
+    volumes:
+      - runs-data:/data/runs
+    restart: unless-stopped
+
+volumes:
+  runs-data:

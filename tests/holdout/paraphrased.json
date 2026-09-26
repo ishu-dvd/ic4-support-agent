@@ -1,0 +1,92 @@
+[
+  {
+    "ticket_id": "HOLD-001",
+    "account_id": "acct_1007",
+    "subject": "Charged more than the monthly rate after switching tiers",
+    "body": "We switched from Startup to Business partway through our billing month. The invoice we just received is higher than the monthly rate shown on your site and includes two additional lines we don't understand. Could you break down where the extra amount comes from?",
+    "expected_category": "billing_proration",
+    "expected_escalate": false,
+    "expected_kb": ["kb-0001"]
+  },
+  {
+    "ticket_id": "HOLD-002",
+    "account_id": "acct_1004",
+    "subject": "Compromised API token needs replacing",
+    "body": "One of our engineers accidentally committed our API token to a public repository. We need to invalidate it and get a new one issued as quickly as possible. What are the steps for an account like ours?",
+    "expected_category": "credential_rotation",
+    "expected_escalate": false,
+    "expected_kb": ["kb-0002"]
+  },
+  {
+    "ticket_id": "HOLD-003",
+    "account_id": "acct_1001",
+    "subject": "How do we swap out the key our data pipeline uses?",
+    "body": "Our nightly pipeline authenticates with an API key that is due for its scheduled replacement. We want to switch to a new key without any downtime on the pipeline. What is the recommended order of operations?",
+    "expected_category": "credential_rotation",
+    "expected_escalate": false,
+    "expected_kb": ["kb-0003"]
+  },
+  {
+    "ticket_id": "HOLD-004",
+    "account_id": "acct_1012",
+    "subject": "Throttled during peak traffic - need more headroom",
+    "body": "Every evening between 19:00 and 20:00 UTC our API calls start getting rejected with too-many-requests errors, which I assume is the rate limit. Our peak is roughly 7,000 requests a minute across that hour and it is growing. Could you raise our limit?",
+    "expected_category": "rate_limit_increase",
+    "expected_escalate": true,
+    "expected_kb": ["kb-0004"]
+  },
+  {
+    "ticket_id": "HOLD-005",
+    "account_id": "acct_1003",
+    "subject": "Bulk export seems frozen",
+    "body": "We kicked off a full account export (job id EXP-51877) early this morning and the status page has said 'in progress' for close to ten hours now. The dataset is a bit over 5 GB. Is it stuck, and should we start it again?",
+    "expected_category": "export_stalled",
+    "expected_escalate": false,
+    "expected_kb": ["kb-0005"]
+  },
+  {
+    "ticket_id": "HOLD-006",
+    "account_id": "acct_1010",
+    "subject": "Permission denied on the audit trail API",
+    "body": "Calls to the audit logs endpoint started returning 403 yesterday. Nothing on our side changed. Is this something about our subscription, or a bug?",
+    "expected_category": "feature_not_entitled",
+    "expected_escalate": false,
+    "expected_kb": ["kb-0010"]
+  },
+  {
+    "ticket_id": "HOLD-007",
+    "account_id": "acct_1005",
+    "subject": "Unexpected amount on our latest bill",
+    "body": "Our most recent invoice INV-90214 includes a $1,150 item we cannot match to anything we ordered. We expected the usual $6,000 total. Please look into this line and correct it.",
+    "expected_category": "invoice_dispute",
+    "expected_escalate": true,
+    "expected_kb": ["kb-0009"]
+  },
+  {
+    "ticket_id": "HOLD-008",
+    "account_id": "acct_1002",
+    "subject": "Update billing email and refund last invoice",
+    "body": "Hello, I need the invoices sent to my own address from now on and last month's payment refunded. I'm emailing from my personal account because I'm away from the office and can't access my work account.",
+    "expected_category": "identity_unverified",
+    "expected_escalate": true,
+    "expected_kb": ["kb-0018"]
+  },
+  {
+    "ticket_id": "HOLD-009",
+    "account_id": "acct_1006",
+    "subject": "Still happening",
+    "body": "Same problem as before. Nothing has changed on our end.",
+    "expected_category": "insufficient_information",
+    "expected_escalate": true,
+    "expected_kb": []
+  },
+  {
+    "ticket_id": "HOLD-010",
+    "account_id": "acct_1011",
+    "subject": "Lost webhook callbacks during our maintenance window",
+    "body": "We took our receiving endpoint offline for about ninety minutes on Tuesday for maintenance and did not get any of the event notifications sent during that time. Is there a way to have those deliveries re-sent to us?",
+    "expected_category": "webhook_replay",
+    "expected_escalate": false,
+    "expected_kb": ["kb-0015"]
+  }
+]

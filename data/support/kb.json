@@ -1,0 +1,251 @@
+[
+  {
+    "id": "kb-0001",
+    "title": "Understanding mid-cycle proration on plan upgrades",
+    "body": "When an account upgrades mid billing cycle we prorate the remaining days on the old plan and issue a combined invoice. The proration line appears as a credit followed by a charge for the new plan. Totals may differ from the plan list price for the first invoice only.",
+    "tags": [
+      "billing",
+      "proration",
+      "invoice",
+      "upgrade"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0002",
+    "title": "Reset an API token on Legacy Auth accounts",
+    "body": "To reset the API token, open the Security tab and choose Reset token. The previous API token stays valid for 24 hours after the reset. This flow applies only to accounts still on Legacy Auth; accounts migrated to Unified Auth do not have an account-wide token to reset.",
+    "tags": [
+      "api",
+      "token",
+      "reset",
+      "rotate",
+      "legacy",
+      "security",
+      "credentials"
+    ],
+    "applies_to": {
+      "auth_model": [
+        "legacy_auth"
+      ]
+    }
+  },
+  {
+    "id": "kb-0003",
+    "title": "Scoped API keys: create, rotate, revoke",
+    "body": "Accounts on Unified Auth manage credentials as scoped keys rather than one account-wide credential. Create a replacement key, move traffic onto it, then revoke the previous key. There is no grace period: revocation is immediate. Keys carry explicit scopes and a key cannot be widened after creation.",
+    "tags": [
+      "api",
+      "key",
+      "scoped",
+      "rotate",
+      "revoke",
+      "unified",
+      "credentials"
+    ],
+    "applies_to": {
+      "auth_model": [
+        "unified_auth"
+      ]
+    }
+  },
+  {
+    "id": "kb-0004",
+    "title": "Requesting a rate limit increase",
+    "body": "Rate limits are set per plan. Increases above the plan ceiling require a capacity review. Submit the peak sustained requests per minute and the window over which it was measured.",
+    "tags": [
+      "rate",
+      "limit",
+      "throttle",
+      "429",
+      "quota",
+      "increase"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0005",
+    "title": "Data export jobs: expected duration and stalls",
+    "body": "Export jobs under 10 GB usually finish within an hour. Jobs are queued per region. A job that reports running for more than six hours has stalled and must be cancelled and resubmitted.",
+    "tags": [
+      "export",
+      "data",
+      "job",
+      "stall",
+      "delay"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0006",
+    "title": "SSO metadata mismatch after an identity provider change",
+    "body": "If the identity provider certificate is rotated without updating the metadata URL, sign-in fails with an assertion error. Re-upload the metadata and re-test with a single account before re-enabling enforcement.",
+    "tags": [
+      "sso",
+      "saml",
+      "metadata",
+      "certificate",
+      "signin",
+      "identity"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0007",
+    "title": "Deprecation timeline for the v1 reporting endpoints",
+    "body": "The v1 reporting endpoints stop accepting traffic on 2026-11-01. Callers should migrate to v2, which returns the same fields under a paginated envelope.",
+    "tags": [
+      "deprecated",
+      "v1",
+      "reporting",
+      "endpoint",
+      "migration",
+      "sunset"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0008",
+    "title": "Private networking availability by region",
+    "body": "Private networking is available in us-east, us-west and eu-west. It is not yet available in eu-central, ap-south or ap-southeast. Requests in unsupported regions remain queued rather than failing.",
+    "tags": [
+      "private",
+      "networking",
+      "region",
+      "availability",
+      "vpc"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0009",
+    "title": "Invoice disputes: what we need to investigate",
+    "body": "To investigate a disputed invoice we need the invoice id, the disputed line, and the amount the customer expected. Disputes are held from collections while under review.",
+    "tags": [
+      "invoice",
+      "dispute",
+      "billing",
+      "refund",
+      "charge"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0010",
+    "title": "Feature availability by plan tier",
+    "body": "Audit log and SSO are included on standard and premium support tiers. Private networking and custom SLA are premium only. A feature call from an account without the entitlement returns 403.",
+    "tags": [
+      "feature",
+      "entitlement",
+      "plan",
+      "tier",
+      "403",
+      "availability"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0011",
+    "title": "Seat count changes and billing impact",
+    "body": "Seat additions are billed pro rata from the day they are added. Seat removals take effect at the next renewal and are not credited mid-cycle.",
+    "tags": [
+      "seat",
+      "seats",
+      "billing",
+      "licence",
+      "user"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0012",
+    "title": "Migrating from Legacy Auth to Unified Auth",
+    "body": "Migration replaces account-wide tokens with scoped keys. Plan for a dual-running window: create scoped keys, cut traffic over, then disable the legacy token. Migration cannot be reversed once legacy tokens are disabled.",
+    "tags": [
+      "migration",
+      "legacy",
+      "unified",
+      "auth",
+      "upgrade",
+      "credentials"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0013",
+    "title": "Audit log retention and export",
+    "body": "Audit log entries are retained for 400 days on premium and 90 days on standard. Export is available as NDJSON through the audit endpoint.",
+    "tags": [
+      "audit",
+      "log",
+      "retention",
+      "export",
+      "compliance"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0014",
+    "title": "Reading 429 responses and backing off correctly",
+    "body": "A 429 includes a Retry-After header in seconds. Clients should honour it with jitter. Sustained 429s across a whole window indicate the plan ceiling rather than a burst.",
+    "tags": [
+      "429",
+      "retry",
+      "backoff",
+      "throttle",
+      "rate"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0015",
+    "title": "Webhook delivery failures and replay",
+    "body": "Failed webhook deliveries retry six times over roughly an hour. After that the event is available for manual replay for seven days.",
+    "tags": [
+      "webhook",
+      "delivery",
+      "retry",
+      "replay",
+      "event"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0016",
+    "title": "Priority routing on premium support",
+    "body": "Premium support tickets enter the priority queue and carry a four hour first-response target during business hours in the account's region.",
+    "tags": [
+      "priority",
+      "routing",
+      "support",
+      "sla",
+      "premium"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0017",
+    "title": "Sandbox environments: limits and reset behaviour",
+    "body": "Sandbox environments reset every 14 days and are capped at 300 requests per minute regardless of plan.",
+    "tags": [
+      "sandbox",
+      "test",
+      "reset",
+      "limit"
+    ],
+    "applies_to": {}
+  },
+  {
+    "id": "kb-0018",
+    "title": "What we cannot action without a named account owner",
+    "body": "Requests that change billing, entitlements or credentials require confirmation from a named account owner on record. Requests from unverified addresses are escalated to a human for identity confirmation.",
+    "tags": [
+      "verification",
+      "owner",
+      "identity",
+      "authorisation",
+      "escalate"
+    ],
+    "applies_to": {}
+  }
+]

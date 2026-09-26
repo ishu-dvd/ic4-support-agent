@@ -1,0 +1,151 @@
+[
+  {
+    "account_id": "emp_2001",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "repo_read",
+      "ci_read",
+      "staging_deploy"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2002",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "ledger_read",
+      "invoice_read"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2003",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "repo_read",
+      "audit_read",
+      "siem_read"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2004",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "ticket_read",
+      "ticket_write"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2005",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "repo_read",
+      "ci_read",
+      "staging_deploy"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2006",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "hris_read"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2007",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "repo_read",
+      "ci_read",
+      "staging_deploy"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2008",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "crm_read",
+      "crm_write"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2009",
+    "support_tier": "standard",
+    "seats": [
+      1
+    ],
+    "features": [
+      "warehouse_read",
+      "repo_read"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-21T18:32:00Z"
+  },
+  {
+    "account_id": "emp_2010",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "ledger_read",
+      "invoice_read"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2011",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "ticket_read",
+      "ticket_write"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  },
+  {
+    "account_id": "emp_2012",
+    "support_tier": "standard",
+    "seats": 1,
+    "features": [
+      "warehouse_read",
+      "repo_read"
+    ],
+    "sla_hours": 24,
+    "access_review_due": "2026-11-30",
+    "updated_at": "2026-08-04T10:00:00Z"
+  }
+]
