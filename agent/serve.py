@@ -35,6 +35,7 @@ from agent.metrics import (  # noqa: E402
     prometheus_text,
 )
 from agent.trace import new_request_id, sanitize_id  # noqa: E402
+from agent.upstream import HttpUpstream, NotFound, RetryPolicy, UpstreamDegraded, UpstreamError, WriteRejected  # noqa: E402
 
 REPO_ROOT = _IC4
 DASHBOARD_HTML = os.path.join(REPO_ROOT, "dashboard", "index.html")
@@ -58,6 +59,16 @@ class EvalRequest(BaseModel):
     limit: Optional[int] = None
     prompt_version: Optional[str] = None
     tickets: Optional[str] = None
+
+
+class TicketCreate(BaseModel):
+    """Intake form for a new ticket. Validated here for shape only; existence of the account is the
+    upstream's call (it owns the data), so `unknown_account` comes back from there, not from us."""
+    account_id: str = Field(..., pattern=r"^[A-Za-z0-9_-]{1,64}$")
+    subject: str = Field(..., min_length=1, max_length=200)
+    body: str = Field(..., min_length=1, max_length=4000)
+    channel: Optional[str] = Field(None, pattern=r"^[A-Za-z0-9_-]{1,32}$")
+    ticket_id: Optional[str] = Field(None, pattern=r"^[A-Za-z0-9_-]{1,64}$")
 
 
 # ---- middleware ---------------------------------------------------------------------------------------
@@ -110,6 +121,34 @@ def _filtered(runs_dir: str, outcome, category, model, ticket, correlation_id, r
     return all_runs, filtered
 
 
+# ---- upstream pass-through (intake) ---------------------------------------------------------------------
+# The dashboard never sees fixture files; accounts and tickets come from whatever UPSTREAM_BASE_URL serves.
+# Swap the fixture for a real API and these routes follow it. If that API has no such route, the answer is
+# an explicit 501 `upstream_unsupported` so the UI can hide the form instead of guessing.
+_ROUTE_MISSING_CODES = ("not_found", "http_404", "http_405", "method_not_allowed")
+
+
+def _upstream() -> HttpUpstream:
+    cfg = load_config()
+    return HttpUpstream(cfg.upstream_base_url, cfg.read_timeout_s, cfg.write_timeout_s,
+                        retry_policy=RetryPolicy(max_retries=int(cfg.max_retries)))
+
+
+def _upstream_http_error(exc: UpstreamError) -> HTTPException:
+    """Translate a client-side upstream exception into the response the dashboard should see."""
+    detail = {"code": exc.code, "message": exc.detail or exc.code}
+    if exc.code in _ROUTE_MISSING_CODES and (exc.status in (404, 405)):
+        return HTTPException(status_code=501, detail={"code": "upstream_unsupported",
+                                                      "message": "upstream has no such route (%s)" % exc.code})
+    if isinstance(exc, NotFound):
+        return HTTPException(status_code=404, detail=detail)
+    if isinstance(exc, WriteRejected):
+        return HTTPException(status_code=int(exc.status or 400), detail=detail)
+    if isinstance(exc, UpstreamDegraded):
+        return HTTPException(status_code=502 if exc.status else 503, detail=detail)
+    return HTTPException(status_code=502, detail=detail)
+
+
 # ---- endpoints ----------------------------------------------------------------------------------------
 @app.get("/healthz")
 def healthz() -> Dict[str, Any]:
@@ -137,6 +176,46 @@ async def post_run(req: RunRequest, request: Request):
         "X-Correlation-ID": str(getattr(result, "correlation_id", "") or correlation_id or request_id),
     }
     return JSONResponse(content=body, headers=headers)
+
+
+@app.get("/api/accounts")
+def api_accounts() -> Dict[str, Any]:
+    """Accounts as the upstream lists them (dropdown source for ticket intake)."""
+    try:
+        body = _upstream().get("/v1/accounts")
+    except UpstreamError as exc:
+        raise _upstream_http_error(exc)
+    accounts = body.get("accounts")
+    if not isinstance(accounts, list):
+        raise HTTPException(status_code=502, detail={"code": "invalid_response", "message": "expected {accounts: [...]}"})
+    return {"accounts": accounts}
+
+
+@app.get("/api/tickets")
+def api_tickets() -> Dict[str, Any]:
+    """Ticket ids the upstream currently knows (fixture ones plus anything created since start)."""
+    try:
+        body = _upstream().get("/v1/tickets")
+    except UpstreamError as exc:
+        raise _upstream_http_error(exc)
+    ids = body.get("ticket_ids")
+    if not isinstance(ids, list):
+        raise HTTPException(status_code=502, detail={"code": "invalid_response", "message": "expected {ticket_ids: [...]}"})
+    return {"ticket_ids": [str(t) for t in ids]}
+
+
+@app.api_route("/api/tickets", methods=["POST"])
+def api_create_ticket(req: TicketCreate) -> Dict[str, Any]:
+    """Create a ticket upstream and hand back the stored record. Nothing is cached here: the next
+    POST /run for that id reads it through the same GET /v1/tickets/{id} path as every other ticket."""
+    payload = {k: v for k, v in req.model_dump().items() if v is not None}
+    try:
+        record = _upstream().create_ticket(payload)
+    except UpstreamError as exc:
+        raise _upstream_http_error(exc)
+    if not isinstance(record, dict) or not record.get("ticket_id"):
+        raise HTTPException(status_code=502, detail={"code": "invalid_response", "message": "upstream returned no ticket_id"})
+    return record
 
 
 @app.get("/runs/{run_id}")

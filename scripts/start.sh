@@ -19,6 +19,14 @@ FIXTURE_VARIANT="${FIXTURE_VARIANT:-support}"
 
 mkdir -p "$RUNS_DIR"
 
+# Durability (agent/persist.py): with DATABASE_URL set, every run/eval directory written since the first
+# deploy is mirrored to the database as it finishes; pull them all back before serving so history,
+# traces and eval comparisons survive the redeploy. No-op without DATABASE_URL; never blocks startup on
+# a DB error (it logs and continues with whatever is on disk).
+if [ -n "${DATABASE_URL:-}" ]; then
+  python3 -m agent.persist restore --runs-dir "$RUNS_DIR" >&2 || echo "[start] restore from database failed; continuing with local runs/" >&2
+fi
+
 if [ "${START_FIXTURE:-true}" != "false" ]; then
   echo "[start] fixture: python3 -m server --port ${FIXTURE_PORT} --variant ${FIXTURE_VARIANT}" >&2
   python3 -m server --host 127.0.0.1 --port "$FIXTURE_PORT" --variant "$FIXTURE_VARIANT" &

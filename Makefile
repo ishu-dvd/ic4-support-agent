@@ -72,3 +72,19 @@ do-logs:
 # Regenerate the serverless-inference price table (needs DIGITALOCEAN_ACCESS_TOKEN).
 prices-refresh:
 	$(PY) scripts/refresh_prices.py
+
+# ---- runs/ durability (agent/persist.py; needs DATABASE_URL, see .env.example) ----
+.PHONY: persist-status persist-backfill persist-restore
+RUNS_DIR ?= runs
+
+# Backend, reachability, how many runs / evals / files are mirrored. Never prints the URL.
+persist-status:
+	$(PY) -m agent.persist status
+
+# Push everything currently under $(RUNS_DIR) (first cut-over or local history). Idempotent.
+persist-backfill:
+	$(PY) -m agent.persist backfill --runs-dir $(RUNS_DIR)
+
+# Materialise the mirrored files into $(RUNS_DIR) (what scripts/start.sh does on boot).
+persist-restore:
+	$(PY) -m agent.persist restore --runs-dir $(RUNS_DIR)

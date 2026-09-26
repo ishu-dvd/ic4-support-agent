@@ -172,6 +172,70 @@ def test_read_api_over_tmp_runs_dir(monkeypatch, tmp_path, client):
     assert client.get("/api/evals/eval-nope").status_code == 404
 
 
+# ---- intake pass-through: the dashboard's accounts/tickets come from the upstream, never from files ----
+
+def test_intake_routes_proxy_the_upstream(monkeypatch, fake_upstream, client):
+    base, state = fake_upstream
+    monkeypatch.setenv("UPSTREAM_BASE_URL", base)
+
+    r = client.get("/api/accounts")
+    assert r.status_code == 200
+    ids = [a["account_id"] for a in r.json()["accounts"]]
+    assert ids == ["acct_degraded", "acct_legacy", "acct_unified"]
+    assert state.calls["/v1/accounts"] == 1
+
+    r = client.get("/api/tickets")
+    assert r.status_code == 200 and set(r.json()["ticket_ids"]) == {"TCK-D", "TCK-L", "TCK-U"}
+
+    r = client.post("/api/tickets", json={"account_id": "acct_legacy", "subject": "s", "body": "b", "channel": "email"})
+    assert r.status_code == 200, r.text
+    created = r.json()
+    assert created["account_id"] == "acct_legacy" and created["channel"] == "email"
+    assert state.posts[-1] == ("/v1/tickets", {"account_id": "acct_legacy", "subject": "s", "body": "b", "channel": "email"})
+    # written upstream, readable back through the ordinary listing
+    assert created["ticket_id"] in client.get("/api/tickets").json()["ticket_ids"]
+    # nothing was cached in the agent layer: no runs/ artefact, no local state
+    assert state.calls["POST /v1/tickets"] == 1
+
+
+def test_intake_forwards_upstream_rejections_verbatim(monkeypatch, fake_upstream, client):
+    base, state = fake_upstream
+    monkeypatch.setenv("UPSTREAM_BASE_URL", base)
+
+    r = client.post("/api/tickets", json={"account_id": "acct_nope", "subject": "s", "body": "b"})
+    assert r.status_code == 422 and r.json()["detail"]["code"] == "unknown_account"
+
+    r = client.post("/api/tickets", json={"account_id": "acct_legacy", "subject": "s", "body": "b", "ticket_id": "TCK-L"})
+    assert r.status_code == 409 and r.json()["detail"]["code"] == "ticket_exists"
+
+    # shape validation is ours (422 before anything reaches the upstream)
+    posts_before = len(state.posts)
+    assert client.post("/api/tickets", json={"account_id": "../x", "subject": "s", "body": "b"}).status_code == 422
+    assert client.post("/api/tickets", json={"account_id": "acct_legacy", "subject": "", "body": "b"}).status_code == 422
+    assert len(state.posts) == posts_before
+
+
+def test_intake_reports_unsupported_upstream_as_501(monkeypatch, fake_upstream, client):
+    """A real systems-of-record API may have no accounts listing or ticket intake. That must surface as
+    an explicit 501, not as an empty dropdown or a misleading 'not found'."""
+    base, state = fake_upstream
+    state.intake_enabled = False
+    monkeypatch.setenv("UPSTREAM_BASE_URL", base)
+
+    for call in (lambda: client.get("/api/accounts"), lambda: client.get("/api/tickets"),
+                 lambda: client.post("/api/tickets", json={"account_id": "acct_legacy", "subject": "s", "body": "b"})):
+        r = call()
+        assert r.status_code == 501, r.text
+        assert r.json()["detail"]["code"] == "upstream_unsupported"
+
+
+def test_intake_unreachable_upstream_is_503(monkeypatch, client):
+    monkeypatch.setenv("UPSTREAM_BASE_URL", "http://127.0.0.1:9")  # nothing listens on the discard port
+    monkeypatch.setenv("MAX_RETRIES", "0")
+    r = client.get("/api/accounts")
+    assert r.status_code == 503 and r.json()["detail"]["code"] == "unreachable"
+
+
 def test_root_redirects_and_dashboard_served(client):
     r = client.get("/", follow_redirects=False)
     assert r.status_code == 307

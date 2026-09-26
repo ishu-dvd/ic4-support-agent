@@ -23,6 +23,9 @@ services:
       LLM_MAX_RETRIES: "${LLM_MAX_RETRIES:-3}"
       LLM_STREAM: "${LLM_STREAM:-true}"
       SERVICE_NAME: "${SERVICE_NAME:-ic4-support-agent}"
+      # Optional: mirror finished runs/evals to a database and restore them on start (agent/persist.py).
+      # The named volume below already keeps runs/ across restarts, so this is for parity with App Platform.
+      DATABASE_URL: "${DATABASE_URL:-}"
       # Model config comes from .env (OPENAI_BASE_URL / OPENAI_API_KEY / MODEL_ID); unset -> rules provider.
     volumes:
       - runs-data:/data/runs

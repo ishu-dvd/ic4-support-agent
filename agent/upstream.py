@@ -243,3 +243,13 @@ class HttpUpstream:
                 if _is_timeout(exc):
                     raise UpstreamDegraded(None, "timeout", "write timeout after %.1fs" % self.write_timeout_s)
                 raise UpstreamDegraded(None, "unreachable", str(getattr(exc, "reason", exc)))
+
+    # ---- ticket intake (dashboard / operator convenience, not part of the agent run) ----
+    def create_ticket(self, payload: dict) -> dict:
+        """POST /v1/tickets once and return the stored record. Same never-retry rule as any write.
+
+        Lives here (not in serve.py) so the only `.post(` call sites stay in this module and Tools.escalate;
+        the run loop itself never creates tickets. An upstream that has no intake route answers 404/405,
+        which the caller surfaces as "unsupported" rather than as a missing record."""
+        _status, body = self.post("/v1/tickets", payload)
+        return body

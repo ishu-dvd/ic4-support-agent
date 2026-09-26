@@ -343,6 +343,12 @@ class RunTracer:
         }
         with open(os.path.join(self.run_dir, "summary.json"), "w", encoding="utf-8") as fh:
             json.dump(summary, fh, indent=2, default=str)
+        # Durability: mirror the finished directory to the database (no-op unless DATABASE_URL is set;
+        # never raises). Runs on the request path deliberately - a write that only happens in the
+        # background is exactly what gets lost when the container is replaced a second later.
+        from agent import persist
+
+        persist.save_dir(self.runs_dir, self.run_id)
 
 
 class NoopTracer:

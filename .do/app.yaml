@@ -43,6 +43,15 @@ services:
         scope: RUN_TIME
         type: SECRET
         value: ${OPENAI_API_KEY}
+      # --- run history durability (agent/persist.py) ---
+      # Managed PostgreSQL connection string (postgresql://...:25060/defaultdb?sslmode=require). Same
+      # placeholder pattern as OPENAI_API_KEY. Leave empty to run without a database: runs/ then resets
+      # on every deploy. When set, finished runs/evals are mirrored to the DB as they complete and
+      # restored into RUNS_DIR by scripts/start.sh before the agent accepts traffic.
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        type: SECRET
+        value: ${DATABASE_URL}
       - key: MODEL_ID
         scope: RUN_TIME
         type: GENERAL

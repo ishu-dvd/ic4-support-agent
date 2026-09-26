@@ -13,7 +13,7 @@ import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from .search import search
-from .store import RecordNotFound, Store, UpstreamError
+from .store import RecordExists, RecordNotFound, Store, UpstreamError
 
 LATENCY_MS = 0  # set via --latency-ms to simulate a slower upstream
 
@@ -94,6 +94,9 @@ class Handler(BaseHTTPRequestHandler):
             except RecordNotFound:
                 return self._error(404, "account_not_found", "No account with id %r" % m.group(1))
 
+        if path == "/v1/accounts":
+            return self._send(200, {"accounts": self.store.account_list()})
+
         if path == "/v1/kb/search":
             q = (query.get("q") or [""])[0]
             if not q.strip():
@@ -114,7 +117,7 @@ class Handler(BaseHTTPRequestHandler):
         if LATENCY_MS:
             time.sleep(LATENCY_MS / 1000.0)
         path = urllib.parse.urlparse(self.path).path.rstrip("/") or "/"
-        if path != "/v1/escalations":
+        if path not in ("/v1/escalations", "/v1/tickets"):
             return self._error(404, "not_found", "No route for POST %s" % path)
 
         try:
@@ -123,6 +126,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._error(400, "invalid_json", "Request body is not valid JSON.", detail=str(exc))
         if not isinstance(payload, dict):
             return self._error(400, "invalid_body", "Request body must be a JSON object.")
+
+        if path == "/v1/tickets":
+            return self._create_ticket(payload)
 
         missing = [f for f in ("ticket_id", "reason", "summary") if not payload.get(f)]
         if missing:
@@ -144,6 +150,23 @@ class Handler(BaseHTTPRequestHandler):
             )
 
         return self._send(201, self.store.file_escalation(payload))
+
+    def _create_ticket(self, payload):
+        """Ticket intake. Unlike the escalation write this is a test-harness convenience, so no
+        `confirm` handshake: the record only lives in memory and vanishes on restart."""
+        missing = [f for f in ("account_id", "subject", "body") if not payload.get(f)]
+        if missing:
+            return self._error(
+                422, "missing_fields", "Missing required field(s): %s" % ", ".join(missing), fields=missing
+            )
+        try:
+            return self._send(201, self.store.create_ticket(payload))
+        except RecordNotFound:
+            return self._error(422, "unknown_account", "No account with id %r" % payload["account_id"])
+        except ValueError as exc:
+            return self._error(422, "invalid_ticket_id", str(exc))
+        except RecordExists as exc:
+            return self._error(409, "ticket_exists", "A ticket with id %r already exists" % str(exc))
 
 
 def serve(variant="support", host="127.0.0.1", port=8080, latency_ms=0):

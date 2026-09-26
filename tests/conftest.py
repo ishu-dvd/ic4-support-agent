@@ -118,6 +118,8 @@ class FakeState:
         self.calls = {}  # path -> count
         self.posts = []  # (path, payload)
         self.escalations = []
+        self.created_tickets = {}  # runtime intake (POST /v1/tickets); read back via GET /v1/tickets/{id}
+        self.intake_enabled = True  # False -> the fake behaves like an upstream with no accounts/intake routes
 
     def hit(self, path):
         with self.lock:
@@ -168,9 +170,19 @@ def _make_handler(state):
                 time.sleep(SLOW_SLEEP_S)
                 return self._send(200, {"ok": True})
 
+            if path == "/v1/tickets":
+                if not state.intake_enabled:
+                    return self._error(404, "not_found", "No route")
+                with state.lock:
+                    return self._send(200, {"ticket_ids": sorted(list(TICKETS) + list(state.created_tickets))})
+            if path == "/v1/accounts":
+                if not state.intake_enabled:
+                    return self._error(404, "not_found", "No route")
+                return self._send(200, {"accounts": [ACCOUNTS[k] for k in sorted(ACCOUNTS)]})
             m = re.fullmatch(r"/v1/tickets/([A-Za-z0-9_\-]+)", path)
             if m:
-                t = TICKETS.get(m.group(1))
+                with state.lock:
+                    t = TICKETS.get(m.group(1)) or state.created_tickets.get(m.group(1))
                 if t is None:
                     return self._error(404, "ticket_not_found", "No ticket")
                 return self._send(200, t)
@@ -231,12 +243,29 @@ def _make_handler(state):
                 return None
             if path == "/write-list":  # 201 with a JSON array instead of an object (S8)
                 return self._send(201, ["filed"])
+            if path == "/v1/tickets":
+                if not state.intake_enabled:
+                    return self._error(404, "not_found", "No route")
+                missing = [f for f in ("account_id", "subject", "body") if not payload.get(f)]
+                if missing:
+                    return self._error(422, "missing_fields", "missing", fields=missing)
+                if payload["account_id"] not in ACCOUNTS:
+                    return self._error(422, "unknown_account", "no such account")
+                with state.lock:
+                    tid = payload.get("ticket_id") or "TCK-N%d" % (len(state.created_tickets) + 1)
+                    if tid in TICKETS or tid in state.created_tickets:
+                        return self._error(409, "ticket_exists", "taken")
+                    rec = {"ticket_id": tid, "account_id": payload["account_id"], "subject": payload["subject"],
+                           "body": payload["body"], "channel": payload.get("channel") or "web",
+                           "opened_at": "2026-09-26T00:00:00Z", "status": "open"}
+                    state.created_tickets[tid] = rec
+                return self._send(201, rec)
             if path not in ("/write", "/v1/escalations"):
                 return self._error(404, "not_found", "No route")
             missing = [f for f in ("ticket_id", "reason", "summary") if not payload.get(f)]
             if path == "/v1/escalations" and missing:
                 return self._error(422, "missing_fields", "missing", fields=missing)
-            if path == "/v1/escalations" and payload["ticket_id"] not in TICKETS:
+            if path == "/v1/escalations" and payload["ticket_id"] not in TICKETS and payload["ticket_id"] not in state.created_tickets:
                 return self._error(422, "unknown_ticket", "no such ticket")
             if payload.get("confirm") is not True:
                 return self._error(409, "confirmation_required", "re-send with confirm true")

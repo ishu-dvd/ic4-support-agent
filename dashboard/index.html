@@ -144,13 +144,32 @@ hr{border:0;border-top:1px solid var(--border);margin:10px 0}
     <div class="card">
       <h3>Run one ticket (POST /run, write=false)</h3>
       <div class="row">
-        <label class="small">Ticket id<br><input type="text" id="r-ticket" placeholder="ticket id"></label>
+        <label class="small">Ticket id<br><input type="text" id="r-ticket" placeholder="ticket id" list="ticket-ids" autocomplete="off"></label>
+        <datalist id="ticket-ids"></datalist>
         <label class="small">Correlation id<br><input type="text" id="r-corr" placeholder="optional"></label>
         <button class="primary" id="r-start">Run</button>
       </div>
       <div class="small mono" id="r-ids" style="margin-top:6px"></div>
       <pre id="r-out" style="display:none;margin-top:6px"></pre>
     </div>
+  </div>
+  <div class="card" id="intake-card">
+    <h3>New ticket (POST /api/tickets → upstream POST /v1/tickets) <span class="muted" id="nt-src"></span></h3>
+    <div class="row">
+      <label class="small">Account<br><select id="nt-account" style="min-width:260px"><option value="">loading…</option></select></label>
+      <label class="small">Channel<br><select id="nt-channel"><option>web</option><option>email</option><option>chat</option><option>phone</option></select></label>
+      <label class="small">Ticket id<br><input type="text" id="nt-id" placeholder="(auto)" style="width:110px"></label>
+      <label class="small">Subject<br><input type="text" id="nt-subject" placeholder="one line" style="width:320px" maxlength="200"></label>
+    </div>
+    <div class="row" style="margin-top:6px">
+      <label class="small" style="flex:1 1 100%">Body<br><textarea id="nt-body" rows="3" style="width:100%;resize:vertical" maxlength="4000" placeholder="what the customer wrote"></textarea></label>
+    </div>
+    <div class="row" style="margin-top:6px">
+      <button class="primary" id="nt-create">Create ticket</button>
+      <label class="small"><input type="checkbox" id="nt-run" checked> run it right away (write=false)</label>
+      <span class="small muted">Stored upstream, in memory: it is gone after the upstream restarts or redeploys.</span>
+    </div>
+    <div class="small mono" id="nt-status" style="margin-top:6px"></div>
   </div>
   <div class="card">
     <h3>Evals <span class="muted" id="ev-count"></span></h3>
@@ -186,9 +205,7 @@ const isNum = v => typeof v === 'number' && isFinite(v);
 const fmtMs = v => isNum(v) ? Math.round(v).toLocaleString() : '—';
 const fmtMsU = v => isNum(v) ? Math.round(v).toLocaleString() + ' ms' : '—';
 const fmtUsd = v => isNum(v) ? '$' + v.toFixed(Math.abs(v) < 0.01 && v !== 0 ? 6 : 4) : (v === null ? 'unknown' : '—');
-// Every rate/accuracy/recall field from /api/metrics and eval summaries is ALREADY a percentage (0-100),
-// e.g. success_rate=100.0, kb_recall=86.67, escalate_f1=100.0. Never multiply by 100 here.
-const fmtPct = v => isNum(v) ? v.toFixed(1) + '%' : '—';
+const fmtPct = v => isNum(v) ? (v * 100).toFixed(1) + '%' : '—';
 const fmtInt = v => isNum(v) ? v.toLocaleString() : '—';
 const fmtTime = ms => isNum(ms) ? new Date(ms).toLocaleString(undefined, { hour12: false }) : '—';
 const fmtTimeShort = ms => isNum(ms) ? new Date(ms).toISOString().replace('T', ' ').slice(5, 19) : '—';
@@ -500,7 +517,7 @@ const EVAL_COLS = [
   { k: 'model_id', h: 'model', g: e => e.model_id, r: e => el('span', { class: 'mono', title: e.model_id || '' }, trunc(e.model_id, 20)) }, { k: 'prompt_version', h: 'prompt', g: e => e.prompt_version },
   { k: 'n', h: 'n', num: 1, g: e => e.n, r: e => `${fmtInt(e.n)}${e.metrics && isNum(e.metrics.completed) && e.metrics.completed !== e.n ? ' (' + e.metrics.completed + ' ok)' : ''}` },
   { k: 'category_accuracy', h: 'cat acc', num: 1, g: e => (e.metrics || {}).category_accuracy, r: e => fmtPct((e.metrics || {}).category_accuracy) },
-  { k: 'escalate_accuracy', h: 'esc acc / F1', num: 1, g: e => (e.metrics || {}).escalate_accuracy, r: e => `${fmtPct((e.metrics || {}).escalate_accuracy)} / ${fmtPct((e.metrics || {}).escalate_f1)}` },
+  { k: 'escalate_accuracy', h: 'esc acc / F1', num: 1, g: e => (e.metrics || {}).escalate_accuracy, r: e => `${fmtPct((e.metrics || {}).escalate_accuracy)} / ${isNum((e.metrics || {}).escalate_f1) ? e.metrics.escalate_f1.toFixed(3) : '—'}` },
   { k: 'kb_recall', h: 'kb recall', num: 1, g: e => (e.metrics || {}).kb_recall, r: e => fmtPct((e.metrics || {}).kb_recall) },
   { k: 'groundedness', h: 'grounded', num: 1, g: e => { const m = e.metrics || {}; return isNum(m.groundedness_total) && m.groundedness_eval_total ? m.groundedness_total / m.groundedness_eval_total : null; }, r: e => { const m = e.metrics || {}; return isNum(m.groundedness_total) && isNum(m.groundedness_eval_total) ? `${m.groundedness_total}/${m.groundedness_eval_total}` : '—'; } },
   { k: 'injection', h: 'injection', g: e => ((e.metrics || {}).injection || {}).passed, r: e => { const inj = (e.metrics || {}).injection; if (!inj || inj.passed == null) return el('span', { class: 'muted' }, '—'); return el('span', { class: inj.passed ? 'o-completed' : 'o-failed' }, inj.passed ? 'PASS' : 'FAIL'); } },
@@ -555,7 +572,7 @@ async function openEval(id) {
   $('#evd-summary').replaceChildren(kv([
     ['eval_id', s.eval_id || id, 1], ['timestamp', typeof s.timestamp === 'number' ? fmtTime(s.timestamp < 1e12 ? s.timestamp * 1000 : s.timestamp) : s.timestamp], ['model / prompt', `${s.model_id || '—'} / ${s.prompt_version || '—'}`], ['provider', `${s.provider || '—'}${s.dry_run ? ' · dry_run' : ''}${s.kb_filter != null ? ' · kb_filter=' + s.kb_filter : ''}`],
     ['n / completed', `${fmtInt(s.n)} / ${fmtInt(m.completed)} (${fmtPct(m.completion_rate)})`], ['category accuracy', `${fmtPct(m.category_accuracy)}  · baseline ${b.category_label || 'n/a'}: ${fmtPct(b.category)}`],
-    ['escalate acc / P / R / F1', `${fmtPct(m.escalate_accuracy)} / ${fmtPct(m.escalate_precision)} / ${fmtPct(m.escalate_recall)} / ${fmtPct(m.escalate_f1)}  · baseline ${b.escalate_label || 'n/a'}: ${fmtPct(b.escalate)}`],
+    ['escalate acc / P / R / F1', `${fmtPct(m.escalate_accuracy)} / ${fmtPct(m.escalate_precision)} / ${fmtPct(m.escalate_recall)} / ${isNum(m.escalate_f1) ? m.escalate_f1.toFixed(3) : '—'}  · baseline ${b.escalate_label || 'n/a'}: ${fmtPct(b.escalate)}`],
     ['kb recall / hit any', `${fmtPct(m.kb_recall)} / ${fmtPct(m.kb_hit_any)}`], ['groundedness', isNum(m.groundedness_total) ? `${m.groundedness_total} / ${fmtInt(m.groundedness_eval_total)}` : null],
     ['injection', m.injection ? (m.injection.passed ? 'PASS' : 'FAIL') + ' ' + Object.entries(m.injection).filter(([k]) => k !== 'passed').map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(' ') : null],
     ['cost total / per task', `${fmtUsd(m.cost_total_usd)} / ${fmtUsd(m.cost_per_completed_task)}`], ['e2e p50 / p95', `${fmtMs(((m.e2e_ms) || {})['50'])} / ${fmtMs(((m.e2e_ms) || {})['95'])} ms`],
@@ -584,6 +601,52 @@ $('#r-start').onclick = async () => {
   } catch (e) { $('#r-ids').textContent = 'failed: ' + e.message; } finally { $('#r-start').disabled = false; }
 };
 
+// ---------- ticket intake (accounts + ids come from the upstream via the agent; nothing is read locally) ----------
+const intake = { supported: null };
+async function loadTicketIds() {
+  try {
+    const d = await fetch('/api/tickets').then(r => r.ok ? r.json() : null);
+    if (d && Array.isArray(d.ticket_ids)) $('#ticket-ids').replaceChildren(...d.ticket_ids.map(t => el('option', { value: t })));
+  } catch (e) { /* datalist is a convenience only */ }
+}
+async function loadAccounts() {
+  const sel = $('#nt-account');
+  let r;
+  try { r = await fetch('/api/accounts'); } catch (e) { sel.replaceChildren(el('option', { value: '' }, 'upstream unreachable')); return; }
+  if (r.status === 501) {
+    // The configured upstream has no accounts/intake route: say so and hide the form rather than half-work.
+    intake.supported = false;
+    $('#intake-card').querySelectorAll('input,select,textarea,button').forEach(x => x.disabled = true);
+    $('#nt-status').textContent = 'This upstream does not expose /v1/accounts or /v1/tickets intake. Enter an existing ticket id in "Run one ticket" instead.';
+    $('#nt-src').textContent = '· unsupported by upstream';
+    return;
+  }
+  if (!r.ok) { sel.replaceChildren(el('option', { value: '' }, `accounts failed: HTTP ${r.status}`)); return; }
+  const d = await r.json();
+  intake.supported = true;
+  const opts = (d.accounts || []).map(a => {
+    const extra = [a.plan_tier, a.auth_model, a.department, a.worker_type].filter(Boolean).join(', ');
+    return el('option', { value: a.account_id }, `${a.account_id} · ${a.name || ''}${extra ? ' (' + extra + ')' : ''}`);
+  });
+  sel.replaceChildren(el('option', { value: '' }, opts.length ? 'select an account…' : 'no accounts upstream'), ...opts);
+  $('#nt-src').textContent = `· ${opts.length} account${opts.length === 1 ? '' : 's'} from upstream`;
+}
+$('#nt-create').onclick = async () => {
+  const st = $('#nt-status');
+  const body = { account_id: $('#nt-account').value, subject: $('#nt-subject').value.trim(), body: $('#nt-body').value.trim(), channel: $('#nt-channel').value };
+  if ($('#nt-id').value.trim()) body.ticket_id = $('#nt-id').value.trim();
+  if (!body.account_id) { st.textContent = 'pick an account'; return; }
+  if (!body.subject || !body.body) { st.textContent = 'subject and body are required'; return; }
+  $('#nt-create').disabled = true; st.textContent = 'creating…';
+  try {
+    const t = await post('/api/tickets', body);
+    st.replaceChildren('created ', el('span', { class: 'o-completed' }, t.ticket_id), copyBtn(t.ticket_id), ` · account ${t.account_id} · ${t.channel} · ${t.opened_at}`);
+    $('#r-ticket').value = t.ticket_id; $('#nt-id').value = ''; $('#nt-subject').value = ''; $('#nt-body').value = '';
+    loadTicketIds();
+    if ($('#nt-run').checked) $('#r-start').click(); else $('#r-ticket').focus();
+  } catch (e) { st.textContent = 'failed: ' + e.message; } finally { $('#nt-create').disabled = false; }
+};
+
 // ---------- tabs / wiring ----------
 function setTab(t) { state.tab = t; document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === t)); $('#tab-overview').style.display = t === 'overview' ? '' : 'none'; $('#tab-evals').style.display = t === 'evals' ? '' : 'none'; writeHash(); refresh(); }
 document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => setTab(b.dataset.tab));
@@ -599,6 +662,8 @@ window.addEventListener('hashchange', () => { readHash(); setTab(state.tab); });
 // boot
 readHash();
 loadConfig();
+loadAccounts();
+loadTicketIds();
 document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === state.tab));
 $('#tab-overview').style.display = state.tab === 'overview' ? '' : 'none'; $('#tab-evals').style.display = state.tab === 'evals' ? '' : 'none';
 refresh().then(() => { const p = new URLSearchParams(location.hash.slice(1)); if (p.get('eval') && state.tab === 'evals') openEval(p.get('eval')); });

@@ -160,13 +160,57 @@ the `applies_to` filter is what keeps "grounded" and "correct for this customer"
 | Data integrity | `data/` never read directly, `make agent-test` refuses if modified | `Makefile` |
 | Failure transparency | degraded and unknown states are explicit categories, never silent defaults | `agent/rules.py`, `agent/policy.py` |
 
-## Hosting path
+## Hosting and observability (built)
 
-The core is stdlib so it can be reviewed and run with nothing installed. For hosting, `specs/SPEC.md`
-defines `agent/serve.py` as a FastAPI app (`POST /run`, `GET /healthz`, `GET /runs/{id}`) using
-Pydantic v2 `TypeAdapter` over the existing dataclasses, so no domain type changes are needed; deps are
-isolated in `requirements-serve.txt`. Container: `python:3.14-slim` + uvicorn, compose with the fixture as
-a second service, endpoints swapped by `UPSTREAM_BASE_URL` / `OPENAI_BASE_URL` only.
+The core stays stdlib. `agent/serve.py` (FastAPI, deps in `requirements-serve.txt`) exposes `POST /run`,
+`GET /healthz`, `GET /runs/{id}`, a JSON API (`/api/runs`, `/api/runs/{id}`, `/api/metrics`, `/api/evals`),
+a Prometheus endpoint (`/metrics`) and a zero-dependency dashboard at `/dashboard` (filterable, sortable,
+drill-down to the trace waterfall). One container runs the fixture (:8081) and the agent (:8080);
+`Dockerfile`, `compose.yaml`, `.do/app.yaml`. Deployed on DigitalOcean App Platform (region `blr`, the
+team's existing pattern) with model calls on DigitalOcean serverless inference (`https://inference.do-ai.run/v1`,
+OpenAI-compatible; `gemma-4-31B-it` on this team's tier). See `docs/DEPLOY-DIGITALOCEAN.md`.
+
+Observability model, all in `agent/trace.py` + `agent/metrics.py`:
+
+- Ids on every trace record: `trace_id` (run), `request_id` (`X-Request-ID` or generated),
+  `correlation_id` (`X-Correlation-ID`, propagated unchanged, groups runs), `activity_id` (the pipeline step),
+  `operation_id` (one HTTP or model attempt). Both request and correlation ids are echoed as response headers.
+- Retries are status-based with a default of 3 (`RetryPolicy`): retry on timeout / 429 / 5xx, never on
+  404, other 4xx, `entitlement_service_error`, or when the backoff cannot fit in the deadline; writes never
+  retry. Each attempt is its own span with `retry_decision`; `retry` / `retries_exhausted` events are counted.
+- Model calls stream so time-to-first-token and inter-token gaps (p50/p95) are measured; usage missing
+  from the provider is estimated and flagged, never zero. Cost is split input/output and the output part
+  attributed to diagnosis vs reply by text share; the dashboard shows cost of successful runs, cost burnt
+  on failures, cost per success, and cost by model with DigitalOcean's per-token prices.
+- Latency p50/p90/p95/p99 end-to-end and per step; every trace record also goes to stdout as a JSON line
+  (`TRACE_STDOUT=true`) for App Platform log forwarding.
+
+Measured on DigitalOcean serverless (`gemma-4-31B-it`, 31 golden cases, dry-run): category 100%, escalate
+100%, injection PASS, TTFT p50 ~1.1 s / p95 ~2.0 s, ~$0.00022 per ticket. With the model unreachable
+(`gpt-4o-mini` returned 403 "not available for your subscription tier") every run degraded to
+`rules_fallback` after one non-retried attempt and still scored 31/31.
+
+**Nothing is lost on a redeploy.** App Platform's disk is ephemeral, so `agent/persist.py` mirrors every
+finished run and eval directory (`summary.json`, `result.json`, `trace.jsonl`, `cases.jsonl`, verbatim) to a
+database the moment it completes — `RunTracer.finish()` and `scripts/eval_agent.py` call `save_dir()` on the
+request path, not in the background, because a write that is still queued when the container is replaced is
+exactly the write that goes missing. On boot `scripts/start.sh` runs `python3 -m agent.persist restore`, which
+puts every stored file back under `RUNS_DIR`; the dashboard, `/api/*` readers and the Prometheus endpoint keep
+reading files and never know a redeploy happened. Backend is chosen from `DATABASE_URL` (`postgresql://…` on
+DigitalOcean Managed PostgreSQL via psycopg; `sqlite:///…` locally; unset = disabled, files only). It never
+raises into a run: a DB failure is one JSON line on stderr and the run still completes. Drill on the real
+history here: 1,332 directories / 3,963 files backfilled in 125 ms, restored byte-identical in 167 ms.
+`make persist-status | persist-backfill | persist-restore`. This is the durability layer; the queryable
+column index in `agent/store.py` (`runs` / `evals` / `eval_cases`) can always be rebuilt from it.
+
+**Testing on tickets that are not in the fixture.** The dashboard's Evals tab has a *New ticket* card: pick
+an account from a dropdown, type subject and body, and the ticket is created **upstream** (`POST /api/tickets`
+→ `POST /v1/tickets` on whatever `UPSTREAM_BASE_URL` points at), then run through `POST /run` like any other.
+The agent layer holds nothing: accounts (`/api/accounts`) and ticket ids (`/api/tickets`) are read from the
+upstream on demand, and the run reads the new ticket back over `GET /v1/tickets/{id}`. Against the fixture
+the record lives in memory (gone on restart, `data/` untouched). Against a real systems-of-record API the
+same routes follow it; if that API has no listing/intake route the agent answers `501 upstream_unsupported`
+and the dashboard disables the card instead of showing an empty dropdown.
 
 ## Next 30 minutes with a model key
 

@@ -51,6 +51,62 @@ The ticket, including the free-text body as submitted by the requester.
 
 ---
 
+## `POST /v1/tickets`
+
+**This is a write.** Files a new ticket against an existing account so it can be run through the
+agent like any shipped one. Intended for testing and demos: the record is held in memory only
+and disappears when the server restarts (the fixture files under `data/` are never modified).
+
+Request:
+
+```json
+{
+  "account_id": "acct_1004",
+  "subject": "Cannot enable SSO",
+  "body": "SSO toggle is greyed out in admin settings since yesterday.",
+  "channel": "chat",
+  "ticket_id": "TCK-CUSTOM"
+}
+```
+
+`account_id`, `subject` and `body` are required. `channel` defaults to `web`. `ticket_id` is
+optional; when omitted the server continues the fixture's numbering (`TCK-1132`, `TCK-1133`, …).
+
+Response `201` is the stored ticket, in the same shape `GET /v1/tickets/{ticket_id}` returns:
+
+```json
+{
+  "ticket_id": "TCK-1132",
+  "account_id": "acct_1004",
+  "subject": "Cannot enable SSO",
+  "body": "SSO toggle is greyed out in admin settings since yesterday.",
+  "channel": "chat",
+  "opened_at": "2026-09-26T08:27:03Z",
+  "status": "open"
+}
+```
+
+- `400 invalid_json` / `400 invalid_body` — unparseable or non-object body.
+- `422 missing_fields` — one or more required fields absent or empty; `fields` lists them.
+- `422 unknown_account` — `account_id` does not exist.
+- `422 invalid_ticket_id` — `ticket_id` is not `[A-Za-z0-9_-]{1,64}`.
+- `409 ticket_exists` — `ticket_id` is already taken. Nothing was written.
+
+The new ticket appears in `GET /v1/tickets` and is a valid target for `POST /v1/escalations`.
+
+---
+
+## `GET /v1/accounts`
+
+Every account in the loaded fixture, sorted by id. Each entry is the full record that
+`GET /v1/accounts/{account_id}` returns.
+
+```json
+{ "accounts": [ { "account_id": "acct_1001", "name": "Northwind Retail", "...": "..." } ] }
+```
+
+---
+
 ## `GET /v1/accounts/{account_id}`
 
 The account or person behind a ticket.

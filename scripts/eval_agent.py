@@ -742,6 +742,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     }
     with open(os.path.join(eval_dir, "summary.json"), "w", encoding="utf-8") as fh:
         json.dump(summary, fh, indent=2, default=str)
+    # The per-ticket runs were mirrored as they finished (RunTracer.finish); now the eval directory itself.
+    from agent import persist
+
+    persist.save_dir(cfg.runs_dir, eval_id)
 
     print(render_report(header, baselines, metrics, traces))
     print("")
